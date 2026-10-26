@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* Paleta Ninna: fundos em azul bebê, destaques em rosa bebê.
+   O rosa forte (rosa-600) é o único usado com texto branco, por contraste. */
+@theme {
+  --color-rosa-50: #fde7ef;
+  --color-rosa-100: #fbd3e1;
+  --color-rosa-300: #e7a9c2;
+  --color-rosa-600: #b83c70;
+  --color-rosa-700: #962d5a;
+  --color-azul-50: #f1f7fc;
+  --color-azul-100: #cfe6f7;
+  --color-azul-700: #2f6596;
+  --color-azul-900: #1f2a44;
+  --color-tinta: #1f1b2d;
+  --color-suave: #5e5873;
+  --color-linha: #dce7f0;
+  --color-alerta: #b42318;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-azul-50);
+  color: var(--color-tinta);
+}
