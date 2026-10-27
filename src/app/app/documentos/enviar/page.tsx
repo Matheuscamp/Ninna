@@ -23,9 +23,12 @@ async function Envio() {
           <p className="text-lg font-bold">Você chegou ao limite do plano gratuito</p>
           <p className="text-[15px] leading-relaxed text-suave">
             O plano gratuito guarda até {limite(plano, "documentos")} documentos. Exclua algum que não precisa mais para liberar espaço,
-            ou aguarde o Premium, que chega em breve e não tem limite.
+            ou assine o Premium, que não tem limite.
           </p>
-          <Link href="/app/documentos" className="flex h-12 items-center rounded-2xl bg-rosa-600 px-5 font-semibold text-white hover:bg-rosa-700">
+          <Link href="/app/premium" className="flex h-12 items-center rounded-2xl bg-rosa-600 px-5 font-semibold text-white hover:bg-rosa-700">
+            Conhecer o Premium
+          </Link>
+          <Link href="/app/documentos" className="flex h-11 items-center px-3 font-semibold text-azul-700 hover:underline">
             Ver meus documentos
           </Link>
         </div>

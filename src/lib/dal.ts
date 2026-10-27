@@ -182,9 +182,9 @@ export async function linksDeMiniatura(caminhos: string[], segundos = 300): Prom
   return links;
 }
 
-// Plano em vigor (premium só enquanto válido). Sem registro = gratuito.
-// Lido da tabela assinaturas, que a usuária não consegue alterar.
-export async function getPlano(usuariaId: string): Promise<Plano> {
+// Plano em vigor (premium só enquanto válido) e até quando vale (null = sem prazo).
+// Sem registro = gratuito. Lido da tabela assinaturas, que a usuária não consegue alterar.
+export async function getAssinatura(usuariaId: string): Promise<{ plano: Plano; validoAte: string | null }> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("assinaturas")
@@ -193,11 +193,15 @@ export async function getPlano(usuariaId: string): Promise<Plano> {
     .maybeSingle();
   if (error) {
     // Tabela ainda não criada (migração de planos pendente): todas no gratuito.
-    if (error.code === "PGRST205") return "gratuito";
+    if (error.code === "PGRST205") return { plano: "gratuito", validoAte: null };
     throw falhaDoBanco("plano", error);
   }
   const vigente = data && data.plano === "premium" && (!data.valido_ate || new Date(data.valido_ate) > new Date());
-  return vigente ? "premium" : "gratuito";
+  return vigente ? { plano: "premium", validoAte: data.valido_ate } : { plano: "gratuito", validoAte: null };
+}
+
+export async function getPlano(usuariaId: string): Promise<Plano> {
+  return (await getAssinatura(usuariaId)).plano;
 }
 
 export const BUCKET_AVATARES = "avatares";

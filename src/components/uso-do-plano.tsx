@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // Linha discreta com o uso do plano (agenda, documentos).
 // Limites pequenos viram marcadores; limites maiores, uma barra. No Premium: "ilimitado".
 export function UsoDoPlano({ usados, limite, rotulo }: { usados: number; limite: number | null; rotulo: string }) {
@@ -23,6 +25,14 @@ export function UsoDoPlano({ usados, limite, rotulo }: { usados: number; limite:
         {cheio
           ? `Limite de ${limite} ${rotulo} do plano gratuito atingido`
           : `${usados} de ${limite} ${rotulo} no plano gratuito`}
+        {cheio && (
+          <>
+            {" · "}
+            <Link href="/app/premium" className="underline underline-offset-2 hover:text-rosa-600">
+              Conhecer o Premium
+            </Link>
+          </>
+        )}
       </p>
     </div>
   );

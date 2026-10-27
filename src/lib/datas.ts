@@ -16,6 +16,11 @@ export function formatarDataLonga(iso: string) {
   return new Date(iso + "T12:00:00Z").toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 }
 
+// Dia de um instante, em São Paulo: "27 de novembro de 2026".
+export function formatarDiaDoInstante(instante: string | Date) {
+  return new Date(instante).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric", timeZone: FUSO });
+}
+
 export function formatarDataHora(instante: string | Date) {
   const data = new Date(instante);
   const dia = data.toLocaleDateString("pt-BR", { weekday: "short", day: "numeric", month: "short", timeZone: FUSO });

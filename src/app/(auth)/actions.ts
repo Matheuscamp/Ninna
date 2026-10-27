@@ -1,9 +1,9 @@
 "use server";
 
 import { isAuthRetryableFetchError } from "@supabase/supabase-js";
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { origem } from "@/lib/origem";
 import { createClient } from "@/lib/supabase/server";
 
 const SEM_CONEXAO = "Não conseguimos conectar agora. Confira sua internet e tente de novo.";
@@ -44,13 +44,6 @@ function valoresDigitados(formData: FormData) {
 function destinoSeguro(next: FormDataEntryValue | null, padrao = "/app") {
   const valor = typeof next === "string" ? next : "";
   return valor.startsWith("/") && !valor.startsWith("//") ? valor : padrao;
-}
-
-// Só a origem (protocolo + domínio + porta): um caminho a mais no
-// NEXT_PUBLIC_SITE_URL duplicaria o /auth/callback dos links.
-async function origem() {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || (await headers()).get("origin") || "http://localhost:3000";
-  return new URL(base).origin;
 }
 
 const entrarSchema = z.object({

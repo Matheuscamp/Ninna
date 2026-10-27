@@ -43,7 +43,7 @@ async function passaDoLimite(usuariaId: string, dataHora: string, ignorarId?: nu
   return (count ?? 0) >= LIMITE_GRATUITO;
 }
 
-const MENSAGEM_LIMITE = `No plano gratuito você pode ter até ${LIMITE_GRATUITO} consultas futuras. Remova ou edite uma delas, ou aguarde o Premium, que chega em breve.`;
+const MENSAGEM_LIMITE = `No plano gratuito você pode ter até ${LIMITE_GRATUITO} consultas futuras. Remova ou edite uma delas, ou assine o Premium, que não tem limite.`;
 
 export async function criarConsulta(_estado: EstadoConsulta, formData: FormData): Promise<EstadoConsulta> {
   const usuaria = await getUsuaria();

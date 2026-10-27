@@ -29,6 +29,7 @@ const ICONES = {
   lapis: <path d="M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4" />,
   telefone: <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />,
   ficha: <path d="M9 4h6v3H9zM7 5H5v16h14V5h-2M12 11v6M9 14h6" />,
+  estrela: <path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z" />,
 };
 
 function Detalhe({ icone, rotulo, valor }: { icone: ReactNode; rotulo: string; valor: string }) {
@@ -237,6 +238,16 @@ export function PerfilVisual({ email, plano, semanas, perfil, ficha, fotoUrl, ho
           </section>
 
           {ficha && <CartaoFicha ficha={ficha} hoje={hoje} />}
+
+          <section aria-label="Plano" className="overflow-hidden rounded-3xl bg-white">
+            <Link href="/app/premium" className={CLASSE_ITEM}>
+              <ConteudoItem
+                icone={<Icone>{ICONES.estrela}</Icone>}
+                titulo={plano === "premium" ? "Ninna Premium" : "Conhecer o Premium"}
+                descricao={plano === "premium" ? "Veja até quando vale e renove" : "Agenda e documentos sem limite e conteúdos extras"}
+              />
+            </Link>
+          </section>
 
           {/* Configurações: só ações que existem de verdade. */}
           <section aria-labelledby="titulo-privacidade" className="overflow-hidden rounded-3xl bg-white">

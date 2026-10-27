@@ -9,7 +9,8 @@ Assistente de gestação. O README descreve o que existe (rotas, migrações, pl
 - Toda página logada usa `exigirUsuariaPronta()` de `src/lib/dal.ts`, o único ponto que lê sessão, consentimento e perfil.
 - Migrações em `supabase/migrations/` são rodadas **à mão** pela dona do projeto no SQL Editor do Supabase. Ao criar uma, avise e espere ela rodar; o app deve tolerar a migração ainda não aplicada.
 - Funções novas no Postgres ficam executáveis por qualquer um por padrão: use `revoke execute ... from public, anon, authenticated` em funções que não são para a API.
-- O plano (gratuito/premium) fica na tabela `assinaturas`, que a usuária só lê. Nunca no `profiles`, que ela pode editar. Limites em `src/lib/planos.ts`.
+- O plano (gratuito/premium) fica na tabela `assinaturas`, que a usuária só lê. Nunca no `profiles`, que ela pode editar. Limites e preços em `src/lib/planos.ts`.
+- Premium só é creditado por `processarPagamento` (`src/lib/mercadopago.ts`), a partir do pagamento lido da API do Mercado Pago, e pelas funções `creditar_pagamento`/`estornar_pagamento`, que só a chave secreta executa. Nunca confie em status ou valor vindos da URL ou do corpo do webhook. `createAdminClient` (chave secreta) é só para isso.
 
 ## Armadilhas já encontradas
 - O `fetch` do Next duplica respostas para cache: leitura parcial + cancelamento trava. Para buscas diretas use `fetchSupabase` (`src/lib/supabase/fetch.ts`), que também refaz conexões que travam (a rede local às vezes oscila).
@@ -19,10 +20,11 @@ Assistente de gestação. O README descreve o que existe (rotas, migrações, pl
 ## Como testar
 - `npm test` (vitest), `npm run typecheck`, `npm run lint`, `npm run build`.
 - Fluxos com login são testados com o Supabase simulado em `src/test/supabase-falso.ts` (não criar contas reais nem digitar senhas).
+- Pagamentos: nunca pagar de verdade nem digitar cartão; a API do Mercado Pago é simulada nos testes (`src/lib/mercadopago.test.ts`).
 - Para conferir uma tela logada sem conta: página temporária de prévia que renderiza o componente visual com dados de exemplo; apague-a depois.
 
 ## Conteúdo de saúde
 Textos em `src/content/` são uma primeira versão e precisam de revisão de obstetra ou enfermeira obstétrica antes do lançamento.
 
 ## Próximas etapas
-Lembretes de consulta (notificação/e-mail), assinatura Premium com Mercado Pago (gravando em `assinaturas`), PWA com modo offline.
+Lembretes de consulta (notificação/e-mail), PWA com modo offline. Antes de lançar o Premium: credenciais de produção do Mercado Pago e webhook cadastrado no domínio final.

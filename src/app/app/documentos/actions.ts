@@ -17,7 +17,7 @@ function caminhoDaUsuaria(caminho: string, usuariaId: string) {
 
 export type Preparo = { ok: true; url: string; caminho: string } | { ok: false; erro: string; limite?: boolean };
 
-const MENSAGEM_LIMITE = `Você chegou ao limite de ${LIMITES_GRATUITOS.documentos} documentos do plano gratuito. Exclua algum ou aguarde o Premium, que chega em breve e não tem limite.`;
+const MENSAGEM_LIMITE = `Você chegou ao limite de ${LIMITES_GRATUITOS.documentos} documentos do plano gratuito. Exclua algum ou assine o Premium, que não tem limite.`;
 
 // Passo 1 do envio: valida o arquivo e devolve um link de envio de uso único.
 // O navegador manda o arquivo direto para o Storage (com barra de progresso).
