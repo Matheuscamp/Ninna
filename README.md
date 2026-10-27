@@ -15,6 +15,7 @@ Já entregue: **login**, **consentimento LGPD**, **triagem** e o **painel** (In�
    - `20261031000000_planos.sql` e `20261031000001_planos_permissoes.sql`: plano da usuária (gratuito ou premium) e limite de 10 documentos no gratuito.
    - `20261101000000_ficha_saude.sql`: foto de perfil (bucket privado) e ficha pessoal e de saúde.
    - `20261102000000_pagamentos.sql`: pagamentos do Premium pelo Mercado Pago.
+   - `20261103000000_plano_parto.sql`: plano de parto (Premium).
 
    Todas as tabelas têm RLS ligado.
 3. Copie `.env.example` para `.env.local` e preencha a URL e a publishable key do projeto.
@@ -50,6 +51,9 @@ Abra http://localhost:3000.
 /app/guias/semana    tarefas e exames da fase (gestante)
 /app/guias/parto     tipos de parto, prós e contras
 /app/guias/sintomas  checador de sintomas e como confirmar (suspeita)
+/app/guias/contracoes contador de contrações (Premium; atalho no Início a partir de 34 semanas)
+/app/guias/plano-parto  plano de parto (Premium): formulário guiado
+/app/guias/plano-parto/documento  documento para imprimir ou salvar em PDF
 /app/alertas         sinais de alerta, sempre gratuitos
 /app/documentos      central de documentos de saúde (enviar, buscar, filtrar, abrir, baixar, editar, excluir)
 /app/premium         planos Premium, pagamento (Mercado Pago), histórico e reembolso
@@ -92,10 +96,14 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 | --- | --- | --- |
 | Consultas futuras na agenda | até 3 | ilimitadas |
 | Documentos de saúde | até 10 | ilimitados |
+| Contador de contrações | — | sim |
+| Plano de parto em PDF | — | sim |
 
 O plano fica na tabela `assinaturas`, que a usuária só pode ler (não pode se marcar como Premium). Quem altera é o servidor, a partir de um pagamento confirmado. O limite de documentos também é garantido por uma trava no banco. Os limites e os preços ficam em `src/lib/planos.ts`.
 
-Artigos marcados como Premium só abrem para quem é Premium. Sinais de alerta são sempre gratuitos.
+Artigos marcados como Premium só abrem para quem é Premium. O contador de contrações também, mas os sinais para ir à maternidade na hora aparecem para todas. Os registros do contador ficam só no aparelho (localStorage, por até 12 horas) e funcionam sem internet. A regra de quando ir para a maternidade fica em `src/content/contracoes.ts`.
+
+O plano de parto guarda as respostas na tabela `planos_de_parto` (jsonb); as perguntas ficam em `src/content/plano-parto.ts`. O PDF é gerado pela impressão do navegador ("Salvar como PDF"), com estilos próprios para a folha A4. Sinais de alerta são sempre gratuitos.
 
 ## Assinatura Premium (Mercado Pago)
 

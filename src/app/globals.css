@@ -23,3 +23,14 @@ body {
   background: var(--color-azul-50);
   color: var(--color-tinta);
 }
+
+/* Impressão (plano de parto e outros documentos): fundo branco e margens de folha A4. */
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm;
+  }
+  body {
+    background: white;
+  }
+}

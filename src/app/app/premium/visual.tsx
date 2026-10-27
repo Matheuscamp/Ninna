@@ -20,6 +20,8 @@ const MENSAGENS: Record<string, { texto: string; erro?: boolean }> = {
 const BENEFICIOS = [
   { titulo: "Agenda sem limite", descricao: `Todas as consultas e exames futuros (no gratuito, até ${LIMITES_GRATUITOS.consultasFuturas}).` },
   { titulo: "Documentos sem limite", descricao: `Guarde todos os exames e laudos (no gratuito, até ${LIMITES_GRATUITOS.documentos}).` },
+  { titulo: "Plano de parto em PDF", descricao: "Suas preferências para o parto num documento pronto para levar à maternidade." },
+  { titulo: "Contador de contrações", descricao: "Mede duração e intervalo e avisa a hora de ligar para a maternidade. Funciona sem internet." },
   { titulo: "Conteúdos Premium", descricao: "Exames do pré-natal, alimentação, sono, período fértil e mais." },
 ];
 

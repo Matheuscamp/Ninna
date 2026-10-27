@@ -45,6 +45,7 @@ export default function PrivacidadePage() {
           <li>respostas da triagem, como o seu momento, data da última menstruação ou data provável do parto, primeira gestação, cesárea ou perda anterior, gestação de risco e acompanhamento pré-natal;</li>
           <li>ficha de saúde que você preencher: data de nascimento, tipo sanguíneo, peso, altura, alergias e medicamentos;</li>
           <li>consultas e exames da agenda, tarefas marcadas nos guias e os documentos de saúde que você enviar, como exames, laudos e receitas;</li>
+          <li>plano de parto, se você preencher: suas preferências para o parto e os nomes do acompanhante, da doula e da equipe que você informar;</li>
           <li>foto de perfil, se você enviar.</li>
         </Lista>
         <p>
@@ -152,7 +153,8 @@ export default function PrivacidadePage() {
       <Secao id="cookies" titulo="8. Cookies e armazenamento no navegador">
         <p>
           Usamos apenas cookies essenciais, que mantêm você conectada à sua conta. Não usamos cookies de publicidade nem de rastreamento. O navegador
-          também guarda, por até 24 horas, as respostas da triagem feita antes do cadastro.
+          também guarda, por até 24 horas, as respostas da triagem feita antes do cadastro. Os registros do contador de contrações ficam só no seu
+          aparelho, não são enviados ao Ninna e somem depois de 12 horas ou quando você recomeça a contagem.
         </p>
       </Secao>
 

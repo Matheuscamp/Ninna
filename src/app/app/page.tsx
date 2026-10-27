@@ -21,6 +21,7 @@ const ICONES: Record<string, ReactNode> = {
   livro: <path d="M4 19V5a2 2 0 0 1 2-2h14v14H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h14" />,
   telefone: <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />,
   alerta: <path d="M12 3 2 20h20zM12 10v4M12 17v.5" />,
+  cronometro: <path d="M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM12 9v4l2.5 2.5M10 2h4M19 6l1.5-1.5" />,
 };
 
 function Icone({ nome, className = "size-6" }: { nome: keyof typeof ICONES; className?: string }) {
@@ -33,7 +34,10 @@ function Icone({ nome, className = "size-6" }: { nome: keyof typeof ICONES; clas
 
 type Atalho = { href: string; rotulo: string; icone: keyof typeof ICONES; cor: string };
 
-function atalhosDoPerfil(perfil: Perfil): Atalho[] {
+// A partir desta semana, o atalho do contador de contrações substitui o de tipos de parto.
+const SEMANA_CONTRACOES = 34;
+
+function atalhosDoPerfil(perfil: Perfil, semanas: number | null): Atalho[] {
   const alerta: Atalho = { href: "/app/alertas", rotulo: "Sinais de alerta", icone: "alerta", cor: "bg-[#fdecea] text-[#8a1c12]" };
   const novaConsulta: Atalho = { href: "/app/agenda/nova", rotulo: "Nova consulta", icone: "consulta", cor: "bg-rosa-50 text-rosa-600" };
   const conteudo: Atalho = { href: "/app/conteudo", rotulo: "Conteúdo", icone: "livro", cor: "bg-azul-100 text-azul-900" };
@@ -42,7 +46,9 @@ function atalhosDoPerfil(perfil: Perfil): Atalho[] {
       return [
         novaConsulta,
         { href: "/app/guias/semana", rotulo: "Minha semana", icone: "lista", cor: "bg-azul-100 text-azul-900" },
-        { href: "/app/guias/parto", rotulo: "Tipos de parto", icone: "parto", cor: "bg-rosa-50 text-rosa-600" },
+        semanas !== null && semanas >= SEMANA_CONTRACOES
+          ? { href: "/app/guias/contracoes", rotulo: "Contrações", icone: "cronometro", cor: "bg-rosa-50 text-rosa-600" }
+          : { href: "/app/guias/parto", rotulo: "Tipos de parto", icone: "parto", cor: "bg-rosa-50 text-rosa-600" },
         alerta,
       ];
     case "suspeita":
@@ -167,7 +173,7 @@ async function Inicio() {
       <CartaoPrincipal perfil={perfil} semanas={semanas} />
 
       <nav aria-label="Atalhos" className="grid grid-cols-4 gap-2">
-        {atalhosDoPerfil(perfil.perfil).map((a) => (
+        {atalhosDoPerfil(perfil.perfil, semanas).map((a) => (
           <Link key={a.href + a.rotulo} href={a.href} className="flex flex-col items-center gap-1.5 rounded-2xl p-1 text-center">
             <span className={`flex size-14 items-center justify-center rounded-2xl ${a.cor}`}>
               <Icone nome={a.icone} />

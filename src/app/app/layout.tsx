@@ -6,7 +6,7 @@ import { Abas, BarraDeAbas } from "@/components/abas";
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <div className="flex flex-1 flex-col pb-[72px]">{children}</div>
+      <div className="flex flex-1 flex-col pb-[72px] print:pb-0">{children}</div>
       <Suspense fallback={<BarraDeAbas pathname="" />}>
         <Abas />
       </Suspense>

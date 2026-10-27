@@ -63,7 +63,7 @@ export default function TermosPage() {
           futuras na agenda e até {LIMITES_GRATUITOS.documentos} documentos de saúde. Sinais de alerta e orientações de segurança são sempre gratuitos.
         </p>
         <p>
-          <strong>Ninna Premium:</strong> agenda e documentos sem limite e conteúdos extras. Preços atuais:{" "}
+          <strong>Ninna Premium:</strong> agenda e documentos sem limite, plano de parto em PDF, contador de contrações e conteúdos extras. Preços atuais:{" "}
           {Object.values(PERIODOS)
             .map((p) => `${formatarPreco(p.preco)} por ${p.rotulo}`)
             .join(" ou ")}

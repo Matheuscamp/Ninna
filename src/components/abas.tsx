@@ -51,7 +51,7 @@ export function Abas() {
 
 export function BarraDeAbas({ pathname }: { pathname: string }) {
   return (
-    <nav aria-label="Navegação principal" className="fixed inset-x-0 bottom-0 z-10 border-t border-linha bg-white">
+    <nav aria-label="Navegação principal" className="fixed inset-x-0 bottom-0 z-10 border-t border-linha bg-white print:hidden">
       <ul className="mx-auto grid h-[72px] max-w-md grid-cols-5">
         {ABAS.map((aba) => {
           const ativa = abaAtiva(pathname, aba.href);

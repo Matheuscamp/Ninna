@@ -5,6 +5,7 @@ import { TIPOS_CONSENTIMENTO, VERSAO_CONSENTIMENTO } from "@/lib/consentimento";
 import { hojeEmSaoPaulo } from "@/lib/datas";
 import { escaparBusca, type Filtros } from "@/lib/documentos";
 import type { Plano } from "@/lib/planos";
+import { normalizarRespostas, type RespostasPlano } from "@/lib/plano-parto";
 import { idadeGestacional, type Perfil } from "@/lib/triagem";
 
 export const BUCKET_DOCUMENTOS = "documentos";
@@ -227,6 +228,24 @@ export async function listarPagamentos(usuariaId: string): Promise<PagamentoPrem
     throw falhaDoBanco("pagamentos", error);
   }
   return data;
+}
+
+// Plano de parto salvo (null = ainda não começou). Antes da migração do plano de
+// parto, devolve indisponivel para a tela avisar em vez de quebrar.
+export async function getPlanoDeParto(
+  usuariaId: string,
+): Promise<{ respostas: RespostasPlano; atualizadoEm: string } | null | "indisponivel"> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("planos_de_parto")
+    .select("respostas, atualizado_em")
+    .eq("user_id", usuariaId)
+    .maybeSingle();
+  if (error) {
+    if (error.code === "PGRST205") return "indisponivel";
+    throw falhaDoBanco("plano de parto", error);
+  }
+  return data ? { respostas: normalizarRespostas(data.respostas), atualizadoEm: data.atualizado_em } : null;
 }
 
 export const BUCKET_AVATARES = "avatares";
