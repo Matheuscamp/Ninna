@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Carregando, Pagina } from "@/components/ui";
-import { contarDocumentos, exigirUsuariaPronta, linksDeMiniatura, listarDocumentos, type Documento } from "@/lib/dal";
+import { UsoDoPlano } from "@/components/uso-do-plano";
+import { contarDocumentos, exigirUsuariaPronta, getPlano, linksDeMiniatura, listarDocumentos, type Documento } from "@/lib/dal";
+import { limite } from "@/lib/planos";
 import { formatarDataLonga } from "@/lib/datas";
 import { categoria, formatarTamanho, lerFiltros, temFiltros } from "@/lib/documentos";
 import { ExcluirDocumento } from "./excluir";
@@ -91,7 +93,11 @@ async function Central({ searchParams }: { searchParams: PageProps<"/app/documen
   const { usuaria } = await exigirUsuariaPronta();
   const params = await searchParams;
   const filtros = lerFiltros(params);
-  const [documentos, total] = await Promise.all([listarDocumentos(usuaria.id, filtros), contarDocumentos(usuaria.id)]);
+  const [documentos, total, plano] = await Promise.all([
+    listarDocumentos(usuaria.id, filtros),
+    contarDocumentos(usuaria.id),
+    getPlano(usuaria.id),
+  ]);
   const miniaturas = await linksDeMiniatura(documentos.filter((d) => d.tipo_mime.startsWith("image/")).map((d) => d.caminho));
   const aviso = mensagem(typeof params.ok === "string" ? params.ok : undefined, typeof params.n === "string" ? params.n : undefined);
   const consultaAtual = new URLSearchParams(
@@ -100,6 +106,8 @@ async function Central({ searchParams }: { searchParams: PageProps<"/app/documen
 
   return (
     <>
+      <UsoDoPlano usados={total} limite={limite(plano, "documentos")} rotulo="documentos" />
+
       {aviso && (
         <p role="status" className={`rounded-2xl px-4 py-3 text-[15px] font-semibold ${aviso.erro ? "bg-rosa-50 text-rosa-700" : "bg-azul-100 text-azul-900"}`}>
           {aviso.texto}

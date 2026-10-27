@@ -15,8 +15,11 @@ export function Logo({ tamanho = 40 }: { tamanho?: number }) {
   );
 }
 
-export function Pagina({ children }: { children: ReactNode }) {
-  return <main className="mx-auto flex w-full max-w-md flex-1 flex-col gap-5 px-5 py-8">{children}</main>;
+// `larga`: para seções em grade (ex.: Conteúdo), que usam mais colunas no tablet e no computador.
+export function Pagina({ children, larga = false }: { children: ReactNode; larga?: boolean }) {
+  return (
+    <main className={`mx-auto flex w-full flex-1 flex-col gap-5 px-5 py-8 ${larga ? "max-w-5xl" : "max-w-md"}`}>{children}</main>
+  );
 }
 
 export function BotaoPrimario({ className = "", ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {

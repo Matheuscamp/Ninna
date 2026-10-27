@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { TIPOS_CONSENTIMENTO, VERSAO_CONSENTIMENTO } from "@/lib/consentimento";
 import { hojeEmSaoPaulo } from "@/lib/datas";
 import { escaparBusca, type Filtros } from "@/lib/documentos";
+import type { Plano } from "@/lib/planos";
 import { idadeGestacional, type Perfil } from "@/lib/triagem";
 
 export const BUCKET_DOCUMENTOS = "documentos";
@@ -179,4 +180,22 @@ export async function linksDeMiniatura(caminhos: string[], segundos = 300): Prom
   const links: Record<string, string> = {};
   for (const d of data) if (d.path && d.signedUrl) links[d.path] = d.signedUrl;
   return links;
+}
+
+// Plano em vigor (premium só enquanto válido). Sem registro = gratuito.
+// Lido da tabela assinaturas, que a usuária não consegue alterar.
+export async function getPlano(usuariaId: string): Promise<Plano> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("assinaturas")
+    .select("plano, valido_ate")
+    .eq("user_id", usuariaId)
+    .maybeSingle();
+  if (error) {
+    // Tabela ainda não criada (migração de planos pendente): todas no gratuito.
+    if (error.code === "PGRST205") return "gratuito";
+    throw falhaDoBanco("plano", error);
+  }
+  const vigente = data && data.plano === "premium" && (!data.valido_ate || new Date(data.valido_ate) > new Date());
+  return vigente ? "premium" : "gratuito";
 }

@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Carregando, Pagina } from "@/components/ui";
-import { LIMITE_GRATUITO, separarConsultas } from "@/lib/agenda";
-import { exigirUsuariaPronta, listarConsultas, type Consulta } from "@/lib/dal";
+import { UsoDoPlano } from "@/components/uso-do-plano";
+import { separarConsultas } from "@/lib/agenda";
+import { limite } from "@/lib/planos";
+import { exigirUsuariaPronta, getPlano, listarConsultas, type Consulta } from "@/lib/dal";
 import { partesDaData, quantoFalta } from "@/lib/datas";
 import { AlternarConcluida } from "./concluir";
 import { RemoverConsulta } from "./remover";
@@ -106,27 +108,16 @@ function porMes(consultas: Consulta[]) {
 
 async function Agenda({ searchParams }: { searchParams: PageProps<"/app/agenda">["searchParams"] }) {
   const { usuaria } = await exigirUsuariaPronta();
-  const [consultas, params] = await Promise.all([listarConsultas(usuaria.id), searchParams]);
+  const [consultas, params, plano] = await Promise.all([listarConsultas(usuaria.id), searchParams, getPlano(usuaria.id)]);
   const agora = new Date();
   const grupos = separarConsultas(consultas, agora);
   const listas: Record<Aba, Consulta[]> = { proximas: grupos.proximas, confirmar: grupos.paraConfirmar, concluidas: grupos.concluidas };
   const aba: Aba = ABAS.some((a) => a.id === params.aba) ? (params.aba as Aba) : "proximas";
   const lista = listas[aba];
   const mensagem = typeof params.ok === "string" ? MENSAGENS[params.ok] : undefined;
-  const usadas = grupos.proximas.length;
-
   return (
     <>
-      <p className="-mt-3 flex items-center gap-2 text-[13px] text-suave">
-        <span className="flex gap-1" aria-hidden="true">
-          {Array.from({ length: LIMITE_GRATUITO }, (_, i) => (
-            <span key={i} className={`h-1.5 w-4 rounded-full ${i < usadas ? "bg-rosa-600" : "bg-linha"}`} />
-          ))}
-        </span>
-        {usadas >= LIMITE_GRATUITO
-          ? `Limite de ${LIMITE_GRATUITO} consultas futuras do plano gratuito atingido`
-          : `${usadas} de ${LIMITE_GRATUITO} consultas futuras no plano gratuito`}
-      </p>
+      <UsoDoPlano usados={grupos.proximas.length} limite={limite(plano, "consultasFuturas")} rotulo="consultas futuras" />
 
       {mensagem && (
         <p role="status" className={`rounded-2xl px-4 py-3 text-[15px] font-semibold ${mensagem.erro ? "bg-rosa-50 text-rosa-700" : "bg-azul-100 text-azul-900"}`}>

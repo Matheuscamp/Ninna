@@ -12,6 +12,7 @@ Já entregue: **login**, **consentimento LGPD**, **triagem** e o **painel** (In�
    - `20261027000000_painel.sql`: agenda, progresso dos guias e exclusão da conta.
    - `20261028000000_agenda_editar.sql` e `20261029000000_agenda_concluir.sql`: editar e concluir consultas.
    - `20261030000000_documentos.sql`: Central de Documentos (bucket privado no Storage + tabela).
+   - `20261031000000_planos.sql` e `20261031000001_planos_permissoes.sql`: plano da usuária (gratuito ou premium) e limite de 10 documentos no gratuito.
 
    Todas as tabelas têm RLS ligado.
 3. Copie `.env.example` para `.env.local` e preencha a URL e a publishable key do projeto.
@@ -72,6 +73,15 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 - O navegador envia o arquivo por um link de envio de uso único gerado pelo servidor (com barra de progresso). Depois, o servidor confere tamanho, tipo e os primeiros bytes do arquivo; se não for imagem ou PDF de verdade, o arquivo é apagado.
 - Abrir e baixar passam por `/app/documentos/[id]/arquivo`, que confere a dona e gera um link que expira em 60 segundos. Não existem links públicos permanentes.
 - Excluir a conta apaga também os arquivos do Storage.
+
+## Planos
+
+| Recurso | Gratuito | Premium |
+| --- | --- | --- |
+| Consultas futuras na agenda | até 3 | ilimitadas |
+| Documentos de saúde | até 10 | ilimitados |
+
+O plano fica na tabela `assinaturas`, que a usuária só pode ler (não pode se marcar como Premium). Quem altera é o servidor, na etapa de assinatura. O limite de documentos também é garantido por uma trava no banco. Os limites ficam em `src/lib/planos.ts`.
 
 ## Scripts
 

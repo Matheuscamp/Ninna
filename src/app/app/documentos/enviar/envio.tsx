@@ -52,7 +52,8 @@ function enviarParaStorage(url: string, arquivo: File, aoProgredir: (pct: number
   });
 }
 
-export function EnvioDocumentos() {
+// `vagas`: quantos documentos ainda cabem no plano (null = Premium, ilimitado).
+export function EnvioDocumentos({ vagas }: { vagas: number | null }) {
   const router = useRouter();
   const entrada = useRef<HTMLInputElement>(null);
   const [itens, setItens] = useState<Item[]>([]);
@@ -71,14 +72,20 @@ export function EnvioDocumentos() {
     if (!lista) return;
     const novos: Item[] = [];
     const recusas: { nome: string; motivo: string }[] = [];
-    const vagas = MAX_ARQUIVOS_POR_ENVIO - itens.filter((i) => i.estado !== "concluido").length;
+    // Dois limites: arquivos por envio e vagas do plano (os já enviados nesta tela também contam).
+    const porEnvio = MAX_ARQUIVOS_POR_ENVIO - itens.filter((i) => i.estado !== "concluido").length;
+    const doPlano = vagas === null ? Infinity : vagas - itens.length;
     for (const arquivo of Array.from(lista)) {
       const motivo = validarArquivo(arquivo);
       if (motivo) {
         recusas.push({ nome: arquivo.name, motivo });
         continue;
       }
-      if (novos.length >= vagas) {
+      if (novos.length >= doPlano) {
+        recusas.push({ nome: arquivo.name, motivo: "Não cabe mais no plano gratuito (até 10 documentos)." });
+        continue;
+      }
+      if (novos.length >= porEnvio) {
         recusas.push({ nome: arquivo.name, motivo: `Envie até ${MAX_ARQUIVOS_POR_ENVIO} arquivos por vez.` });
         continue;
       }
@@ -198,7 +205,10 @@ export function EnvioDocumentos() {
           <IconeEnvio />
         </span>
         <span className="text-base font-bold">{arrastando ? "Solte os arquivos aqui" : "Arraste os arquivos ou toque para escolher"}</span>
-        <span className="text-sm text-suave">JPG, PNG, WEBP ou PDF · até 10 MB cada · até {MAX_ARQUIVOS_POR_ENVIO} por vez</span>
+        <span className="text-sm text-suave">
+          JPG, PNG, WEBP ou PDF · até 10 MB cada · até {MAX_ARQUIVOS_POR_ENVIO} por vez
+          {vagas !== null && ` · ${vagas === 1 ? "cabe mais 1 documento" : `cabem mais ${vagas} documentos`}`}
+        </span>
         <input
           ref={entrada}
           id="arquivos"

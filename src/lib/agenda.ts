@@ -1,7 +1,8 @@
 import { z } from "zod";
+import { LIMITES_GRATUITOS } from "./planos";
 
-// Plano gratuito: até 3 consultas futuras ao mesmo tempo (o Premium chega na etapa de assinatura).
-export const LIMITE_GRATUITO = 3;
+// Plano gratuito: até 3 consultas futuras ao mesmo tempo; no Premium, ilimitadas.
+export const LIMITE_GRATUITO = LIMITES_GRATUITOS.consultasFuturas;
 
 export const consultaSchema = z.object({
   titulo: z.string().trim().min(1, { error: "Dê um nome à consulta ou exame." }).max(80),

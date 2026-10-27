@@ -2,7 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { BUCKET_DOCUMENTOS, getUsuaria } from "@/lib/dal";
+import { BUCKET_DOCUMENTOS, contarDocumentos, getPlano, getUsuaria } from "@/lib/dal";
+import { atingiuLimite, LIMITES_GRATUITOS } from "@/lib/planos";
 import { metadadosSchema, TIPOS_ACEITOS, tipoAceito, tipoPelosBytes, validarArquivo, type Metadados } from "@/lib/documentos";
 import { fetchSupabase } from "@/lib/supabase/fetch";
 import { createClient } from "@/lib/supabase/server";
@@ -14,7 +15,9 @@ function caminhoDaUsuaria(caminho: string, usuariaId: string) {
   return CAMINHO_VALIDO.test(caminho) && caminho.startsWith(`${usuariaId}/`);
 }
 
-export type Preparo = { ok: true; url: string; caminho: string } | { ok: false; erro: string };
+export type Preparo = { ok: true; url: string; caminho: string } | { ok: false; erro: string; limite?: boolean };
+
+const MENSAGEM_LIMITE = `Você chegou ao limite de ${LIMITES_GRATUITOS.documentos} documentos do plano gratuito. Exclua algum ou aguarde o Premium, que chega em breve e não tem limite.`;
 
 // Passo 1 do envio: valida o arquivo e devolve um link de envio de uso único.
 // O navegador manda o arquivo direto para o Storage (com barra de progresso).
@@ -24,6 +27,14 @@ export async function prepararEnvio(arquivo: { nome: string; tipo: string; taman
 
   const erro = validarArquivo({ name: arquivo.nome, type: arquivo.tipo, size: arquivo.tamanho });
   if (erro || !tipoAceito(arquivo.tipo)) return { ok: false, erro: erro ?? "Formato não aceito." };
+
+  // Limite do plano conferido antes de o arquivo subir.
+  try {
+    const [plano, total] = await Promise.all([getPlano(usuaria.id), contarDocumentos(usuaria.id)]);
+    if (atingiuLimite(plano, "documentos", total)) return { ok: false, erro: MENSAGEM_LIMITE, limite: true };
+  } catch {
+    return { ok: false, erro: "Não foi possível iniciar o envio. Tente de novo." };
+  }
 
   const caminho = `${usuaria.id}/${crypto.randomUUID()}.${TIPOS_ACEITOS[arquivo.tipo]}`;
   const supabase = await createClient();
@@ -57,7 +68,7 @@ async function apagarArquivo(caminho: string) {
   await supabase.storage.from(BUCKET_DOCUMENTOS).remove([caminho]);
 }
 
-export type Registro = { ok: true; id: string } | { ok: false; erro: string };
+export type Registro = { ok: true; id: string } | { ok: false; erro: string; limite?: boolean };
 
 // Passo 2: confere o arquivo que chegou ao Storage e grava as informações.
 export async function registrarDocumento(entrada: { caminho: string; nomeOriginal: string; metadados: Metadados }): Promise<Registro> {
@@ -106,6 +117,8 @@ export async function registrarDocumento(entrada: { caminho: string; nomeOrigina
     .single();
   if (error) {
     await apagarArquivo(entrada.caminho);
+    // O banco também barra o 11º documento do plano gratuito (vários envios ao mesmo tempo).
+    if (error.message?.includes("limite_documentos")) return { ok: false, erro: MENSAGEM_LIMITE, limite: true };
     return { ok: false, erro: "Não foi possível salvar o documento. Tente de novo." };
   }
   return { ok: true, id: data.id };

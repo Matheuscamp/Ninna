@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { consultaSchema, LIMITE_GRATUITO } from "@/lib/agenda";
-import { getUsuaria } from "@/lib/dal";
+import { getPlano, getUsuaria } from "@/lib/dal";
 import { localParaIso } from "@/lib/datas";
 import { createClient } from "@/lib/supabase/server";
 
@@ -26,9 +26,10 @@ function lerFormulario(formData: FormData) {
   return { valores, campos };
 }
 
-// Regra do plano gratuito: no máximo LIMITE_GRATUITO consultas futuras.
+// Regra do plano gratuito: no máximo LIMITE_GRATUITO consultas futuras. No Premium, sem limite.
 async function passaDoLimite(usuariaId: string, dataHora: string, ignorarId?: number) {
   if (new Date(dataHora) <= new Date()) return false;
+  if ((await getPlano(usuariaId)) === "premium") return false;
   const supabase = await createClient();
   let consulta = supabase
     .from("appointments")
