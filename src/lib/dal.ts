@@ -199,3 +199,44 @@ export async function getPlano(usuariaId: string): Promise<Plano> {
   const vigente = data && data.plano === "premium" && (!data.valido_ate || new Date(data.valido_ate) > new Date());
   return vigente ? "premium" : "gratuito";
 }
+
+export const BUCKET_AVATARES = "avatares";
+
+export type FichaSaude = {
+  foto_caminho: string | null;
+  data_nascimento: string | null;
+  tipo_sanguineo: string | null;
+  peso_kg: number | null;
+  altura_cm: number | null;
+  alergias: string | null;
+  medicamentos: string | null;
+  emergencia_nome: string | null;
+  emergencia_parentesco: string | null;
+  emergencia_telefone: string | null;
+};
+
+// Ficha pessoal e de saúde. Antes da migração da ficha (colunas inexistentes)
+// devolve null, para o resto do app seguir funcionando.
+export async function getFicha(usuariaId: string): Promise<FichaSaude | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("profiles")
+    .select(
+      "foto_caminho, data_nascimento, tipo_sanguineo, peso_kg, altura_cm, alergias, medicamentos, emergencia_nome, emergencia_parentesco, emergencia_telefone",
+    )
+    .eq("id", usuariaId)
+    .maybeSingle();
+  if (error) {
+    if (error.code === "42703" || error.code === "PGRST204") return null;
+    throw falhaDoBanco("ficha", error);
+  }
+  return data;
+}
+
+// Link temporário (1 hora) para exibir a foto de perfil; o bucket é privado.
+export async function linkDaFoto(caminho: string | null): Promise<string | null> {
+  if (!caminho) return null;
+  const supabase = await createClient();
+  const { data } = await supabase.storage.from(BUCKET_AVATARES).createSignedUrl(caminho, 3600);
+  return data?.signedUrl ?? null;
+}

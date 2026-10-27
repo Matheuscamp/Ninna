@@ -13,6 +13,7 @@ Já entregue: **login**, **consentimento LGPD**, **triagem** e o **painel** (In�
    - `20261028000000_agenda_editar.sql` e `20261029000000_agenda_concluir.sql`: editar e concluir consultas.
    - `20261030000000_documentos.sql`: Central de Documentos (bucket privado no Storage + tabela).
    - `20261031000000_planos.sql` e `20261031000001_planos_permissoes.sql`: plano da usuária (gratuito ou premium) e limite de 10 documentos no gratuito.
+   - `20261101000000_ficha_saude.sql`: foto de perfil (bucket privado) e ficha pessoal e de saúde.
 
    Todas as tabelas têm RLS ligado.
 3. Copie `.env.example` para `.env.local` e preencha a URL e a publishable key do projeto.
@@ -41,7 +42,8 @@ Abra http://localhost:3000.
 /app                 início adaptado ao perfil (exige login, consentimento e triagem)
 /app/agenda          consultas e exames (até 3 futuras no plano gratuito)
 /app/conteudo        artigos por perfil
-/app/perfil          dados, refazer triagem, exportar e excluir conta
+/app/perfil          momento, conta, ficha de saúde, exportar e excluir conta
+/app/perfil/editar   foto de perfil e dados pessoais e de saúde
 /app/guias/semana    tarefas e exames da fase (gestante)
 /app/guias/parto     tipos de parto, prós e contras
 /app/guias/sintomas  checador de sintomas e como confirmar (suspeita)

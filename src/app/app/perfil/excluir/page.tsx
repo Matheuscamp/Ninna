@@ -12,7 +12,7 @@ export default function ExcluirPage() {
       <div className="flex flex-col gap-2 rounded-3xl bg-white p-5 text-[15px] leading-relaxed">
         <p>Isso apaga de vez sua conta e tudo o que o Ninna guarda sobre você:</p>
         <ul className="list-disc pl-5 text-suave">
-          <li>perfil e respostas da triagem</li>
+          <li>perfil, foto, ficha de saúde e respostas da triagem</li>
           <li>consultas da agenda e tarefas marcadas</li>
           <li>documentos de saúde enviados (arquivos e informações)</li>
           <li>registros de consentimento</li>
