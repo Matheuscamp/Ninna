@@ -10,6 +10,8 @@ Já entregue: **login**, **consentimento LGPD**, **triagem** e o **painel** (In�
 2. No SQL Editor do Supabase, rode **em ordem** os arquivos de `supabase/migrations/`:
    - `20261026000000_inicial.sql`: perfil, consentimentos e triagem.
    - `20261027000000_painel.sql`: agenda, progresso dos guias e exclusão da conta.
+   - `20261028000000_agenda_editar.sql` e `20261029000000_agenda_concluir.sql`: editar e concluir consultas.
+   - `20261030000000_documentos.sql`: Central de Documentos (bucket privado no Storage + tabela).
 
    Todas as tabelas têm RLS ligado.
 3. Copie `.env.example` para `.env.local` e preencha a URL e a publishable key do projeto.
@@ -43,6 +45,7 @@ Abra http://localhost:3000.
 /app/guias/parto     tipos de parto, prós e contras
 /app/guias/sintomas  checador de sintomas e como confirmar (suspeita)
 /app/alertas         sinais de alerta, sempre gratuitos
+/app/documentos      central de documentos de saúde (enviar, buscar, filtrar, abrir, baixar, editar, excluir)
 ```
 
 Antes do login, as respostas da triagem ficam só no `localStorage` do navegador (por até 24 horas, para sobreviver à aba nova aberta pelo link de confirmação). Elas vão ao servidor depois do consentimento e são apagadas do navegador em seguida.
@@ -60,7 +63,15 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 | `src/app/triagem/` | Assistente da triagem e gravação |
 | `src/content/` | Conteúdo dos guias e artigos (a revisar por profissional; depois vai para o CMS) |
 | `src/app/app/` | Painel: Início, Agenda, Conteúdo, Perfil, guias e alertas |
+| `src/lib/documentos.ts` | Regras da Central de Documentos: categorias, tipos, tamanho, assinatura dos arquivos, filtros |
 | `supabase/migrations/` | Esquema do banco e regras RLS |
+
+## Central de Documentos: segurança
+
+- Arquivos num bucket **privado** do Supabase Storage, em `documentos/{id da usuária}/`. Regras RLS no Storage e na tabela: cada usuária só acessa a própria pasta.
+- O navegador envia o arquivo por um link de envio de uso único gerado pelo servidor (com barra de progresso). Depois, o servidor confere tamanho, tipo e os primeiros bytes do arquivo; se não for imagem ou PDF de verdade, o arquivo é apagado.
+- Abrir e baixar passam por `/app/documentos/[id]/arquivo`, que confere a dona e gera um link que expira em 60 segundos. Não existem links públicos permanentes.
+- Excluir a conta apaga também os arquivos do Storage.
 
 ## Scripts
 

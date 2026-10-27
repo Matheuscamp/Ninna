@@ -91,6 +91,73 @@ export function Campo({
   );
 }
 
+export function CampoSelecao({
+  id,
+  rotulo,
+  erro,
+  opcoes,
+  vazio,
+  ...props
+}: {
+  id: string;
+  rotulo: string;
+  erro?: string;
+  opcoes: readonly { id: string; rotulo: string }[];
+  vazio?: string;
+} & React.SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="text-sm font-semibold">
+        {rotulo}
+      </label>
+      <select
+        id={id}
+        name={props.name ?? id}
+        {...props}
+        aria-invalid={erro ? true : undefined}
+        aria-describedby={erro ? `${id}-erro` : undefined}
+        className="h-12 rounded-xl border-2 border-linha bg-white px-3 text-base outline-none focus:border-rosa-600"
+      >
+        {vazio !== undefined && <option value="">{vazio}</option>}
+        {opcoes.map((o) => (
+          <option key={o.id} value={o.id}>
+            {o.rotulo}
+          </option>
+        ))}
+      </select>
+      {erro && (
+        <p id={`${id}-erro`} className="text-sm text-alerta">
+          {erro}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export function CampoTextoLongo({
+  id,
+  rotulo,
+  erro,
+  ...props
+}: { id: string; rotulo: string; erro?: string } & React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="text-sm font-semibold">
+        {rotulo}
+      </label>
+      <textarea
+        id={id}
+        name={props.name ?? id}
+        rows={3}
+        {...props}
+        aria-invalid={erro ? true : undefined}
+        className="rounded-xl border-2 border-linha bg-white px-4 py-3 text-base outline-none focus:border-rosa-600"
+      />
+      {erro && <p className="text-sm text-alerta">{erro}</p>}
+    </div>
+  );
+}
+
 export function Carregando() {
   return (
     <p role="status" className="text-suave">

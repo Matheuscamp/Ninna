@@ -3,7 +3,10 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { TIPOS_CONSENTIMENTO, VERSAO_CONSENTIMENTO } from "@/lib/consentimento";
 import { hojeEmSaoPaulo } from "@/lib/datas";
+import { escaparBusca, type Filtros } from "@/lib/documentos";
 import { idadeGestacional, type Perfil } from "@/lib/triagem";
+
+export const BUCKET_DOCUMENTOS = "documentos";
 
 // Camada de acesso a dados: o único lugar que lê a sessão e decide
 // se a usuária pode seguir. Toda página e ação logada passa por aqui.
@@ -108,4 +111,72 @@ export async function listarTarefasFeitas(usuariaId: string): Promise<string[]> 
   const { data, error } = await supabase.from("task_progress").select("tarefa").eq("user_id", usuariaId);
   if (error) throw falhaDoBanco("tarefas", error);
   return data.map((t) => t.tarefa);
+}
+
+export type Documento = {
+  id: string;
+  nome: string;
+  categoria: string;
+  descricao: string | null;
+  data_documento: string | null;
+  profissional: string | null;
+  caminho: string;
+  tipo_mime: string;
+  tamanho: number;
+  nome_original: string;
+  created_at: string;
+};
+
+const CAMPOS_DOCUMENTO =
+  "id, nome, categoria, descricao, data_documento, profissional, caminho, tipo_mime, tamanho, nome_original, created_at";
+
+// Busca, categoria, período e ordenação se combinam numa única consulta.
+// O RLS garante que só voltam documentos da própria usuária.
+export async function listarDocumentos(usuariaId: string, f: Filtros): Promise<Documento[]> {
+  const supabase = await createClient();
+  let consulta = supabase.from("health_documents").select(CAMPOS_DOCUMENTO).eq("user_id", usuariaId);
+  if (f.q) consulta = consulta.ilike("nome", `%${escaparBusca(f.q)}%`);
+  if (f.categoria) consulta = consulta.eq("categoria", f.categoria);
+  if (f.de) consulta = consulta.gte("data_documento", f.de);
+  if (f.ate) consulta = consulta.lte("data_documento", f.ate);
+  if (f.ordem === "nome") consulta = consulta.order("nome", { ascending: true });
+  else if (f.ordem === "data_documento") consulta = consulta.order("data_documento", { ascending: false, nullsFirst: false });
+  else consulta = consulta.order("created_at", { ascending: f.ordem === "antigos" });
+  const { data, error } = await consulta.limit(200);
+  if (error) throw falhaDoBanco("documentos", error);
+  return data;
+}
+
+export async function contarDocumentos(usuariaId: string): Promise<number> {
+  const supabase = await createClient();
+  const { count, error } = await supabase
+    .from("health_documents")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", usuariaId);
+  if (error) throw falhaDoBanco("documentos", error);
+  return count ?? 0;
+}
+
+export async function obterDocumento(usuariaId: string, id: string): Promise<Documento | null> {
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("health_documents")
+    .select(CAMPOS_DOCUMENTO)
+    .eq("user_id", usuariaId)
+    .eq("id", id)
+    .maybeSingle();
+  if (error) throw falhaDoBanco("documentos", error);
+  return data;
+}
+
+// Links temporários para as miniaturas das imagens (nada de link público permanente).
+export async function linksDeMiniatura(caminhos: string[], segundos = 300): Promise<Record<string, string>> {
+  if (caminhos.length === 0) return {};
+  const supabase = await createClient();
+  const { data, error } = await supabase.storage.from(BUCKET_DOCUMENTOS).createSignedUrls(caminhos, segundos);
+  if (error) return {};
+  const links: Record<string, string> = {};
+  for (const d of data) if (d.path && d.signedUrl) links[d.path] = d.signedUrl;
+  return links;
 }

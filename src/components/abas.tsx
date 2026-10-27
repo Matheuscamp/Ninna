@@ -15,6 +15,15 @@ const ABAS = [
       </>
     ),
   },
+  {
+    href: "/app/documentos",
+    rotulo: "Documentos",
+    icone: (
+      <>
+        <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      </>
+    ),
+  },
   { href: "/app/conteudo", rotulo: "Conteúdo", icone: <path d="M4 19V5a2 2 0 0 1 2-2h14v14H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h14" /> },
   {
     href: "/app/perfil",
@@ -43,7 +52,7 @@ export function Abas() {
 export function BarraDeAbas({ pathname }: { pathname: string }) {
   return (
     <nav aria-label="Navegação principal" className="fixed inset-x-0 bottom-0 z-10 border-t border-linha bg-white">
-      <ul className="mx-auto grid h-[72px] max-w-md grid-cols-4">
+      <ul className="mx-auto grid h-[72px] max-w-md grid-cols-5">
         {ABAS.map((aba) => {
           const ativa = abaAtiva(pathname, aba.href);
           return (
@@ -51,7 +60,7 @@ export function BarraDeAbas({ pathname }: { pathname: string }) {
               <Link
                 href={aba.href}
                 aria-current={ativa ? "page" : undefined}
-                className={`flex h-full flex-col items-center justify-center gap-1 text-xs font-semibold ${ativa ? "text-rosa-600" : "text-suave"}`}
+                className={`flex h-full flex-col items-center justify-center gap-1 text-[11px] font-semibold ${ativa ? "text-rosa-600" : "text-suave"}`}
               >
                 <svg
                   viewBox="0 0 24 24"

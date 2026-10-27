@@ -9,15 +9,19 @@ export async function GET() {
   if (!usuaria) return NextResponse.json({ erro: "não autenticada" }, { status: 401 });
 
   const supabase = await createClient();
-  const [perfil, consentimentos, triagens, consultas, tarefas] = await Promise.all([
+  const [perfil, consentimentos, triagens, consultas, tarefas, documentos] = await Promise.all([
     supabase.from("profiles").select("*").eq("id", usuaria.id).maybeSingle(),
     supabase.from("consents").select("tipo, versao, aceito_em, revogado_em").eq("user_id", usuaria.id),
     supabase.from("triage_answers").select("perfil, respostas, created_at").eq("user_id", usuaria.id),
     supabase.from("appointments").select("titulo, data_hora, local, observacoes, concluida_em, created_at").eq("user_id", usuaria.id),
     supabase.from("task_progress").select("tarefa, feita_em").eq("user_id", usuaria.id),
+    supabase
+      .from("health_documents")
+      .select("nome, categoria, descricao, data_documento, profissional, tipo_mime, tamanho, nome_original, created_at")
+      .eq("user_id", usuaria.id),
   ]);
 
-  const falhou = [perfil, consentimentos, triagens, consultas, tarefas].find((r) => r.error);
+  const falhou = [perfil, consentimentos, triagens, consultas, tarefas, documentos].find((r) => r.error);
   if (falhou) return NextResponse.json({ erro: "não foi possível exportar agora" }, { status: 500 });
 
   const dados = {
@@ -28,6 +32,8 @@ export async function GET() {
     triagens: triagens.data,
     consultas: consultas.data,
     tarefas_feitas: tarefas.data,
+    // Os arquivos em si podem ser baixados um a um na Central de Documentos.
+    documentos: documentos.data,
   };
 
   return new NextResponse(JSON.stringify(dados, null, 2), {

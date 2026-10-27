@@ -14,6 +14,7 @@ export default function ExcluirPage() {
         <ul className="list-disc pl-5 text-suave">
           <li>perfil e respostas da triagem</li>
           <li>consultas da agenda e tarefas marcadas</li>
+          <li>documentos de saúde enviados (arquivos e informações)</li>
           <li>registros de consentimento</li>
         </ul>
         <p>Não dá para desfazer. Se quiser guardar uma cópia, exporte seus dados antes, pelo Perfil.</p>
