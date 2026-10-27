@@ -1,6 +1,9 @@
+import Link from "next/link";
+import type { PagamentoPremium } from "@/lib/dal";
 import { formatarDiaDoInstante } from "@/lib/datas";
-import { LIMITES_GRATUITOS, type Plano } from "@/lib/planos";
-import { FormPremium, VerificarPagamento } from "./form";
+import { fimDoArrependimento, podeReembolsar, PRAZO_ARREPENDIMENTO_DIAS } from "@/lib/pagamentos";
+import { ehPeriodo, formatarPreco, LIMITES_GRATUITOS, PERIODOS, type Plano } from "@/lib/planos";
+import { FormPremium, PedirReembolso, VerificarPagamento } from "./form";
 
 // Resultado da volta do checkout (/app/premium/retorno).
 const MENSAGENS: Record<string, { texto: string; erro?: boolean }> = {
@@ -9,6 +12,9 @@ const MENSAGENS: Record<string, { texto: string; erro?: boolean }> = {
   confirmando: { texto: "Estamos confirmando seu pagamento. Em alguns minutos o Premium aparece aqui." },
   recusado: { texto: "O pagamento não foi aprovado e nada foi cobrado. Você pode tentar de novo com outra forma de pagamento.", erro: true },
   estornado: { texto: "Este pagamento foi estornado.", erro: true },
+  reembolsado: {
+    texto: "Reembolso pedido. O valor volta pela mesma forma de pagamento: no Pix, em instantes; no cartão, em até 2 faturas. O Premium deste período foi removido.",
+  },
 };
 
 const BENEFICIOS = [
@@ -28,7 +34,45 @@ function Check() {
 }
 
 // Parte visual da página Premium, separada da leitura de dados para poder ser conferida sem login.
-export function PremiumVisual({ plano, validoAte, pagamento }: { plano: Plano; validoAte: string | null; pagamento?: string }) {
+// Histórico de pagamentos, com o botão de desistir enquanto estiver no prazo.
+function Pagamentos({ pagamentos, agora }: { pagamentos: PagamentoPremium[]; agora: Date }) {
+  return (
+    <section aria-labelledby="titulo-pagamentos" className="flex flex-col gap-3">
+      <h2 id="titulo-pagamentos" className="text-lg font-bold">
+        Seus pagamentos
+      </h2>
+      <ul className="flex flex-col divide-y divide-azul-50 rounded-3xl bg-white px-5">
+        {pagamentos.map((p) => (
+          <li key={p.id} className="flex flex-col gap-1 py-4">
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="font-bold">Premium · {ehPeriodo(p.periodo) ? PERIODOS[p.periodo].rotulo : p.periodo}</span>
+              <span className={`font-semibold ${p.status === "estornado" ? "text-suave line-through" : ""}`}>{formatarPreco(Number(p.valor))}</span>
+            </div>
+            <span className="text-[13px] text-suave">
+              Pago em {formatarDiaDoInstante(p.aprovado_em)}
+              {p.status === "estornado" && p.estornado_em && ` · reembolsado em ${formatarDiaDoInstante(p.estornado_em)}`}
+            </span>
+            {podeReembolsar(p, agora) && <PedirReembolso pagamento={p.id} ate={formatarDiaDoInstante(fimDoArrependimento(p.aprovado_em))} />}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function PremiumVisual({
+  plano,
+  validoAte,
+  pagamento,
+  pagamentos = [],
+  agora = new Date(),
+}: {
+  plano: Plano;
+  validoAte: string | null;
+  pagamento?: string;
+  pagamentos?: PagamentoPremium[];
+  agora?: Date;
+}) {
   const mensagem = pagamento ? MENSAGENS[pagamento] : undefined;
   const premium = plano === "premium";
 
@@ -72,6 +116,16 @@ export function PremiumVisual({ plano, validoAte, pagamento }: { plano: Plano; v
           <VerificarPagamento />
         </>
       )}
+
+      {pagamentos.length > 0 && <Pagamentos pagamentos={pagamentos} agora={agora} />}
+
+      <p className="text-center text-[13px] leading-relaxed text-suave">
+        Você pode desistir da compra em até {PRAZO_ARREPENDIMENTO_DIAS} dias e receber o valor integral de volta. Veja os{" "}
+        <Link href="/termos#arrependimento" className="underline underline-offset-2">
+          Termos de Uso
+        </Link>
+        .
+      </p>
     </>
   );
 }

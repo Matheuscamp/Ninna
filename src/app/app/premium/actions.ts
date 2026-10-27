@@ -2,9 +2,11 @@
 
 import { redirect } from "next/navigation";
 import { getAssinatura, getUsuaria } from "@/lib/dal";
-import { criarPreferencia, mercadoPagoConfigurado, sincronizarPagamentos } from "@/lib/mercadopago";
+import { criarPreferencia, mercadoPagoConfigurado, reembolsarPagamento, sincronizarPagamentos } from "@/lib/mercadopago";
 import { origem } from "@/lib/origem";
+import { podeReembolsar } from "@/lib/pagamentos";
 import { ehPeriodo } from "@/lib/planos";
+import { createClient } from "@/lib/supabase/server";
 
 export type EstadoPagamento = { erro?: string } | undefined;
 
@@ -48,4 +50,34 @@ export async function verificarPagamento(): Promise<EstadoPagamento> {
   }
   if (!situacao) return { erro: "Não encontramos nenhum pagamento seu. Se acabou de pagar, aguarde um minuto e tente de novo." };
   redirect(`/app/premium?pagamento=${situacao}`);
+}
+
+// Direito de arrependimento: em até 7 dias, devolve o valor integral e tira o período do Premium.
+export async function pedirReembolso(_estado: EstadoPagamento, formData: FormData): Promise<EstadoPagamento> {
+  const usuaria = await getUsuaria();
+  if (!usuaria) redirect("/entrar?next=/app/premium");
+
+  const id = formData.get("pagamento");
+  if (typeof id !== "string" || !/^\d+$/.test(id)) return { erro: "Pagamento não encontrado." };
+
+  // Lido pela sessão da usuária: o RLS só devolve pagamentos dela.
+  const supabase = await createClient();
+  const { data: pagamento, error } = await supabase
+    .from("pagamentos")
+    .select("status, aprovado_em")
+    .eq("user_id", usuaria.id)
+    .eq("id", id)
+    .maybeSingle();
+  if (error) return { erro: "Não conseguimos pedir o reembolso agora. Tente de novo em instantes." };
+  if (!pagamento) return { erro: "Pagamento não encontrado." };
+  if (pagamento.status !== "aprovado") return { erro: "Este pagamento já foi reembolsado." };
+  if (!podeReembolsar(pagamento, new Date())) return { erro: "O prazo de 7 dias para desistir da compra já passou." };
+
+  try {
+    await reembolsarPagamento(id);
+  } catch (erro) {
+    console.error(erro);
+    return { erro: "Não conseguimos pedir o reembolso agora. Tente de novo em instantes." };
+  }
+  redirect("/app/premium?pagamento=reembolsado");
 }

@@ -1,9 +1,10 @@
 "use client";
 
-import { useActionState } from "react";
+import Link from "next/link";
+import { useActionState, useState } from "react";
 import { BotaoPrimario } from "@/components/ui";
 import { formatarPreco, PERIODOS, precoPorMes, type Periodo } from "@/lib/planos";
-import { iniciarPagamento, verificarPagamento } from "./actions";
+import { iniciarPagamento, pedirReembolso, verificarPagamento } from "./actions";
 
 const ORDEM: Periodo[] = ["anual", "mensal"];
 
@@ -49,7 +50,11 @@ export function FormPremium({ renovar }: { renovar: boolean }) {
       </BotaoPrimario>
       <p className="text-center text-[13px] leading-relaxed text-suave">
         Pagamento único pelo Mercado Pago, com Pix, cartão ou boleto. Não renova sozinho.
-        {renovar && " O novo período começa quando o atual terminar."}
+        {renovar && " O novo período começa quando o atual terminar."} Ao continuar, você concorda com os{" "}
+        <Link href="/termos#pagamento" className="underline underline-offset-2">
+          Termos de Uso
+        </Link>
+        .
       </p>
     </form>
   );
@@ -74,6 +79,46 @@ export function VerificarPagamento() {
           {estado.erro}
         </p>
       )}
+    </form>
+  );
+}
+
+// Desistir da compra pede confirmação: o Premium daquele período sai na hora.
+export function PedirReembolso({ pagamento, ate }: { pagamento: string; ate: string }) {
+  const [estado, acao, pendente] = useActionState(pedirReembolso, undefined);
+  const [confirmando, setConfirmando] = useState(false);
+
+  if (!confirmando) {
+    return (
+      <button
+        type="button"
+        onClick={() => setConfirmando(true)}
+        className="flex h-11 items-center self-start rounded-xl px-3 -ml-3 text-[15px] font-semibold text-alerta hover:bg-[#fdecea]"
+      >
+        Cancelar e pedir reembolso
+      </button>
+    );
+  }
+
+  return (
+    <form action={acao} className="flex flex-col gap-3 rounded-2xl bg-[#fdecea] p-4">
+      <input type="hidden" name="pagamento" value={pagamento} />
+      <p className="text-[15px] leading-relaxed">
+        Você recebe o valor integral de volta e o Premium deste período é removido agora. Pode pedir até {ate}.
+      </p>
+      {estado?.erro && (
+        <p role="alert" className="text-sm text-alerta">
+          {estado.erro}
+        </p>
+      )}
+      <div className="flex gap-2">
+        <button type="submit" disabled={pendente} className="h-11 flex-1 whitespace-nowrap rounded-xl bg-alerta px-3 text-[15px] font-semibold text-white disabled:opacity-60">
+          {pendente ? "Pedindo…" : "Confirmar reembolso"}
+        </button>
+        <button type="button" onClick={() => setConfirmando(false)} className="h-11 rounded-xl bg-white px-4 font-semibold">
+          Voltar
+        </button>
+      </div>
     </form>
   );
 }

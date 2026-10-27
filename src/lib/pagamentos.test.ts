@@ -1,6 +1,6 @@
 import { createHmac } from "node:crypto";
 import { describe, expect, it } from "vitest";
-import { acaoDoPagamento, assinaturaWebhookValida, lerReferencia, montarReferencia } from "./pagamentos";
+import { acaoDoPagamento, assinaturaWebhookValida, fimDoArrependimento, lerReferencia, montarReferencia, podeReembolsar } from "./pagamentos";
 import { precoPorMes } from "./planos";
 
 const ID = "3f2a6c1e-9b7d-4e2a-8c1f-0a1b2c3d4e5f";
@@ -80,5 +80,19 @@ describe("preço por mês", () => {
     const anual = precoPorMes("anual");
     expect(anual.porMes).toBeCloseTo(8.325);
     expect(anual.economia).toBe(44);
+  });
+});
+
+describe("direito de arrependimento", () => {
+  const aprovadoEm = "2026-10-27T15:00:00Z";
+
+  it("pode desistir até 7 dias depois da liberação", () => {
+    expect(podeReembolsar({ status: "aprovado", aprovado_em: aprovadoEm }, new Date("2026-11-03T14:59:00Z"))).toBe(true);
+    expect(podeReembolsar({ status: "aprovado", aprovado_em: aprovadoEm }, new Date("2026-11-03T15:01:00Z"))).toBe(false);
+    expect(fimDoArrependimento(aprovadoEm).toISOString()).toBe("2026-11-03T15:00:00.000Z");
+  });
+
+  it("pagamento já reembolsado não pode ser reembolsado de novo", () => {
+    expect(podeReembolsar({ status: "estornado", aprovado_em: aprovadoEm }, new Date("2026-10-28T00:00:00Z"))).toBe(false);
   });
 });

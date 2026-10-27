@@ -204,6 +204,31 @@ export async function getPlano(usuariaId: string): Promise<Plano> {
   return (await getAssinatura(usuariaId)).plano;
 }
 
+export type PagamentoPremium = {
+  id: string;
+  periodo: string;
+  valor: number;
+  status: "aprovado" | "estornado";
+  aprovado_em: string;
+  estornado_em: string | null;
+};
+
+// Pagamentos do Premium, do mais recente ao mais antigo. Antes da migração de pagamentos, lista vazia.
+export async function listarPagamentos(usuariaId: string): Promise<PagamentoPremium[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("pagamentos")
+    .select("id, periodo, valor, status, aprovado_em, estornado_em")
+    .eq("user_id", usuariaId)
+    .order("aprovado_em", { ascending: false })
+    .limit(20);
+  if (error) {
+    if (error.code === "PGRST205") return [];
+    throw falhaDoBanco("pagamentos", error);
+  }
+  return data;
+}
+
 export const BUCKET_AVATARES = "avatares";
 
 export type FichaSaude = {

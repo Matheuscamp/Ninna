@@ -95,3 +95,16 @@ export function assinaturaWebhookValida({
   const recebido = Buffer.from(v1, "hex");
   return recebido.length === esperado.length && timingSafeEqual(recebido, esperado);
 }
+
+// Direito de arrependimento (Código de Defesa do Consumidor, art. 49): quem compra
+// pela internet pode desistir em até 7 dias e receber tudo de volta.
+// Conta a partir de quando o Ninna liberou o Premium (nunca antes da aprovação).
+export const PRAZO_ARREPENDIMENTO_DIAS = 7;
+
+export function fimDoArrependimento(aprovadoEm: string) {
+  return new Date(new Date(aprovadoEm).getTime() + PRAZO_ARREPENDIMENTO_DIAS * 86_400_000);
+}
+
+export function podeReembolsar(p: { status: string; aprovado_em: string }, agora: Date) {
+  return p.status === "aprovado" && fimDoArrependimento(p.aprovado_em) > agora;
+}

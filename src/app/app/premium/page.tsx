@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AvisoMedico, Carregando, Pagina, Voltar } from "@/components/ui";
-import { exigirUsuariaPronta, getAssinatura } from "@/lib/dal";
+import { exigirUsuariaPronta, getAssinatura, listarPagamentos } from "@/lib/dal";
 import { PremiumVisual } from "./visual";
 
 export const metadata: Metadata = { title: "Premium" };
 
 async function Conteudo({ searchParams }: { searchParams: PageProps<"/app/premium">["searchParams"] }) {
   const { usuaria } = await exigirUsuariaPronta();
-  const [{ plano, validoAte }, { pagamento }] = await Promise.all([getAssinatura(usuaria.id), searchParams]);
-  return <PremiumVisual plano={plano} validoAte={validoAte} pagamento={typeof pagamento === "string" ? pagamento : undefined} />;
+  const [{ plano, validoAte }, pagamentos, { pagamento }] = await Promise.all([
+    getAssinatura(usuaria.id),
+    listarPagamentos(usuaria.id),
+    searchParams,
+  ]);
+  return (
+    <PremiumVisual
+      plano={plano}
+      validoAte={validoAte}
+      pagamentos={pagamentos}
+      pagamento={typeof pagamento === "string" ? pagamento : undefined}
+    />
+  );
 }
 
 export default function PremiumPage({ searchParams }: PageProps<"/app/premium">) {

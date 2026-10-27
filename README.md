@@ -52,7 +52,9 @@ Abra http://localhost:3000.
 /app/guias/sintomas  checador de sintomas e como confirmar (suspeita)
 /app/alertas         sinais de alerta, sempre gratuitos
 /app/documentos      central de documentos de saúde (enviar, buscar, filtrar, abrir, baixar, editar, excluir)
-/app/premium         planos Premium e pagamento (Mercado Pago)
+/app/premium         planos Premium, pagamento (Mercado Pago), histórico e reembolso
+/termos              Termos de Uso (público)
+/privacidade         Política de Privacidade (público)
 /app/premium/retorno volta do checkout: confere o pagamento e mostra o resultado
 /api/mercadopago/webhook  avisos de pagamento do Mercado Pago
 ```
@@ -109,6 +111,10 @@ Pagamento avulso pelo Checkout Pro (Pix, cartão ou boleto), sem renovação aut
 - na volta do checkout (`/app/premium/retorno`), para o Premium aparecer na hora (funciona também em localhost);
 - no webhook (`/api/mercadopago/webhook`), para Pix e boleto que confirmam depois.
 
+Se a volta do checkout não acontecer (aba fechada, ou o Mercado Pago não mostrar o botão de voltar), o botão **Verificar pagamento** procura os pagamentos da usuária na API e libera os aprovados.
+
+**Direito de arrependimento (CDC, art. 49):** em até 7 dias da liberação, a usuária pode cancelar pelo botão **Cancelar e pedir reembolso**, no histórico de pagamentos da tela do Premium. O app pede o reembolso integral ao Mercado Pago e tira do Premium o período daquele pagamento. O prazo fica em `PRAZO_ARREPENDIMENTO_DIAS` (`src/lib/pagamentos.ts`).
+
 O banco grava cada pagamento pelo id do Mercado Pago (tabela `pagamentos`), então o mesmo pagamento nunca é creditado duas vezes. Renovar antes de vencer soma o período ao fim atual. Estorno ou chargeback tira o período daquele pagamento. As funções que creditam e estornam só podem ser chamadas pelo servidor com a chave secreta.
 
 **Configuração:**
@@ -119,6 +125,21 @@ O banco grava cada pagamento pelo id do Mercado Pago (tabela `pagamentos`), ent�
    - `MERCADOPAGO_ACCESS_TOKEN`: Mercado Pago › Suas integrações › sua aplicação › Credenciais. Para testar, use as **credenciais de teste** e pague com uma conta compradora de teste e os cartões de teste do Mercado Pago.
    - `MERCADOPAGO_WEBHOOK_SECRET`: em Suas integrações › Webhooks, cadastre `https://SEU-DOMINIO/api/mercadopago/webhook` com o evento **Pagamentos** e copie a assinatura secreta. Com ela preenchida, avisos sem assinatura válida são recusados.
 3. O webhook precisa de endereço público (https). Em localhost ele não chega, mas a volta do checkout já credita o Premium.
+
+## Antes de lançar
+
+Itens que não se resolvem só com código:
+
+- [ ] **Dados do responsável nos textos jurídicos:** preencher nome ou razão social, CNPJ, endereço, e-mail de contato e encarregado de dados em `src/content/juridico.ts`. Enquanto isso, as páginas `/termos` e `/privacidade` mostram os campos entre colchetes.
+- [ ] **Revisão jurídica** dos Termos de Uso e da Política de Privacidade por advogado (de preferência com experiência em LGPD e saúde). Ao mudar algo importante, atualize `VERSAO_TEXTOS_JURIDICOS` e suba `VERSAO_CONSENTIMENTO` em `src/lib/consentimento.ts`, para as usuárias aceitarem de novo.
+- [ ] **Revisão dos conteúdos de saúde** (`src/content/`) por obstetra ou enfermeira obstétrica.
+- [ ] **Empresa e nota fiscal:** abrir CNPJ (MEI, se a atividade e o faturamento permitirem, ou ME) e emitir nota fiscal de serviço (NFS-e) a cada venda do Premium. Um contador indica o enquadramento e o código de serviço. A emissão pode ser manual no portal da prefeitura no começo e depois automatizada por um serviço de NFS-e ligado ao webhook de pagamentos.
+- [ ] **Mercado Pago em produção:** credenciais de produção da conta da empresa, webhook cadastrado no domínio final e `MERCADOPAGO_WEBHOOK_SECRET` preenchido.
+- [ ] **E-mail próprio (SMTP):**
+  1. Crie uma conta no Resend e adicione o domínio do Ninna, configurando no DNS os registros que o Resend indicar (SPF e DKIM).
+  2. No Supabase, em Authentication › Emails › SMTP Settings, ative o SMTP próprio com os dados do Resend (host `smtp.resend.com`, porta 465, usuário `resend`, senha = API key do Resend) e um remetente do domínio, como `nao-responda@seudominio`.
+  3. Religue a confirmação de e-mail em Authentication › Sign In / Providers › Email › Confirm email.
+  4. Ajuste `NEXT_PUBLIC_SITE_URL` e as Redirect URLs para o domínio final.
 
 ## Scripts
 

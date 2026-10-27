@@ -40,6 +40,14 @@ export default function LandingPage() {
         </Link>
         <p className="text-center text-[13px] text-suave">Leva menos de 2 minutos.</p>
         <AvisoMedico />
+        <nav aria-label="Documentos" className="flex justify-center gap-4 text-[13px] font-semibold text-suave">
+          <Link href="/termos" className="hover:underline">
+            Termos de Uso
+          </Link>
+          <Link href="/privacidade" className="hover:underline">
+            Política de Privacidade
+          </Link>
+        </nav>
       </div>
     </Pagina>
   );

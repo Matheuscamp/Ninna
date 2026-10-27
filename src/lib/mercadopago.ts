@@ -76,6 +76,20 @@ export async function processarPagamento(id: string): Promise<ResultadoPagamento
   return aplicarPagamento(pagamento);
 }
 
+// Devolve o valor integral (direito de arrependimento) e tira do Premium o período pago.
+// A chave de idempotência faz o Mercado Pago ignorar um segundo pedido igual (clique duplo).
+export async function reembolsarPagamento(id: string) {
+  const resposta = await chamar(`/v1/payments/${encodeURIComponent(id)}/refunds`, {
+    method: "POST",
+    headers: { "X-Idempotency-Key": `ninna-reembolso-${id}` },
+    body: JSON.stringify({}),
+  });
+  if (!resposta.ok) throw new Error(`[mercadopago] reembolso ${id} ${resposta.status}: ${await resposta.text()}`);
+
+  const { error } = await createAdminClient().rpc("estornar_pagamento", { p_id: id });
+  if (error) throw new Error(`[mercadopago] estornar ${id}: ${error.code ?? "sem_codigo"}: ${error.message}`);
+}
+
 // Pagamentos dos pedidos que a usuária abriu (um pedido por período), lidos da API.
 async function pagamentosDaUsuaria(usuariaId: string): Promise<PagamentoMP[]> {
   const listas = await Promise.all(

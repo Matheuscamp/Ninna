@@ -11,7 +11,7 @@ vi.mock("server-only", () => ({}));
 vi.mock("@/lib/supabase/fetch", () => ({ fetchSupabase: (...args: Parameters<typeof fetch>) => estado.fetch(...args) }));
 vi.mock("@/lib/supabase/admin", () => ({ createAdminClient: () => ({ rpc: estado.rpc }) }));
 
-const { criarPreferencia, processarPagamento, sincronizarPagamentos } = await import("./mercadopago");
+const { criarPreferencia, processarPagamento, reembolsarPagamento, sincronizarPagamentos } = await import("./mercadopago");
 
 const ID = "3f2a6c1e-9b7d-4e2a-8c1f-0a1b2c3d4e5f";
 const json = (corpo: unknown, status = 200) => new Response(JSON.stringify(corpo), { status });
@@ -125,6 +125,24 @@ describe("sincronizarPagamentos", () => {
   it("só pendentes: pendente, sem gravar nada", async () => {
     estado.fetch.mockImplementation(async () => json({ results: [{ ...aprovado, status: "pending" }] }));
     expect(await sincronizarPagamentos(ID)).toBe("pendente");
+    expect(estado.rpc).not.toHaveBeenCalled();
+  });
+});
+
+describe("reembolsarPagamento", () => {
+  it("pede o reembolso integral (com chave de idempotência) e tira o período do Premium", async () => {
+    estado.fetch.mockResolvedValue(json({ id: 1, status: "approved" }, 201));
+    await reembolsarPagamento("42");
+    const { url, headers } = chamada();
+    expect(url).toBe("https://api.mercadopago.com/v1/payments/42/refunds");
+    expect(estado.fetch.mock.calls[0][1]?.method).toBe("POST");
+    expect(headers["X-Idempotency-Key"]).toBe("ninna-reembolso-42");
+    expect(estado.rpc).toHaveBeenCalledWith("estornar_pagamento", { p_id: "42" });
+  });
+
+  it("se o Mercado Pago recusar, não mexe no Premium", async () => {
+    estado.fetch.mockResolvedValue(json({ message: "refund not allowed" }, 400));
+    await expect(reembolsarPagamento("42")).rejects.toThrow(/400/);
     expect(estado.rpc).not.toHaveBeenCalled();
   });
 });

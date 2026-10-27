@@ -23,8 +23,9 @@ Assistente de gestação. O README descreve o que existe (rotas, migrações, pl
 - Pagamentos: nunca pagar de verdade nem digitar cartão; a API do Mercado Pago é simulada nos testes (`src/lib/mercadopago.test.ts`).
 - Para conferir uma tela logada sem conta: página temporária de prévia que renderiza o componente visual com dados de exemplo; apague-a depois.
 
-## Conteúdo de saúde
+## Conteúdo de saúde e textos jurídicos
 Textos em `src/content/` são uma primeira versão e precisam de revisão de obstetra ou enfermeira obstétrica antes do lançamento.
+Termos de Uso (`/termos`) e Política de Privacidade (`/privacidade`) também são primeira versão, para revisão de advogado; os dados do responsável ficam em `src/content/juridico.ts`. Ao coletar um dado novo, usar um fornecedor novo ou mudar preço/regra do Premium, atualize esses textos e suba `VERSAO_CONSENTIMENTO`.
 
 ## Próximas etapas
-Lembretes de consulta (notificação/e-mail), PWA com modo offline. Antes de lançar o Premium: credenciais de produção do Mercado Pago e webhook cadastrado no domínio final.
+Lembretes de consulta (notificação/e-mail), PWA com modo offline. O que falta para lançar está na seção "Antes de lançar" do README.
