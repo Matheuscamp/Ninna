@@ -1,16 +1,20 @@
 "use server";
 
 import { getUsuaria, temConsentimento } from "@/lib/dal";
+import { hojeEmSaoPaulo } from "@/lib/datas";
 import { createClient } from "@/lib/supabase/server";
-import { calcularDum, classificarPerfil, dumPlausivel, modificadores, respostasSchema } from "@/lib/triagem";
+import {
+  calcularDum,
+  classificarPerfil,
+  dumPlausivel,
+  limparRespostas,
+  modificadores,
+  respostasSchema,
+} from "@/lib/triagem";
 
 export type ResultadoSalvar =
   | { ok: true }
   | { ok: false; motivo: "login" | "consentimento" | "invalida" | "erro"; mensagem?: string };
-
-function hojeEmSaoPaulo() {
-  return new Date().toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
-}
 
 export async function salvarTriagem(entrada: unknown): Promise<ResultadoSalvar> {
   const usuaria = await getUsuaria();
@@ -19,7 +23,7 @@ export async function salvarTriagem(entrada: unknown): Promise<ResultadoSalvar> 
 
   const validacao = respostasSchema.safeParse(entrada);
   if (!validacao.success) return { ok: false, motivo: "invalida", mensagem: "Algumas respostas estão incompletas." };
-  const r = validacao.data;
+  const r = limparRespostas(validacao.data);
 
   const perfil = classificarPerfil(r);
   let dum: string | null = null;

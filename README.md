@@ -2,12 +2,16 @@
 
 Assistente de gestação: triagem por perfil (tentante, suspeita, gestante, pós-parto, acolhimento), orientação por fase e agenda do pré-natal. Web app em Next.js 16 + Supabase, pensado para virar PWA.
 
-Esta primeira etapa entrega: **login**, **consentimento LGPD** e **triagem**.
+Já entregue: **login**, **consentimento LGPD**, **triagem** e o **painel** (Início, Agenda, Conteúdo, Perfil e guias interativos).
 
 ## Como rodar
 
 1. Crie um projeto em [supabase.com](https://supabase.com), de preferência na região São Paulo.
-2. No SQL Editor do Supabase, rode o arquivo `supabase/migrations/20261026000000_inicial.sql`. Ele cria as tabelas `profiles`, `consents` e `triage_answers`, com RLS ligado.
+2. No SQL Editor do Supabase, rode **em ordem** os arquivos de `supabase/migrations/`:
+   - `20261026000000_inicial.sql`: perfil, consentimentos e triagem.
+   - `20261027000000_painel.sql`: agenda, progresso dos guias e exclusão da conta.
+
+   Todas as tabelas têm RLS ligado.
 3. Copie `.env.example` para `.env.local` e preencha a URL e a publishable key do projeto.
 4. Em Authentication › URL Configuration, adicione `http://localhost:3000/auth/callback` às Redirect URLs.
 5. Instale e rode:
@@ -31,7 +35,14 @@ Abra http://localhost:3000.
 /cadastro    cria a conta (ou /entrar)
 /consentimento   aceite de dados de saúde + termos (obrigatório, versionado)
 /triagem/concluir  grava a triagem respondida antes do login
-/app         início adaptado ao perfil (exige login, consentimento e triagem)
+/app                 início adaptado ao perfil (exige login, consentimento e triagem)
+/app/agenda          consultas e exames (até 3 futuras no plano gratuito)
+/app/conteudo        artigos por perfil
+/app/perfil          dados, refazer triagem, exportar e excluir conta
+/app/guias/semana    tarefas e exames da fase (gestante)
+/app/guias/parto     tipos de parto, prós e contras
+/app/guias/sintomas  checador de sintomas e como confirmar (suspeita)
+/app/alertas         sinais de alerta, sempre gratuitos
 ```
 
 Antes do login, as respostas da triagem ficam só no `localStorage` do navegador (por até 24 horas, para sobreviver à aba nova aberta pelo link de confirmação). Elas vão ao servidor depois do consentimento e são apagadas do navegador em seguida.
@@ -47,6 +58,8 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 | `src/app/(auth)/` | Entrar, cadastro, Google, sair |
 | `src/app/consentimento/` | Tela e registro do consentimento |
 | `src/app/triagem/` | Assistente da triagem e gravação |
+| `src/content/` | Conteúdo dos guias e artigos (a revisar por profissional; depois vai para o CMS) |
+| `src/app/app/` | Painel: Início, Agenda, Conteúdo, Perfil, guias e alertas |
 | `supabase/migrations/` | Esquema do banco e regras RLS |
 
 ## Scripts
@@ -61,4 +74,4 @@ npm run build
 
 ## Próximas etapas (backlog do MVP)
 
-Conteúdo por perfil e guias interativos (S3), agenda e lembretes (S4), assinatura com Mercado Pago (S5), exportar/excluir dados, PWA offline e lançamento (S6).
+Lembretes por notificação (S4), assinatura com Mercado Pago (S5), PWA offline e lançamento (S6).

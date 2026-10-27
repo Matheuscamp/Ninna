@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 export function Logo({ tamanho = 40 }: { tamanho?: number }) {
@@ -87,6 +88,25 @@ export function Campo({
         </p>
       )}
     </div>
+  );
+}
+
+export function Carregando() {
+  return (
+    <p role="status" className="text-suave">
+      Carregando…
+    </p>
+  );
+}
+
+export function Voltar({ href, rotulo = "Voltar" }: { href: string; rotulo?: string }) {
+  return (
+    <Link href={href} className="-ml-2 flex h-11 items-center gap-1 self-start rounded-xl pr-3 font-semibold text-suave hover:bg-white">
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="size-6 fill-none stroke-current" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+      {rotulo}
+    </Link>
   );
 }
 

@@ -1,0 +1,40 @@
+import { NextResponse } from "next/server";
+import { getUsuaria } from "@/lib/dal";
+import { hojeEmSaoPaulo } from "@/lib/datas";
+import { createClient } from "@/lib/supabase/server";
+
+// Portabilidade de dados (LGPD, art. 18): tudo o que o Ninna guarda sobre a usuária, em JSON.
+export async function GET() {
+  const usuaria = await getUsuaria();
+  if (!usuaria) return NextResponse.json({ erro: "não autenticada" }, { status: 401 });
+
+  const supabase = await createClient();
+  const [perfil, consentimentos, triagens, consultas, tarefas] = await Promise.all([
+    supabase.from("profiles").select("*").eq("id", usuaria.id).maybeSingle(),
+    supabase.from("consents").select("tipo, versao, aceito_em, revogado_em").eq("user_id", usuaria.id),
+    supabase.from("triage_answers").select("perfil, respostas, created_at").eq("user_id", usuaria.id),
+    supabase.from("appointments").select("titulo, data_hora, local, observacoes, concluida_em, created_at").eq("user_id", usuaria.id),
+    supabase.from("task_progress").select("tarefa, feita_em").eq("user_id", usuaria.id),
+  ]);
+
+  const falhou = [perfil, consentimentos, triagens, consultas, tarefas].find((r) => r.error);
+  if (falhou) return NextResponse.json({ erro: "não foi possível exportar agora" }, { status: 500 });
+
+  const dados = {
+    exportado_em: new Date().toISOString(),
+    conta: { email: usuaria.email },
+    perfil: perfil.data,
+    consentimentos: consentimentos.data,
+    triagens: triagens.data,
+    consultas: consultas.data,
+    tarefas_feitas: tarefas.data,
+  };
+
+  return new NextResponse(JSON.stringify(dados, null, 2), {
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Disposition": `attachment; filename="ninna-meus-dados-${hojeEmSaoPaulo()}.json"`,
+      "Cache-Control": "no-store",
+    },
+  });
+}

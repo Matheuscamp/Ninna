@@ -3,6 +3,7 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { connection } from "next/server";
 import { supabaseEnv } from "./env";
+import { fetchSupabase } from "./fetch";
 
 // Cliente Supabase para Server Components, Server Actions e Route Handlers.
 // Usa a chave pública: o acesso aos dados é limitado pelas regras RLS do banco.
@@ -14,6 +15,7 @@ export async function createClient() {
   const { url, key } = supabaseEnv();
 
   return createServerClient(url, key, {
+    global: { fetch: fetchSupabase },
     cookies: {
       getAll() {
         return cookieStore.getAll();

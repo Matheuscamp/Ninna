@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/proxy";
 
 const ROTAS_PROTEGIDAS = ["/app", "/consentimento"];
+const ROTAS_DE_ENTRADA = ["/entrar", "/cadastro"];
 
 // Checagem otimista: quem não está logada vai para /entrar. A checagem
 // definitiva (sessão, consentimento, perfil) acontece no servidor, em lib/dal.ts.
@@ -18,6 +19,13 @@ export async function proxy(request: NextRequest) {
     const entrar = new URL("/entrar", request.url);
     entrar.searchParams.set("next", pathname + search);
     return NextResponse.redirect(entrar);
+  }
+
+  // Quem já está logada não precisa ver as telas de entrar e de cadastro.
+  if (user && ROTAS_DE_ENTRADA.includes(pathname)) {
+    const next = request.nextUrl.searchParams.get("next") ?? "/app";
+    const destino = next.startsWith("/") && !next.startsWith("//") ? next : "/app";
+    return NextResponse.redirect(new URL(destino, request.url));
   }
 
   return response;

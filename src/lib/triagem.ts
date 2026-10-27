@@ -96,6 +96,29 @@ export function dumPlausivel(dum: string, hoje: string) {
   return semanas >= 1 && semanas <= 42;
 }
 
+// Mantém só as respostas que valem para o caminho final da triagem. Quem volta
+// e troca de resposta (ex.: de "grávida" para "tentando") não deve levar junto
+// a data da gestação: a LGPD pede guardar só o necessário.
+export function limparRespostas(r: Respostas): Respostas {
+  const gestante = ehGestante(r);
+  const limpas: Respostas = {
+    momento: r.momento,
+    jaMae: r.jaMae,
+    teste: r.momento === "suspeita" ? r.teste : undefined,
+    fonteData: gestante ? r.fonteData : undefined,
+    data: gestante && r.fonteData !== "semanas" ? r.data : undefined,
+    semanas: gestante && r.fonteData === "semanas" ? r.semanas : undefined,
+    multipla: gestante ? r.multipla : undefined,
+    preNatal: gestante ? r.preNatal : undefined,
+    partoAnterior: r.jaMae ? r.partoAnterior : undefined,
+    perdaAnterior: r.momento === "perda" ? undefined : r.perdaAnterior,
+    altoRisco: r.altoRisco,
+    acompanhante: r.acompanhante,
+    nome: r.nome,
+  };
+  return Object.fromEntries(Object.entries(limpas).filter(([, v]) => v !== undefined)) as Respostas;
+}
+
 export function modificadores(r: Respostas) {
   return {
     primeiraGestacao: !r.jaMae,

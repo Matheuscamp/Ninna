@@ -9,6 +9,7 @@ import {
   dataProvavelDoParto,
   dumPlausivel,
   idadeGestacional,
+  limparRespostas,
   PERFIS,
   trimestre,
   type Respostas,
@@ -119,14 +120,15 @@ export function AssistenteTriagem() {
 
   function salvar() {
     iniciarSalvar(async () => {
-      const res = await salvarTriagem(r);
+      const respostas = limparRespostas(r as Respostas);
+      const res = await salvarTriagem(respostas);
       if (res.ok) {
         router.push("/app");
       } else if (res.motivo === "login") {
-        guardarPendente(r);
+        guardarPendente(respostas);
         router.push("/cadastro");
       } else if (res.motivo === "consentimento") {
-        guardarPendente(r);
+        guardarPendente(respostas);
         router.push("/consentimento");
       } else {
         setErro(res.mensagem ?? "Algo deu errado. Tente de novo.");

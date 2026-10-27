@@ -5,6 +5,7 @@ import {
   dataProvavelDoParto,
   dumPlausivel,
   idadeGestacional,
+  limparRespostas,
   respostasSchema,
   trimestre,
 } from "./triagem";
@@ -55,6 +56,32 @@ describe("idade gestacional", () => {
     expect(trimestre(14)).toBe(2);
     expect(trimestre(27)).toBe(2);
     expect(trimestre(28)).toBe(3);
+  });
+});
+
+describe("limparRespostas", () => {
+  it("descarta a data da gestação de quem trocou para outro perfil", () => {
+    const r = limparRespostas({
+      momento: "perda",
+      teste: "positivo",
+      fonteData: "dum",
+      data: "2026-09-01",
+      jaMae: false,
+      partoAnterior: "cesarea",
+      perdaAnterior: "sim",
+      altoRisco: "nao",
+    });
+    expect(r).toEqual({ momento: "perda", jaMae: false, altoRisco: "nao" });
+  });
+
+  it("mantém só o campo de data que corresponde à fonte escolhida", () => {
+    const r = limparRespostas({ momento: "gravida", jaMae: true, fonteData: "semanas", semanas: 9, data: "2026-09-01" });
+    expect(r).toEqual({ momento: "gravida", jaMae: true, fonteData: "semanas", semanas: 9 });
+  });
+
+  it("guarda o resultado do teste só na suspeita", () => {
+    expect(limparRespostas({ momento: "suspeita", teste: "negativo", jaMae: false }).teste).toBe("negativo");
+    expect(limparRespostas({ momento: "tentando", teste: "negativo", jaMae: false }).teste).toBeUndefined();
   });
 });
 

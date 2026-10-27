@@ -38,7 +38,15 @@ export function FormEntrar({ next, erroRetorno }: { next: string; erroRetorno?: 
       <Divisor />
       <form action={acao} className="flex flex-col gap-4">
         <input type="hidden" name="next" value={next} />
-        <Campo id="email" rotulo="E-mail" type="email" autoComplete="email" required erro={estado?.erros?.email?.[0]} />
+        <Campo
+          id="email"
+          rotulo="E-mail"
+          type="email"
+          autoComplete="email"
+          required
+          defaultValue={estado?.valores?.email}
+          erro={estado?.erros?.email?.[0]}
+        />
         <Campo
           id="senha"
           rotulo="Senha"
@@ -86,8 +94,23 @@ export function FormCadastro() {
       <BotaoGoogle next="/consentimento" />
       <Divisor />
       <form action={acao} className="flex flex-col gap-4">
-        <Campo id="nome" rotulo="Como prefere ser chamada?" autoComplete="given-name" required erro={estado?.erros?.nome?.[0]} />
-        <Campo id="email" rotulo="E-mail" type="email" autoComplete="email" required erro={estado?.erros?.email?.[0]} />
+        <Campo
+          id="nome"
+          rotulo="Como prefere ser chamada?"
+          autoComplete="given-name"
+          required
+          defaultValue={estado?.valores?.nome}
+          erro={estado?.erros?.nome?.[0]}
+        />
+        <Campo
+          id="email"
+          rotulo="E-mail"
+          type="email"
+          autoComplete="email"
+          required
+          defaultValue={estado?.valores?.email}
+          erro={estado?.erros?.email?.[0]}
+        />
         <Campo
           id="senha"
           rotulo="Senha (mínimo 8 caracteres)"
@@ -108,7 +131,8 @@ export function FormCadastro() {
       </form>
       <p className="text-center text-[15px]">
         Já tem conta?{" "}
-        <Link href="/entrar" className="font-semibold text-rosa-600 underline">
+        {/* Passa por /triagem/concluir: grava a triagem feita antes do login, se houver. */}
+        <Link href="/entrar?next=/triagem/concluir" className="font-semibold text-rosa-600 underline">
           Entrar
         </Link>
       </p>
