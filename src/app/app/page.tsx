@@ -75,7 +75,7 @@ const PROXIMO_PASSO: Record<Exclude<Perfil, "gestante">, { href: string; rotulo:
   acolhimento: { href: "/app/conteudo", rotulo: "Ver conteúdo de apoio" },
 };
 
-export function CartaoPrincipal({ perfil, semanas }: { perfil: PerfilUsuaria & { perfil: Perfil }; semanas: number | null }) {
+function CartaoPrincipal({ perfil, semanas }: { perfil: PerfilUsuaria & { perfil: Perfil }; semanas: number | null }) {
   if (perfil.perfil === "gestante" && semanas !== null && perfil.dum) {
     const progresso = Math.min(100, Math.round((semanas / 40) * 100));
     const faltam = Math.max(0, 40 - semanas);

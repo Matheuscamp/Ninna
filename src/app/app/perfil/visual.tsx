@@ -164,7 +164,7 @@ export function PerfilVisual({ email, plano, semanas, perfil, ficha, fotoUrl, ho
 
       <div className="flex flex-col gap-5 md:grid md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:items-start">
         {/* Gestação: o destaque da página. */}
-        <section aria-labelledby="titulo-momento" className="flex flex-col gap-5 rounded-3xl bg-azul-100 p-5 text-azul-900 sm:p-6">
+        <section aria-labelledby="titulo-momento" className="flex flex-col gap-5 rounded-[2rem] bg-linear-to-br from-azul-100 via-[#eef0fa] to-rosa-100 p-5 text-azul-900 shadow-flutuante sm:p-6">
           <div className="flex items-start justify-between gap-3">
             <div className="flex flex-col gap-1">
               <h2 id="titulo-momento" className="text-[13px] font-bold uppercase tracking-wide text-azul-700">
