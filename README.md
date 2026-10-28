@@ -76,7 +76,7 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 | `src/app/(auth)/` | Entrar, cadastro, Google, sair |
 | `src/app/consentimento/` | Tela e registro do consentimento |
 | `src/app/triagem/` | Assistente da triagem e gravação |
-| `src/content/` | Conteúdo dos guias e artigos (a revisar por profissional; depois vai para o CMS) |
+| `src/content/` | Conteúdo dos guias e artigos, com base na Caderneta Brasileira da Gestante (Ministério da Saúde, 2026); a revisar por profissional e depois vai para o CMS |
 | `src/app/app/` | Painel: Início, Agenda, Conteúdo, Perfil, guias e alertas |
 | `src/lib/pagamentos.ts` | Regras do pagamento: referência do pedido, o que fazer com cada status, assinatura do webhook |
 | `src/lib/mercadopago.ts` | Chamadas à API do Mercado Pago e crédito do Premium |

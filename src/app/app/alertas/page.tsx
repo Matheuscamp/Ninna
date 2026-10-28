@@ -1,23 +1,39 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Carregando, Pagina, Voltar } from "@/components/ui";
-import { alertasDoPerfil } from "@/content/guias";
+import { ALERTAS_BEBE, alertasDoPerfil } from "@/content/guias";
 import { exigirUsuariaPronta } from "@/lib/dal";
 
 export const metadata: Metadata = { title: "Sinais de alerta" };
 
-// Sempre gratuito, em todos os perfis.
-async function Alertas() {
-  const { perfil } = await exigirUsuariaPronta();
+function Lista({ alertas }: { alertas: readonly string[] }) {
   return (
     <ul className="flex flex-col gap-3 rounded-3xl bg-white p-5">
-      {alertasDoPerfil(perfil.perfil).map((alerta) => (
+      {alertas.map((alerta) => (
         <li key={alerta} className="flex gap-3 text-base leading-snug">
           <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-full bg-alerta" />
           {alerta}
         </li>
       ))}
     </ul>
+  );
+}
+
+// Sempre gratuito, em todos os perfis.
+async function Alertas() {
+  const { perfil } = await exigirUsuariaPronta();
+  return (
+    <>
+      <Lista alertas={alertasDoPerfil(perfil.perfil)} />
+      {perfil.perfil === "puerpera" && (
+        <section aria-labelledby="titulo-bebe" className="flex flex-col gap-3">
+          <h2 id="titulo-bebe" className="text-lg font-bold text-[#8a1c12]">
+            E no bebê, se ele tiver:
+          </h2>
+          <Lista alertas={ALERTAS_BEBE} />
+        </section>
+      )}
+    </>
   );
 }
 

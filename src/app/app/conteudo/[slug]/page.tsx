@@ -38,8 +38,19 @@ async function Artigo({ params }: { params: PageProps<"/app/conteudo/[slug]">["p
       ) : (
         <>
           <p className="text-[17px] leading-relaxed">{artigo.resumo}</p>
+          {artigo.pontos && (
+            <ul className="flex flex-col gap-3 rounded-3xl bg-white p-5">
+              {artigo.pontos.map((ponto) => (
+                <li key={ponto} className="flex gap-3 text-[15px] leading-relaxed">
+                  <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-full bg-rosa-600" />
+                  {ponto}
+                </li>
+              ))}
+            </ul>
+          )}
           <p className="rounded-2xl bg-white p-4 text-sm leading-relaxed text-suave">
-            Versão resumida. O texto completo está sendo escrito e revisado por profissional de saúde.
+            {artigo.fonte ? `Baseado na ${artigo.fonte}. ` : "Versão resumida. "}
+            Conteúdo em revisão por profissional de saúde.
           </p>
         </>
       )}

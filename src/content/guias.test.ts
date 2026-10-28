@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { VISUAL_DOS_ARTIGOS } from "@/app/app/conteudo/ilustracoes";
 import { ARTIGOS } from "./artigos";
 import { EXAMES, FASES, faseDaSemana, resultadoSintomas, SEMANA_MAX, SEMANA_MIN } from "./guias";
 
@@ -16,6 +17,26 @@ describe("fases da gestação", () => {
     expect(faseDaSemana(24).id).toBe("f5");
     expect(faseDaSemana(42).id).toBe("f8");
     expect(faseDaSemana(2).id).toBe("f1");
+  });
+
+  it("mantém os ids de tarefas antigas (o progresso salvo no banco usa esses ids)", () => {
+    const ids = new Set(FASES.flatMap((f) => f.tarefas.map((t) => t.id)));
+    const antigos = [
+      "f1-consulta", "f1-acido-folico", "f1-habitos", "f2-ultrassom", "f2-resultados", "f2-duvidas",
+      "f3-consultas", "f3-dentista", "f3-enxoval", "f4-morfologico", "f4-dtpa", "f4-parto",
+      "f5-totg", "f5-coombs", "f5-maternidade", "f6-exames", "f6-plano-parto", "f6-curso",
+      "f7-strepto", "f7-mala", "f7-acompanhante", "f8-sinais", "f8-cartao", "f8-consultas",
+    ];
+    for (const id of antigos) expect(ids.has(id)).toBe(true);
+  });
+
+  it("toda fase diz como está o bebê e a frequência das consultas", () => {
+    for (const f of FASES) {
+      expect(f.bebe.length).toBeGreaterThan(20);
+      expect(f.consultas).toMatch(/Consultas/);
+    }
+    expect(faseDaSemana(30).exames).toContain("vsr");
+    expect(faseDaSemana(21).exames).toContain("dtpa");
   });
 
   it("usa só exames existentes e ids de tarefa únicos", () => {
@@ -39,6 +60,19 @@ describe("artigos", () => {
     expect(new Set(ARTIGOS.map((a) => a.slug)).size).toBe(ARTIGOS.length);
     for (const perfil of ["tentante", "suspeita", "gestante", "puerpera", "acolhimento"] as const) {
       expect(ARTIGOS.some((a) => a.perfil === perfil && !a.premium)).toBe(true);
+    }
+  });
+
+  it("todo artigo tem ilustração própria e os da caderneta trazem pontos principais", () => {
+    for (const a of ARTIGOS) {
+      expect(VISUAL_DOS_ARTIGOS[a.slug], a.slug).toBeDefined();
+      if (a.fonte) expect(a.pontos?.length, a.slug).toBeGreaterThan(0);
+    }
+  });
+
+  it("conteúdo de segurança da caderneta é gratuito", () => {
+    for (const slug of ["vacinas-gestacao", "pressao-pre-eclampsia", "sinais-parto-chegando", "violencia-onde-buscar-ajuda", "cuidados-recem-nascido"]) {
+      expect(ARTIGOS.find((a) => a.slug === slug)?.premium).toBe(false);
     }
   });
 

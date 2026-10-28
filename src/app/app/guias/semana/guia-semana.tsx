@@ -79,9 +79,14 @@ export function GuiaSemana({ semanaAtual, feitasIniciais }: { semanaAtual: numbe
         <span className="text-[13px] text-suave">{semana} de 40 semanas</span>
       </div>
 
-      <section className="flex flex-col gap-1.5 rounded-3xl bg-white p-5">
+      <section className="flex flex-col gap-3 rounded-3xl bg-white p-5">
         <h2 className="text-lg font-bold">{fase.titulo}</h2>
         <p className="text-[15px] leading-relaxed text-suave">{fase.resumo}</p>
+        <div className="flex flex-col gap-1 rounded-2xl bg-rosa-50 p-3.5">
+          <span className="text-[12px] font-bold uppercase tracking-wide text-rosa-700">O bebê nesta fase</span>
+          <p className="text-[15px] leading-relaxed">{fase.bebe}</p>
+        </div>
+        <p className="text-[13px] font-semibold leading-relaxed text-azul-700">{fase.consultas}</p>
       </section>
 
       <section className="flex flex-col gap-3">
