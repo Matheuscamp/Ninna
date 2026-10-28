@@ -11,6 +11,8 @@ export type Artigo = {
   // Pontos principais, mostrados em lista abaixo do resumo.
   pontos?: readonly string[];
   fonte?: string;
+  // Guia interativo relacionado, mostrado como botão no fim do artigo.
+  guia?: { href: string; rotulo: string };
   premium: boolean;
 };
 
@@ -267,6 +269,7 @@ export const ARTIGOS: Artigo[] = [
   },
   {
     slug: "contracepcao-pos-parto", perfil: "puerpera", premium: false, fonte: CADERNETA,
+    guia: { href: "/app/guias/contracepcao", rotulo: "Comparar todos os métodos" },
     titulo: "Contracepção depois do parto",
     resumo: "Você pode começar um método para evitar nova gravidez ainda na maternidade, com opções seguras para quem amamenta. Todas abaixo são oferecidas no SUS.",
     pontos: [

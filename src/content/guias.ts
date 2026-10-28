@@ -127,7 +127,7 @@ export const FASES: Fase[] = [
       { id: "f6-vsr", texto: "Tomar a vacina contra o VSR (a partir da 28ª semana)" },
       { id: "f6-exames", texto: "Repetir os exames do 3º trimestre" },
       { id: "f6-plano-parto", texto: "Começar o plano de parto e conversar sobre ele na consulta" },
-      { id: "f6-contracepcao", texto: "Decidir sobre a contracepção pós-parto (se quiser laqueadura no parto, o pedido precisa ser assinado 60 dias antes)" },
+      { id: "f6-contracepcao", texto: "Escolher a contracepção pós-parto (veja o guia de métodos em Conteúdo; para laqueadura no parto, o pedido é assinado 60 dias antes)" },
       { id: "f6-curso", texto: "Participar do grupo de gestantes ou de um curso, se houver" },
     ],
     exames: ["vsr", "hemograma", "glicemia", "sorologias", "urina", "coombs"],

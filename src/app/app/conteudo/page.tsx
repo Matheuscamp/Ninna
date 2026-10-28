@@ -3,24 +3,30 @@ import { Suspense } from "react";
 import { Carregando, Pagina, TituloPagina } from "@/components/ui";
 import { artigosDoPerfil } from "@/content/artigos";
 import { exigirUsuariaPronta } from "@/lib/dal";
-import { PERFIS } from "@/lib/triagem";
+import { PERFIS, type Perfil } from "@/lib/triagem";
 import { CartaoConteudo } from "./cartao";
 import { visualDoArtigo, type Fundo, type NomeIlustracao } from "./ilustracoes";
 
 export const metadata: Metadata = { title: "Conteúdo" };
 
-const GUIAS = {
+const CONTRACEPCAO = { href: "/app/guias/contracepcao", titulo: "Métodos contraceptivos" };
+
+const GUIAS: Partial<Record<Perfil, { href: string; titulo: string }[]>> = {
   gestante: [
     { href: "/app/guias/semana", titulo: "O que fazer nesta fase" },
     { href: "/app/guias/parto", titulo: "Tipos de parto" },
+    CONTRACEPCAO,
   ],
   suspeita: [{ href: "/app/guias/sintomas", titulo: "Checar meus sintomas" }],
-} as const;
+  puerpera: [CONTRACEPCAO],
+  acolhimento: [CONTRACEPCAO],
+};
 
 const VISUAL_DOS_GUIAS: Record<string, { ilustracao: NomeIlustracao; fundo: Fundo }> = {
   "/app/guias/semana": { ilustracao: "prancheta", fundo: "azul" },
   "/app/guias/parto": { ilustracao: "bebe", fundo: "rosa" },
   "/app/guias/sintomas": { ilustracao: "lupa", fundo: "lilas" },
+  "/app/guias/contracepcao": { ilustracao: "calendario", fundo: "menta" },
 };
 
 // 2 colunas no celular, 3 no tablet, 4 no computador.
@@ -28,7 +34,7 @@ const GRADE = "grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4";
 
 async function Lista() {
   const { perfil } = await exigirUsuariaPronta();
-  const guias = perfil.perfil === "gestante" || perfil.perfil === "suspeita" ? GUIAS[perfil.perfil] : [];
+  const guias = GUIAS[perfil.perfil] ?? [];
 
   return (
     <>

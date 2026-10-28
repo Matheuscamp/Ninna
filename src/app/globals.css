@@ -25,6 +25,10 @@
   --color-pessego: #fde2cc;
   --color-menta: #d6efe2;
   --color-baunilha: #fbeec4;
+  /* Faixas de eficácia (guia de contracepção): verde, âmbar e laranja. */
+  --color-verde: #4f9a6b;
+  --color-ambar: #c99a2e;
+  --color-laranja: #d9773f;
   /* Borda das caixinhas de marcar ainda vazias. */
   --color-caixa: #b9c7d4;
   /* Sombras: suave para cartões, rosa para o botão principal, flutuante para destaques. */

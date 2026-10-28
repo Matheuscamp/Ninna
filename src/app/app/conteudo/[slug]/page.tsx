@@ -48,6 +48,14 @@ async function Artigo({ params }: { params: PageProps<"/app/conteudo/[slug]">["p
               ))}
             </ul>
           )}
+          {artigo.guia && (
+            <Link
+              href={artigo.guia.href}
+              className="flex h-13 items-center justify-center rounded-2xl bg-rosa-600 px-5 text-[17px] font-semibold text-white shadow-rosa hover:bg-rosa-700"
+            >
+              {artigo.guia.rotulo}
+            </Link>
+          )}
           <p className="rounded-2xl bg-white/90 shadow-suave p-4 text-sm leading-relaxed text-suave">
             {artigo.fonte ? `Baseado na ${artigo.fonte}. ` : "Versão resumida. "}
             Conteúdo em revisão por profissional de saúde.
