@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ninna">
+  <rect width="512" height="512" rx="112" fill="#f7a7c0"/>
+  <g fill="#fff">
+    <!-- Corpo: nuca, pescoço em curva, dorso, cauda em duas penas e barriga -->
+    <path d="M188 222C200 238 210 258 238 266C255 271 268 268 278 258L322 272C350 282 385 284 412 286C398 292 384 296 372 298C390 300 402 304 410 310C380 312 356 320 336 328C300 334 262 326 236 306C208 290 190 266 166 228Z"/>
+    <!-- Cabeça -->
+    <circle cx="180" cy="214" r="18"/>
+    <!-- Bico longo -->
+    <path d="M168 204L122 220L168 225Z"/>
+    <!-- Asa levantada, com a borda de trás em penas -->
+    <path d="M268 264C284 214 322 180 418 144C410 162 400 172 388 180C400 180 408 178 414 176C404 198 390 210 372 218C384 220 394 220 402 218C388 240 366 256 330 272Z"/>
+    <!-- Pernas esticadas para trás -->
+    <path d="M330 322C365 340 400 350 440 354L448 362C404 364 364 352 326 332Z"/>
+    <!-- Nó da trouxinha, preso na ponta do bico -->
+    <path d="M118 222C108 214 100 208 96 198C108 200 116 208 121 219Z"/>
+    <path d="M123 220C127 209 134 203 143 200C141 211 134 218 125 222Z"/>
+    <!-- Alça da trouxinha -->
+    <path d="M121 222L100 272" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+    <!-- Trouxinha -->
+    <path d="M121 226C133 250 158 270 160 296C162 322 142 338 120 338C98 338 84 322 88 300C92 276 108 256 121 226Z"/>
+    <!-- Cabecinha do bebê -->
+    <circle cx="82" cy="294" r="22"/>
+  </g>
+</svg>

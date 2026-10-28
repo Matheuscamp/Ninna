@@ -20,6 +20,7 @@ Toda tela segue o mesmo padrão visual (o da página inicial, triagem e login). 
 - **Título de página**: `TituloPagina` (`src/components/ui.tsx`), com ilustração numa bolha colorida, título de 28px e subtítulo.
 - **Botões**: `BotaoPrimario` (rosa com `shadow-rosa`) e `BotaoSecundario` (branco com `shadow-suave`); botões e links de ação rápida também usam `rounded-2xl`.
 - **Ilustrações e ícones**: só os SVG próprios de `src/components/ilustracoes.tsx` (`Ilustracao`, `Bolha`, `VISUAL_DO_PERFIL`) e os ícones de traço de `Icone`. Nada de imagens externas.
+- **Logo**: `public/ninna-logo.svg` (vetor, use sempre ele). O favicon é `src/app/icon.svg` (a mesma cegonha, maior, para caber em 16px), com `favicon.ico` e `apple-icon.png` gerados a partir dele; ao mudar a logo, atualize os três.
 - **Texto branco** só sobre `rosa-600` ou `alerta`. Pastéis sempre com texto escuro.
 - Mobile primeiro: conferir em 375px e no computador (grades `sm:`/`lg:`).
 

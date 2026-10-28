@@ -156,7 +156,7 @@ export function AssistenteTriagem() {
         <span className="flex-1 text-sm font-semibold text-suave">
           {resultado === undefined ? `Pergunta ${indice + 1} de ${lista.length}` : "Resultado"}
         </span>
-        <Image src="/ninna-icon.png" alt="Ninna" width={36} height={36} className="rounded-[22%]" />
+        <Image src="/ninna-logo.svg" alt="Ninna" width={36} height={36} className="rounded-[22%]" />
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-white/80" aria-hidden="true">
         <div

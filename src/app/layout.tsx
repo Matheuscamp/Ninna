@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: { default: "Ninna — sua gestação, do seu jeito", template: "%s · Ninna" },
   description:
     "Acompanhe a gravidez semana a semana, organize o pré-natal e tire dúvidas com conteúdo revisado por profissionais.",
-  icons: { icon: "/ninna-icon.png", apple: "/ninna-icon.png" },
   // Teste fechado: fora dos buscadores. No lançamento, remova (e ajuste src/app/robots.ts).
   robots: { index: false, follow: false },
 };

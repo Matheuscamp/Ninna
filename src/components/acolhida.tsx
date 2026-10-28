@@ -43,11 +43,10 @@ export function CenaNinna({ compacta = false }: { compacta?: boolean }) {
       <div className={`absolute left-1/2 top-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/55 ${compacta ? "w-40" : "w-[62%]"}`} />
       <div className={`absolute left-1/2 top-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 ${compacta ? "w-32" : "w-[44%]"}`} />
       <Image
-        src="/ninna-icon.png"
+        src="/ninna-logo.svg"
         alt=""
         width={512}
         height={512}
-        sizes={compacta ? "96px" : "(min-width: 1024px) 180px, 34vw"}
         priority
         className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[22%] shadow-lg ${compacta ? "size-24" : "w-[34%] aspect-square"}`}
       />
@@ -100,7 +99,7 @@ export function CabecalhoPublico({ direita }: { direita?: ReactNode }) {
   return (
     <header className="flex items-center justify-between gap-3">
       <Link href="/" className="flex items-center gap-2.5 rounded-2xl focus-visible:outline-3 focus-visible:outline-rosa-600">
-        <Image src="/ninna-icon.png" alt="" width={44} height={44} className="rounded-[22%]" priority />
+        <Image src="/ninna-logo.svg" alt="" width={44} height={44} className="rounded-[22%]" priority />
         <span className="text-xl font-bold text-rosa-600">Ninna</span>
       </Link>
       {direita}

@@ -7,7 +7,7 @@ import type { NomeIlustracao } from "./ilustracoes";
 export function Logo({ tamanho = 40 }: { tamanho?: number }) {
   return (
     <Image
-      src="/ninna-icon.png"
+      src="/ninna-logo.svg"
       alt="Ninna"
       width={tamanho}
       height={tamanho}
