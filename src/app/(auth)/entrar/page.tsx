@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AvisoMedico, Logo, Pagina } from "@/components/ui";
 import { FormEntrar } from "../formularios";
+import { TelaAuth } from "../tela";
 
 export const metadata: Metadata = { title: "Entrar" };
 
@@ -24,13 +24,14 @@ async function Formulario({ searchParams }: { searchParams: PageProps<"/entrar">
 
 export default function EntrarPage({ searchParams }: PageProps<"/entrar">) {
   return (
-    <Pagina>
-      <Logo tamanho={56} />
-      <h1 className="text-3xl font-bold">Que bom te ver de novo</h1>
+    <TelaAuth
+      titulo="Que bom te ver de novo"
+      subtitulo="Entre para ver sua agenda, seus documentos e o que fazer nesta fase."
+      link={{ href: "/cadastro", rotulo: "Criar conta" }}
+    >
       <Suspense>
         <Formulario searchParams={searchParams} />
       </Suspense>
-      <AvisoMedico />
-    </Pagina>
+    </TelaAuth>
   );
 }

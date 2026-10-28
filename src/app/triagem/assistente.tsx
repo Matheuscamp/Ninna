@@ -2,6 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import Image from "next/image";
+import { Bolha, Icone } from "@/components/acolhida";
+import { FUNDOS, Ilustracao, type Fundo, type NomeIlustracao } from "@/components/ilustracoes";
 import { AvisoMedico, BotaoPrimario, Opcao } from "@/components/ui";
 import {
   calcularDum,
@@ -18,6 +21,15 @@ import { salvarTriagem } from "./actions";
 import { guardarPendente } from "./pendente";
 
 type Rascunho = Partial<Respostas>;
+
+// Ilustração e cor de cada perfil no resultado.
+const VISUAL_PERFIL: Record<ReturnType<typeof classificarPerfil>, { ilustracao: NomeIlustracao; fundo: Fundo }> = {
+  tentante: { ilustracao: "folha", fundo: "menta" },
+  suspeita: { ilustracao: "teste", fundo: "lilas" },
+  gestante: { ilustracao: "coracao", fundo: "rosa" },
+  puerpera: { ilustracao: "bebe", fundo: "azul" },
+  acolhimento: { ilustracao: "flor", fundo: "baunilha" },
+};
 type Passo = "momento" | "teste" | "data" | "detalhes" | "historia" | "saude" | "acompanhante";
 
 function passos(r: Rascunho): Passo[] {
@@ -59,7 +71,7 @@ function Pergunta({ titulo, ajuda, children }: { titulo: string; ajuda?: string;
   return (
     <fieldset className="flex flex-col gap-3">
       <legend className="mb-2 flex flex-col gap-2">
-        <span className="text-[26px] font-bold leading-tight">{titulo}</span>
+        <span className="text-[28px] font-bold leading-tight tracking-tight">{titulo}</span>
         {ajuda && <span className="text-[15px] leading-relaxed text-suave">{ajuda}</span>}
       </legend>
       {children}
@@ -143,17 +155,18 @@ export function AssistenteTriagem() {
           type="button"
           onClick={voltar}
           aria-label="Voltar"
-          className="-ml-2.5 flex size-11 items-center justify-center rounded-full hover:bg-white"
+          className="-ml-1 flex size-11 items-center justify-center rounded-full bg-white/80 shadow-sm hover:bg-white"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true" className="size-6 fill-none stroke-current stroke-2">
             <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-        <span className="text-sm font-medium text-suave">
+        <span className="flex-1 text-sm font-semibold text-suave">
           {resultado === undefined ? `Pergunta ${indice + 1} de ${lista.length}` : "Resultado"}
         </span>
+        <Image src="/ninna-icon.png" alt="Ninna" width={36} height={36} className="rounded-[22%]" />
       </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-linha" aria-hidden="true">
+      <div className="h-2 overflow-hidden rounded-full bg-white/80" aria-hidden="true">
         <div
           className="h-full rounded-full bg-rosa-600 transition-all"
           style={{ width: resultado === undefined ? `${((indice + 1) / (lista.length + 1)) * 100}%` : "100%" }}
@@ -165,26 +178,37 @@ export function AssistenteTriagem() {
   if (resultado !== undefined) {
     const perfil = classificarPerfil(r as Respostas);
     const info = PERFIS[perfil];
+    const visual = VISUAL_PERFIL[perfil];
     return (
       <div className="flex flex-1 flex-col gap-5">
         {cabecalho}
-        <p className="text-[15px] font-semibold text-rosa-600">Seu perfil</p>
-        <h1 className="-mt-3 text-3xl font-bold">{info.titulo}</h1>
+        <section className={`relative overflow-hidden rounded-[2rem] p-6 ${FUNDOS[visual.fundo]}`}>
+          <Ilustracao nome={visual.ilustracao} className="absolute -right-2 -top-1 h-32" />
+          <p className="relative text-[13px] font-bold uppercase tracking-wide text-tinta/70">Seu perfil</p>
+          <h1 className="relative mt-1 max-w-[62%] text-[30px] font-bold leading-tight">{info.titulo}</h1>
+          <p className="relative mt-4 text-[15px] leading-relaxed text-tinta/80">{info.descricao}</p>
+        </section>
         {resultado && (
-          <div className="rounded-3xl bg-azul-100 p-5 text-azul-900">
-            <p className="text-sm font-semibold text-azul-700">{trimestre(resultado.semanas)}º trimestre</p>
-            <p className="text-3xl font-bold">{resultado.semanas} semanas</p>
-            <p className="text-[15px]">Data provável do parto: {formatarData(resultado.dpp)}</p>
+          <div className="flex items-center gap-4 rounded-3xl bg-white/90 p-5 shadow-sm">
+            <span className="flex size-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-rosa-600 text-white">
+              <span className="text-2xl font-bold leading-none">{resultado.semanas}</span>
+              <span className="text-[11px] font-semibold">semanas</span>
+            </span>
+            <span className="flex flex-col gap-0.5">
+              <span className="text-sm font-semibold text-azul-700">{trimestre(resultado.semanas)}º trimestre</span>
+              <span className="text-[15px] leading-snug">
+                Data provável do parto: <strong>{formatarData(resultado.dpp)}</strong>
+              </span>
+            </span>
           </div>
         )}
-        <p className="leading-relaxed text-suave">{info.descricao}</p>
-        <div className="flex flex-col gap-3 rounded-3xl bg-white p-5">
+        <div className="flex flex-col gap-3 rounded-3xl bg-white/90 p-5 shadow-sm">
           <span className="font-bold">O que preparamos para você</span>
-          <ul className="flex flex-col gap-2.5">
+          <ul className="flex flex-col gap-3">
             {info.preparado.map((item) => (
-              <li key={item} className="flex gap-3 text-[15px] leading-snug">
-                <span aria-hidden="true" className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-rosa-50 text-xs font-bold text-rosa-600">
-                  ✓
+              <li key={item} className="flex items-start gap-3 text-[15px] leading-snug">
+                <span aria-hidden="true" className="flex size-6 shrink-0 items-center justify-center rounded-full bg-rosa-50 text-rosa-600">
+                  <Icone nome="check" className="size-3.5" />
                 </span>
                 {item}
               </li>
@@ -214,17 +238,18 @@ export function AssistenteTriagem() {
         <Pergunta titulo="Qual é o seu momento hoje?">
           {(
             [
-              ["tentando", "Estou tentando engravidar", "Quero me preparar"],
-              ["suspeita", "Acho que posso estar grávida", "Atraso ou sintomas, sem confirmação"],
-              ["gravida", "Estou grávida", "Gestação confirmada"],
-              ["nasceu", "Meu bebê já nasceu", "Estou no pós-parto"],
-              ["perda", "Passei por uma perda", "Quero apoio e informação"],
+              ["tentando", "Estou tentando engravidar", "Quero me preparar", "folha", "menta"],
+              ["suspeita", "Acho que posso estar grávida", "Atraso ou sintomas, sem confirmação", "teste", "lilas"],
+              ["gravida", "Estou grávida", "Gestação confirmada", "coracao", "rosa"],
+              ["nasceu", "Meu bebê já nasceu", "Estou no pós-parto", "bebe", "azul"],
+              ["perda", "Passei por uma perda", "Quero apoio e informação", "flor", "baunilha"],
             ] as const
-          ).map(([valor, titulo, descricao]) => (
+          ).map(([valor, titulo, descricao, ilustracao, fundo]) => (
             <Opcao
               key={valor}
               titulo={titulo}
               descricao={descricao}
+              icone={<Bolha nome={ilustracao} fundo={FUNDOS[fundo]} className="size-12" />}
               selecionada={r.momento === valor}
               onClick={() => atualizar({ momento: valor })}
             />
@@ -250,15 +275,16 @@ export function AssistenteTriagem() {
         <Pergunta titulo="De quanto tempo você está?" ajuda="Escolha a informação que você tem. Nós calculamos as semanas.">
           {(
             [
-              ["semanas", "Sei quantas semanas", "Pelo ultrassom ou pelo médico"],
-              ["dum", "Sei a data da última menstruação", "Primeiro dia da última menstruação"],
-              ["dpp", "Sei a data prevista do parto", "Informada pelo médico"],
+              ["semanas", "Sei quantas semanas", "Pelo ultrassom ou pelo médico", "prancheta"],
+              ["dum", "Sei a data da última menstruação", "Primeiro dia da última menstruação", "calendario"],
+              ["dpp", "Sei a data prevista do parto", "Informada pelo médico", "bebe"],
             ] as const
-          ).map(([valor, titulo, descricao]) => (
+          ).map(([valor, titulo, descricao, ilustracao]) => (
             <Opcao
               key={valor}
               titulo={titulo}
               descricao={descricao}
+              icone={<Bolha nome={ilustracao} fundo="bg-azul-50" className="size-12" />}
               selecionada={r.fonteData === valor}
               onClick={() => atualizar({ fonteData: valor, data: undefined, semanas: valor === "semanas" ? r.semanas ?? 9 : undefined })}
             />

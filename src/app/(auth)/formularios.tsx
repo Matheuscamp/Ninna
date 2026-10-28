@@ -9,8 +9,23 @@ function BotaoGoogle({ next }: { next: string }) {
   return (
     <form action={entrarComGoogle}>
       <input type="hidden" name="next" value={next} />
-      <BotaoSecundario type="submit">Continuar com Google</BotaoSecundario>
+      <BotaoSecundario type="submit" className="flex items-center justify-center gap-3">
+        <LogoGoogle />
+        Continuar com Google
+      </BotaoSecundario>
     </form>
+  );
+}
+
+// Logo do Google, nas cores oficiais, como pedem as diretrizes do botão "Continuar com Google".
+function LogoGoogle() {
+  return (
+    <svg viewBox="0 0 48 48" aria-hidden="true" className="size-5">
+      <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z" />
+      <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6C44 38 46.5 31.8 46.5 24.5z" />
+      <path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.6 10.7l7.9-6.1z" />
+      <path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z" />
+    </svg>
   );
 }
 
@@ -79,7 +94,7 @@ export function FormCadastro() {
 
   if (estado?.enviado) {
     return (
-      <div role="status" className="flex flex-col gap-2 rounded-3xl bg-white p-6">
+      <div role="status" className="flex flex-col gap-2 rounded-3xl bg-azul-50 p-6">
         <h2 className="text-xl font-bold">Confira seu e-mail</h2>
         <p className="leading-relaxed text-suave">
           Enviamos um link para confirmar sua conta. Depois de clicar nele, você volta para cá e continua de onde

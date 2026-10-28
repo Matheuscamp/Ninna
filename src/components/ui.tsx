@@ -40,15 +40,18 @@ export function BotaoSecundario({ className = "", ...props }: ButtonHTMLAttribut
   );
 }
 
+// `icone`: ilustração opcional à esquerda (ex.: na primeira pergunta da triagem).
 export function Opcao({
   selecionada,
   titulo,
   descricao,
+  icone,
   onClick,
 }: {
   selecionada: boolean;
   titulo: string;
   descricao?: string;
+  icone?: ReactNode;
   onClick: () => void;
 }) {
   return (
@@ -56,12 +59,25 @@ export function Opcao({
       type="button"
       aria-pressed={selecionada}
       onClick={onClick}
-      className={`flex w-full flex-col gap-0.5 rounded-2xl border-2 px-4 py-3.5 text-left transition ${
-        selecionada ? "border-rosa-600 bg-rosa-50" : "border-linha bg-white hover:border-rosa-300"
+      className={`flex w-full items-center gap-3.5 rounded-2xl border-2 px-4 py-3.5 text-left transition focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-rosa-600 ${
+        selecionada ? "border-rosa-600 bg-rosa-50 shadow-[0_8px_24px_-14px_rgba(184,60,112,0.7)]" : "border-white bg-white/90 shadow-sm hover:border-rosa-300"
       }`}
     >
-      <span className="text-base font-semibold">{titulo}</span>
-      {descricao && <span className="text-sm text-suave">{descricao}</span>}
+      {icone}
+      <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+        <span className="text-base font-semibold">{titulo}</span>
+        {descricao && <span className="text-sm text-suave">{descricao}</span>}
+      </span>
+      <span
+        aria-hidden="true"
+        className={`flex size-6 shrink-0 items-center justify-center rounded-full border-2 transition ${selecionada ? "border-rosa-600 bg-rosa-600 text-white" : "border-linha"}`}
+      >
+        {selecionada && (
+          <svg viewBox="0 0 24 24" className="size-3.5 fill-none stroke-current" strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12l5 5 9-10" />
+          </svg>
+        )}
+      </span>
     </button>
   );
 }

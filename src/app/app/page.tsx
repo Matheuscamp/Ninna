@@ -9,6 +9,7 @@ import { separarConsultas } from "@/lib/agenda";
 import { exigirUsuariaPronta, listarConsultas, listarTarefasFeitas, type PerfilUsuaria } from "@/lib/dal";
 import { formatarDataLonga, formatarHoje, partesDaData, quantoFalta } from "@/lib/datas";
 import { dataProvavelDoParto, PERFIS, trimestre, type Perfil } from "@/lib/triagem";
+import { TarefasInicio } from "./tarefas-inicio";
 
 export const metadata: Metadata = { title: "Início" };
 
@@ -220,29 +221,7 @@ async function Inicio() {
 
       {fase && (
         <Secao titulo="Para fazer nesta fase" acao={{ href: "/app/guias/semana", rotulo: `${tarefasFeitas} de ${fase.tarefas.length} feitas` }}>
-          <Link href="/app/guias/semana" className="flex flex-col gap-1 rounded-3xl bg-white p-4">
-            {fase.tarefas.map((t) => {
-              const feita = feitas.includes(t.id);
-              return (
-                <span key={t.id} className="flex items-center gap-3 py-1.5">
-                  <span
-                    aria-hidden="true"
-                    className={`flex size-5 shrink-0 items-center justify-center rounded-md border-2 text-white ${feita ? "border-rosa-600 bg-rosa-600" : "border-[#b9c7d4]"}`}
-                  >
-                    {feita && (
-                      <svg viewBox="0 0 24 24" className="size-3 fill-none stroke-current" strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12l5 5 9-10" />
-                      </svg>
-                    )}
-                  </span>
-                  <span className={`text-[15px] leading-snug ${feita ? "text-suave line-through" : ""}`}>
-                    <span className="sr-only">{feita ? "Feita: " : "A fazer: "}</span>
-                    {t.texto}
-                  </span>
-                </span>
-              );
-            })}
-          </Link>
+          <TarefasInicio tarefas={fase.tarefas} feitasIniciais={feitas} />
         </Secao>
       )}
 
