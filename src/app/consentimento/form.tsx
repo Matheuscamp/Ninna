@@ -7,7 +7,7 @@ import { aceitarConsentimento } from "./actions";
 
 function Item({ nome, titulo, children }: { nome: string; titulo: ReactNode; children: ReactNode }) {
   return (
-    <label className="flex gap-3 rounded-2xl bg-white p-4">
+    <label className="flex gap-3 rounded-2xl bg-white/90 shadow-suave p-4">
       <input type="checkbox" name={nome} required className="mt-1 size-5 shrink-0 accent-rosa-600" />
       <span className="flex flex-col gap-1">
         <span className="font-semibold">{titulo}</span>

@@ -15,7 +15,7 @@ async function Edicao() {
   // Sem a migração da ficha, os campos ainda não existem no banco.
   if (!ficha) {
     return (
-      <p className="rounded-3xl bg-white p-5 text-[15px] leading-relaxed text-suave">
+      <p className="rounded-3xl bg-white/90 shadow-suave p-5 text-[15px] leading-relaxed text-suave">
         Esta área ainda está sendo preparada. Tente de novo em instantes.
       </p>
     );
@@ -47,7 +47,7 @@ export default function EditarFichaPage() {
   return (
     <Pagina>
       <Voltar href="/app/perfil" rotulo="Perfil" />
-      <h1 className="text-[26px] font-bold leading-tight">Dados pessoais e de saúde</h1>
+      <h1 className="text-[28px] font-bold leading-tight tracking-tight">Dados pessoais e de saúde</h1>
       <Suspense fallback={<Carregando />}>
         <Edicao />
       </Suspense>

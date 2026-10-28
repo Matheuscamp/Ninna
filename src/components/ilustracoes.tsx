@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Perfil } from "@/lib/triagem";
 
 // Ilustrações do Ninna (cards de conteúdo, telas públicas): formas simples, na paleta do Ninna, no estilo
 // "figura no canto do card" da referência. São SVG próprios (sem licença de imagem,
@@ -136,10 +137,10 @@ export type NomeIlustracao = keyof typeof ILUSTRACOES;
 export const FUNDOS = {
   rosa: "bg-rosa-100",
   azul: "bg-azul-100",
-  lilas: "bg-[#e6dcf7]",
-  pessego: "bg-[#fde2cc]",
-  menta: "bg-[#d6efe2]",
-  baunilha: "bg-[#fbeec4]",
+  lilas: "bg-lilas",
+  pessego: "bg-pessego",
+  menta: "bg-menta",
+  baunilha: "bg-baunilha",
 } as const;
 
 export type Fundo = keyof typeof FUNDOS;
@@ -153,3 +154,12 @@ export function Ilustracao({ nome, className = "" }: { nome: NomeIlustracao; cla
     </svg>
   );
 }
+
+// Ilustração e cor de cada perfil (resultado da triagem, cartão do Início).
+export const VISUAL_DO_PERFIL: Record<Perfil, { ilustracao: NomeIlustracao; fundo: Fundo }> = {
+  tentante: { ilustracao: "folha", fundo: "menta" },
+  suspeita: { ilustracao: "teste", fundo: "lilas" },
+  gestante: { ilustracao: "coracao", fundo: "rosa" },
+  puerpera: { ilustracao: "bebe", fundo: "azul" },
+  acolhimento: { ilustracao: "flor", fundo: "baunilha" },
+};

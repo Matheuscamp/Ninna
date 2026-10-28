@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { Bolha } from "./acolhida";
+import type { NomeIlustracao } from "./ilustracoes";
 
 export function Logo({ tamanho = 40 }: { tamanho?: number }) {
   return (
@@ -22,11 +24,37 @@ export function Pagina({ children, larga = false }: { children: ReactNode; larga
   );
 }
 
+// Título de página do padrão: ilustração numa bolha colorida (opcional), título e subtítulo.
+export function TituloPagina({
+  titulo,
+  subtitulo,
+  ilustracao,
+  fundo = "bg-rosa-100",
+  children,
+}: {
+  titulo: string;
+  subtitulo?: ReactNode;
+  ilustracao?: NomeIlustracao;
+  fundo?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <header className="flex items-center gap-4">
+      {ilustracao && <Bolha nome={ilustracao} fundo={fundo} className="size-16" />}
+      <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <h1 className="text-[28px] font-bold leading-tight tracking-tight">{titulo}</h1>
+        {subtitulo && <p className="text-[15px] leading-relaxed text-suave">{subtitulo}</p>}
+      </div>
+      {children}
+    </header>
+  );
+}
+
 export function BotaoPrimario({ className = "", ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...props}
-      className={`h-13 w-full rounded-2xl bg-rosa-600 px-5 text-[17px] font-semibold text-white transition hover:bg-rosa-700 disabled:cursor-not-allowed disabled:bg-rosa-100 disabled:text-suave ${className}`}
+      className={`h-13 w-full rounded-2xl bg-rosa-600 px-5 text-[17px] font-semibold text-white shadow-rosa transition hover:bg-rosa-700 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-rosa-600 disabled:cursor-not-allowed disabled:bg-rosa-100 disabled:text-suave disabled:shadow-none ${className}`}
     />
   );
 }
@@ -35,7 +63,7 @@ export function BotaoSecundario({ className = "", ...props }: ButtonHTMLAttribut
   return (
     <button
       {...props}
-      className={`h-12 w-full rounded-2xl border-2 border-linha bg-white px-5 text-base font-semibold text-tinta transition hover:border-rosa-300 ${className}`}
+      className={`h-12 w-full rounded-2xl border-2 border-white bg-white/90 px-5 text-base font-semibold text-tinta shadow-suave transition hover:border-rosa-300 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-rosa-600 ${className}`}
     />
   );
 }
@@ -60,7 +88,7 @@ export function Opcao({
       aria-pressed={selecionada}
       onClick={onClick}
       className={`flex w-full items-center gap-3.5 rounded-2xl border-2 px-4 py-3.5 text-left transition focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-rosa-600 ${
-        selecionada ? "border-rosa-600 bg-rosa-50 shadow-[0_8px_24px_-14px_rgba(184,60,112,0.7)]" : "border-white bg-white/90 shadow-sm hover:border-rosa-300"
+        selecionada ? "border-rosa-600 bg-rosa-50 shadow-rosa" : "border-white bg-white/90 shadow-suave hover:border-rosa-300"
       }`}
     >
       {icone}
@@ -187,7 +215,7 @@ export function Carregando() {
 
 export function Voltar({ href, rotulo = "Voltar" }: { href: string; rotulo?: string }) {
   return (
-    <Link href={href} className="-ml-2 flex h-11 items-center gap-1 self-start rounded-xl pr-3 font-semibold text-suave hover:bg-white">
+    <Link href={href} className="flex h-11 items-center gap-1 self-start rounded-2xl bg-white/80 pl-2 pr-4 font-semibold text-suave shadow-suave hover:bg-white">
       <svg viewBox="0 0 24 24" aria-hidden="true" className="size-6 fill-none stroke-current" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
         <path d="M15 18l-6-6 6-6" />
       </svg>

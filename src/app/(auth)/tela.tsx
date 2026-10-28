@@ -40,7 +40,7 @@ export function TelaAuth({
             <ul className="flex flex-col gap-3.5">
               {BENEFICIOS.map((b) => (
                 <li key={b.texto} className="flex items-center gap-3 text-[15px] font-semibold">
-                  <span className="flex size-10 items-center justify-center rounded-2xl bg-white text-rosa-600 shadow-sm">
+                  <span className="flex size-10 items-center justify-center rounded-2xl bg-white/90 shadow-suave text-rosa-600 shadow-sm">
                     <Icone nome={b.icone} />
                   </span>
                   {b.texto}
@@ -53,7 +53,7 @@ export function TelaAuth({
             <div className="lg:hidden">
               <CenaNinna compacta />
             </div>
-            <section className="flex flex-col gap-5 rounded-[2rem] bg-white/90 p-6 shadow-[0_20px_60px_-35px_rgba(31,42,68,0.45)] sm:p-8">
+            <section className="flex flex-col gap-5 rounded-[2rem] bg-white/90 p-6 shadow-suave sm:p-8">
               <div className="flex flex-col gap-1.5">
                 <h1 className="text-[28px] font-bold leading-tight tracking-tight">{titulo}</h1>
                 {subtitulo && <p className="text-[15px] leading-relaxed text-suave">{subtitulo}</p>}

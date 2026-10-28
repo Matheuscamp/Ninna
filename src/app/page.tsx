@@ -19,7 +19,7 @@ const RECURSOS: { titulo: string; texto: string; icone: NomeIcone }[] = [
 ];
 
 const CTA =
-  "flex h-14 items-center justify-center gap-2 rounded-2xl bg-rosa-600 px-6 text-[17px] font-semibold text-white shadow-[0_10px_30px_-12px_rgba(184,60,112,0.8)] transition hover:bg-rosa-700 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-rosa-600";
+  "flex h-14 items-center justify-center gap-2 rounded-2xl bg-rosa-600 px-6 text-[17px] font-semibold text-white shadow-rosa transition hover:bg-rosa-700 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-rosa-600";
 
 export default function LandingPage() {
   return (
@@ -72,7 +72,7 @@ export default function LandingPage() {
 
         <section aria-labelledby="titulo-momentos" className="flex flex-col gap-5">
           <div className="flex flex-col gap-1.5">
-            <h2 id="titulo-momentos" className="text-[26px] font-bold leading-tight">
+            <h2 id="titulo-momentos" className="text-[28px] font-bold leading-tight tracking-tight">
               Feito para o seu momento
             </h2>
             <p className="text-[15px] text-suave">A triagem identifica a sua fase e o app muda junto com você.</p>
@@ -97,7 +97,7 @@ export default function LandingPage() {
         </section>
 
         <section aria-labelledby="titulo-recursos" className="flex flex-col gap-5">
-          <h2 id="titulo-recursos" className="text-[26px] font-bold leading-tight">
+          <h2 id="titulo-recursos" className="text-[28px] font-bold leading-tight tracking-tight">
             Tudo do pré-natal, num lugar só
           </h2>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
@@ -124,7 +124,7 @@ export default function LandingPage() {
           </div>
           <Link
             href="/triagem"
-            className="relative mt-5 flex h-13 items-center justify-center gap-2 rounded-2xl bg-white px-6 font-semibold text-rosa-700 hover:bg-rosa-50 lg:mt-0 lg:shrink-0"
+            className="relative mt-5 flex h-13 items-center justify-center gap-2 rounded-2xl bg-white/90 shadow-suave px-6 font-semibold text-rosa-700 hover:bg-rosa-50 lg:mt-0 lg:shrink-0"
           >
             Começar agora
             <Icone nome="seta" />

@@ -57,7 +57,7 @@ export function FiltrosDocumentos({ filtros }: { filtros: Filtros }) {
           </select>
         </div>
 
-        <details open={comPeriodo} className="group rounded-2xl bg-white">
+        <details open={comPeriodo} className="group rounded-2xl bg-white/90 shadow-suave">
           <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold">
             Filtrar por data do documento
             <span aria-hidden="true" className="text-suave transition group-open:rotate-90">

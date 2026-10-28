@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-/* Paleta Ninna: fundos em azul bebê, destaques em rosa bebê.
+/* Design system do Ninna (regras em CLAUDE.md, seção "Design system").
+   Paleta: fundos em azul bebê, destaques em rosa bebê.
    O rosa forte (rosa-600) é o único usado com texto branco, por contraste. */
 @theme {
   --color-rosa-50: #fde7ef;
@@ -16,6 +17,20 @@
   --color-suave: #5e5873;
   --color-linha: #dce7f0;
   --color-alerta: #b42318;
+  /* Fundo e texto escuro dos avisos de alerta. */
+  --color-alerta-50: #fdecea;
+  --color-alerta-900: #8a1c12;
+  /* Tons pastel dos cards ilustrados (sempre com texto escuro). */
+  --color-lilas: #e6dcf7;
+  --color-pessego: #fde2cc;
+  --color-menta: #d6efe2;
+  --color-baunilha: #fbeec4;
+  /* Borda das caixinhas de marcar ainda vazias. */
+  --color-caixa: #b9c7d4;
+  /* Sombras: suave para cartões, rosa para o botão principal, flutuante para destaques. */
+  --shadow-suave: 0 1px 2px rgb(31 42 68 / 0.04), 0 10px 28px -18px rgb(31 42 68 / 0.28);
+  --shadow-rosa: 0 10px 30px -12px rgb(184 60 112 / 0.75);
+  --shadow-flutuante: 0 20px 60px -30px rgb(184 60 112 / 0.55);
   --font-sans: var(--font-figtree), system-ui, sans-serif;
 }
 

@@ -93,7 +93,7 @@ export function PedirReembolso({ pagamento, ate }: { pagamento: string; ate: str
       <button
         type="button"
         onClick={() => setConfirmando(true)}
-        className="flex h-11 items-center self-start rounded-xl px-3 -ml-3 text-[15px] font-semibold text-alerta hover:bg-[#fdecea]"
+        className="flex h-11 items-center self-start rounded-xl px-3 -ml-3 text-[15px] font-semibold text-alerta hover:bg-alerta-50"
       >
         Cancelar e pedir reembolso
       </button>
@@ -101,7 +101,7 @@ export function PedirReembolso({ pagamento, ate }: { pagamento: string; ate: str
   }
 
   return (
-    <form action={acao} className="flex flex-col gap-3 rounded-2xl bg-[#fdecea] p-4">
+    <form action={acao} className="flex flex-col gap-3 rounded-2xl bg-alerta-50 p-4">
       <input type="hidden" name="pagamento" value={pagamento} />
       <p className="text-[15px] leading-relaxed">
         Você recebe o valor integral de volta e o Premium deste período é removido agora. Pode pedir até {ate}.

@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Sinais de alerta" };
 
 function Lista({ alertas }: { alertas: readonly string[] }) {
   return (
-    <ul className="flex flex-col gap-3 rounded-3xl bg-white p-5">
+    <ul className="flex flex-col gap-3 rounded-3xl bg-white/90 shadow-suave p-5">
       {alertas.map((alerta) => (
         <li key={alerta} className="flex gap-3 text-base leading-snug">
           <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-full bg-alerta" />
@@ -27,7 +27,7 @@ async function Alertas() {
       <Lista alertas={alertasDoPerfil(perfil.perfil)} />
       {perfil.perfil === "puerpera" && (
         <section aria-labelledby="titulo-bebe" className="flex flex-col gap-3">
-          <h2 id="titulo-bebe" className="text-lg font-bold text-[#8a1c12]">
+          <h2 id="titulo-bebe" className="text-lg font-bold text-alerta-900">
             E no bebê, se ele tiver:
           </h2>
           <Lista alertas={ALERTAS_BEBE} />
@@ -41,7 +41,7 @@ export default function AlertasPage() {
   return (
     <Pagina>
       <Voltar href="/app" />
-      <h1 className="text-[26px] font-bold leading-tight text-[#8a1c12]">Procure atendimento imediatamente se tiver:</h1>
+      <h1 className="text-[28px] font-bold leading-tight tracking-tight text-alerta-900">Procure atendimento imediatamente se tiver:</h1>
       <Suspense fallback={<Carregando />}>
         <Alertas />
       </Suspense>

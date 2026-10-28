@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AvisoMedico, Carregando, Pagina, Voltar } from "@/components/ui";
+import { AvisoMedico, Carregando, Pagina, TituloPagina, Voltar } from "@/components/ui";
 import { exigirUsuariaPronta, getAssinatura, listarPagamentos } from "@/lib/dal";
 import { PremiumVisual } from "./visual";
 
@@ -27,7 +27,7 @@ export default function PremiumPage({ searchParams }: PageProps<"/app/premium">)
   return (
     <Pagina>
       <Voltar href="/app/perfil" rotulo="Perfil" />
-      <h1 className="text-[26px] font-bold leading-tight">Ninna Premium</h1>
+      <TituloPagina titulo="Ninna Premium" ilustracao="coracao" fundo="bg-rosa-100" />
       <Suspense fallback={<Carregando />}>
         <Conteudo searchParams={searchParams} />
       </Suspense>

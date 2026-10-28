@@ -19,7 +19,7 @@ export default function NovaConsultaPage({ searchParams }: PageProps<"/app/agend
   return (
     <Pagina>
       <Voltar href="/app/agenda" rotulo="Agenda" />
-      <h1 className="text-[26px] font-bold">Nova consulta</h1>
+      <h1 className="text-[28px] font-bold leading-tight tracking-tight">Nova consulta</h1>
       <Suspense fallback={<Carregando />}>
         <Formulario searchParams={searchParams} />
       </Suspense>

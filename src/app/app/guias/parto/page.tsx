@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Carregando, Pagina, Voltar } from "@/components/ui";
+import { Carregando, Pagina, TituloPagina, Voltar } from "@/components/ui";
 import { exigirUsuariaPronta } from "@/lib/dal";
 import { AbasParto } from "./abas-parto";
 
@@ -24,7 +24,7 @@ export default function GuiaPartoPage() {
   return (
     <Pagina>
       <Voltar href="/app" />
-      <h1 className="text-[26px] font-bold leading-tight">Tipos de parto</h1>
+      <TituloPagina titulo="Tipos de parto" ilustracao="bebe" fundo="bg-rosa-100" />
       <p className="-mt-2 text-[15px] leading-relaxed text-suave">
         Conheça as opções para conversar com seu médico. A via de parto é decidida com a equipe, pensando na sua
         saúde e na do bebê.
@@ -33,7 +33,7 @@ export default function GuiaPartoPage() {
       <Suspense fallback={<Carregando />}>
         <AvisoCesareaAnterior />
       </Suspense>
-      <Link href="/app/guias/plano-parto" className="flex items-center gap-3 rounded-3xl bg-white p-4">
+      <Link href="/app/guias/plano-parto" className="flex items-center gap-3 rounded-3xl bg-white/90 shadow-suave p-4">
         <span className="flex flex-1 flex-col">
           <span className="font-bold">Meu plano de parto</span>
           <span className="text-sm text-suave">Registre suas preferências e leve o PDF para a maternidade</span>
@@ -42,7 +42,7 @@ export default function GuiaPartoPage() {
           ›
         </span>
       </Link>
-      <Link href="/app/guias/contracoes" className="flex items-center gap-3 rounded-3xl bg-white p-4">
+      <Link href="/app/guias/contracoes" className="flex items-center gap-3 rounded-3xl bg-white/90 shadow-suave p-4">
         <span className="flex flex-1 flex-col">
           <span className="font-bold">Contador de contrações</span>
           <span className="text-sm text-suave">Na hora do parto, saiba quando ligar para a maternidade</span>

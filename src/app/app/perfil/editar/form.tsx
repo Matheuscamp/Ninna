@@ -21,7 +21,7 @@ export type ValoresFicha = {
 
 function Bloco({ titulo, descricao, children }: { titulo: string; descricao?: string; children: ReactNode }) {
   return (
-    <fieldset className="flex flex-col gap-4 rounded-3xl bg-white p-5">
+    <fieldset className="flex flex-col gap-4 rounded-3xl bg-white/90 shadow-suave p-5">
       <legend className="sr-only">{titulo}</legend>
       <div className="flex flex-col gap-0.5" aria-hidden="true">
         <span className="text-[13px] font-bold uppercase tracking-wide text-suave">{titulo}</span>

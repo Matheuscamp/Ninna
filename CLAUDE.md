@@ -12,6 +12,17 @@ Assistente de gestação. O README descreve o que existe (rotas, migrações, pl
 - O plano (gratuito/premium) fica na tabela `assinaturas`, que a usuária só lê. Nunca no `profiles`, que ela pode editar. Limites e preços em `src/lib/planos.ts`.
 - Premium só é creditado por `processarPagamento` (`src/lib/mercadopago.ts`), a partir do pagamento lido da API do Mercado Pago, e pelas funções `creditar_pagamento`/`estornar_pagamento`, que só a chave secreta executa. Nunca confie em status ou valor vindos da URL ou do corpo do webhook. `createAdminClient` (chave secreta) é só para isso.
 
+## Design system
+Toda tela segue o mesmo padrão visual (o da página inicial, triagem e login). Antes de criar uma tela, reaproveite as peças abaixo em vez de inventar estilos.
+- **Tokens** em `src/app/globals.css` (`@theme`): cores `rosa-*`, `azul-*`, `tinta`, `suave`, `linha`, `alerta`/`alerta-50`/`alerta-900`, pastéis dos cards `lilas`, `pessego`, `menta`, `baunilha`; sombras `shadow-suave` (cartões), `shadow-rosa` (botão principal), `shadow-flutuante` (destaques). Não use cores em hexadecimal soltas no código.
+- **Fundo**: `FundoSuave` (`src/components/acolhida.tsx`), degradê rosa→azul com formas desfocadas. A área logada já tem ele no layout; telas públicas avulsas usam `TelaAvulsa`.
+- **Cartão**: `rounded-3xl bg-white/90 shadow-suave` (itens menores: `rounded-2xl`). Destaque: `rounded-[2rem]` em degradê ou num pastel de `FUNDOS`, com ilustração no canto.
+- **Título de página**: `TituloPagina` (`src/components/ui.tsx`), com ilustração numa bolha colorida, título de 28px e subtítulo.
+- **Botões**: `BotaoPrimario` (rosa com `shadow-rosa`) e `BotaoSecundario` (branco com `shadow-suave`); botões e links de ação rápida também usam `rounded-2xl`.
+- **Ilustrações e ícones**: só os SVG próprios de `src/components/ilustracoes.tsx` (`Ilustracao`, `Bolha`, `VISUAL_DO_PERFIL`) e os ícones de traço de `Icone`. Nada de imagens externas.
+- **Texto branco** só sobre `rosa-600` ou `alerta`. Pastéis sempre com texto escuro.
+- Mobile primeiro: conferir em 375px e no computador (grades `sm:`/`lg:`).
+
 ## Armadilhas já encontradas
 - O `fetch` do Next duplica respostas para cache: leitura parcial + cancelamento trava. Para buscas diretas use `fetchSupabase` (`src/lib/supabase/fetch.ts`), que também refaz conexões que travam (a rede local às vezes oscila).
 - O servidor de desenvolvimento (Turbopack) às vezes mantém módulos antigos: se a tela não refletir o código, confira com `npx next build && npx next start -p 3001` e reinicie o `npm run dev`.

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Carregando, Pagina } from "@/components/ui";
+import { Carregando, Pagina, TituloPagina } from "@/components/ui";
 import { artigosDoPerfil } from "@/content/artigos";
 import { exigirUsuariaPronta } from "@/lib/dal";
 import { PERFIS } from "@/lib/triagem";
@@ -70,7 +70,7 @@ async function Lista() {
 export default function ConteudoPage() {
   return (
     <Pagina larga>
-      <h1 className="text-[26px] font-bold">Conteúdo</h1>
+      <TituloPagina titulo="Conteúdo" subtitulo="Guias e artigos para o seu momento" ilustracao="folha" fundo="bg-menta" />
       <Suspense fallback={<Carregando />}>
         <Lista />
       </Suspense>

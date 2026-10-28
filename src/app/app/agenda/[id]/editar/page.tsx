@@ -40,7 +40,7 @@ export default function EditarConsultaPage({ params }: PageProps<"/app/agenda/[i
   return (
     <Pagina>
       <Voltar href="/app/agenda" rotulo="Agenda" />
-      <h1 className="text-[26px] font-bold">Editar consulta</h1>
+      <h1 className="text-[28px] font-bold leading-tight tracking-tight">Editar consulta</h1>
       <Suspense fallback={<Carregando />}>
         <Formulario params={params} />
       </Suspense>

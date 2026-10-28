@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Carregando, Pagina } from "@/components/ui";
+import { Carregando, Pagina, TituloPagina } from "@/components/ui";
 import { UsoDoPlano } from "@/components/uso-do-plano";
 import { contarDocumentos, exigirUsuariaPronta, getPlano, linksDeMiniatura, listarDocumentos, type Documento } from "@/lib/dal";
 import { limite } from "@/lib/planos";
@@ -37,7 +37,7 @@ function CartaoDocumento({ doc, miniatura, filtros }: { doc: Documento; miniatur
   const ehImagem = doc.tipo_mime.startsWith("image/");
 
   return (
-    <li className="flex flex-col overflow-hidden rounded-3xl bg-white">
+    <li className="flex flex-col overflow-hidden rounded-3xl bg-white/90 shadow-suave">
       <a href={abrir} target="_blank" rel="noopener" aria-label={`Abrir ${doc.nome}`} className="block">
         <div className="flex aspect-[16/9] items-center justify-center bg-azul-50 text-rosa-600">
           {ehImagem && miniatura ? (
@@ -116,7 +116,7 @@ async function Central({ searchParams }: { searchParams: PageProps<"/app/documen
 
       {total === 0 ? (
         // Estado vazio: ainda não há nenhum documento.
-        <div className="flex flex-col items-center gap-4 rounded-3xl bg-white px-6 py-10 text-center">
+        <div className="flex flex-col items-center gap-4 rounded-3xl bg-white/90 shadow-suave px-6 py-10 text-center">
           <span className="flex size-16 items-center justify-center rounded-3xl bg-rosa-50 text-rosa-600">
             <IconePasta />
           </span>
@@ -138,7 +138,7 @@ async function Central({ searchParams }: { searchParams: PageProps<"/app/documen
             {temFiltros(filtros) ? `${documentos.length} de ${total} documentos` : total === 1 ? "1 documento" : `${total} documentos`}
           </p>
           {documentos.length === 0 ? (
-            <div className="flex flex-col items-center gap-3 rounded-3xl bg-white px-6 py-8 text-center">
+            <div className="flex flex-col items-center gap-3 rounded-3xl bg-white/90 shadow-suave px-6 py-8 text-center">
               <p className="font-semibold">Nenhum documento com esses filtros</p>
               <Link href="/app/documentos" className="font-semibold text-rosa-600 underline">
                 Limpar filtros
@@ -160,19 +160,15 @@ async function Central({ searchParams }: { searchParams: PageProps<"/app/documen
 export default function DocumentosPage({ searchParams }: PageProps<"/app/documentos">) {
   return (
     <Pagina>
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex flex-col">
-          <h1 className="text-[26px] font-bold">Documentos</h1>
-          <p className="text-sm text-suave">Exames, vacinas e receitas. Só você tem acesso.</p>
-        </div>
+      <TituloPagina titulo="Documentos" subtitulo="Exames, vacinas e receitas. Só você tem acesso." ilustracao="prancheta" fundo="bg-lilas">
         <Link
           href="/app/documentos/enviar"
-          className="flex h-11 shrink-0 items-center gap-1.5 rounded-2xl bg-rosa-600 px-4 text-[15px] font-semibold text-white hover:bg-rosa-700"
+          className="flex h-11 shrink-0 items-center gap-1.5 rounded-2xl bg-rosa-600 px-4 text-[15px] font-semibold text-white shadow-rosa hover:bg-rosa-700"
         >
           <IconeEnvio className="size-5" />
           Enviar
         </Link>
-      </div>
+      </TituloPagina>
       <Suspense fallback={<Carregando />}>
         <Central searchParams={searchParams} />
       </Suspense>

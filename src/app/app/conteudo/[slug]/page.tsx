@@ -24,7 +24,7 @@ async function Artigo({ params }: { params: PageProps<"/app/conteudo/[slug]">["p
       <div className={`relative h-40 overflow-hidden rounded-3xl ${FUNDOS[visual.fundo]}`}>
         <Ilustracao nome={visual.ilustracao} className="absolute -bottom-2 right-2 h-[115%]" />
       </div>
-      <h1 className="text-[26px] font-bold leading-tight">{artigo.titulo}</h1>
+      <h1 className="text-[28px] font-bold leading-tight tracking-tight">{artigo.titulo}</h1>
       {bloqueado ? (
         <div className="flex flex-col gap-3 rounded-3xl bg-rosa-50 p-5">
           <p className="font-bold text-rosa-700">Conteúdo Premium</p>
@@ -39,7 +39,7 @@ async function Artigo({ params }: { params: PageProps<"/app/conteudo/[slug]">["p
         <>
           <p className="text-[17px] leading-relaxed">{artigo.resumo}</p>
           {artigo.pontos && (
-            <ul className="flex flex-col gap-3 rounded-3xl bg-white p-5">
+            <ul className="flex flex-col gap-3 rounded-3xl bg-white/90 shadow-suave p-5">
               {artigo.pontos.map((ponto) => (
                 <li key={ponto} className="flex gap-3 text-[15px] leading-relaxed">
                   <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-full bg-rosa-600" />
@@ -48,7 +48,7 @@ async function Artigo({ params }: { params: PageProps<"/app/conteudo/[slug]">["p
               ))}
             </ul>
           )}
-          <p className="rounded-2xl bg-white p-4 text-sm leading-relaxed text-suave">
+          <p className="rounded-2xl bg-white/90 shadow-suave p-4 text-sm leading-relaxed text-suave">
             {artigo.fonte ? `Baseado na ${artigo.fonte}. ` : "Versão resumida. "}
             Conteúdo em revisão por profissional de saúde.
           </p>

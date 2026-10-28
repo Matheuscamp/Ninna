@@ -26,11 +26,11 @@ export function FolhaPlanoParto({
   atualizadoEm: string;
 }) {
   return (
-    <article className="flex flex-col gap-5 rounded-3xl bg-white p-6 print:rounded-none print:p-0 print:text-[12px]">
+    <article className="flex flex-col gap-5 rounded-3xl bg-white/90 shadow-suave p-6 print:rounded-none print:bg-white print:p-0 print:shadow-none print:text-[12px]">
       <header className="flex items-start justify-between gap-4 border-b-2 border-rosa-100 pb-4">
         <div className="flex flex-col gap-1">
           <p className="text-[12px] font-bold uppercase tracking-widest text-rosa-600">Plano de parto</p>
-          <h2 className="text-[26px] font-bold leading-tight print:text-[22px]">{nome ?? "____________________________"}</h2>
+          <h2 className="text-[28px] font-bold leading-tight tracking-tight print:text-[22px]">{nome ?? "____________________________"}</h2>
         </div>
         <Logo tamanho={44} />
       </header>

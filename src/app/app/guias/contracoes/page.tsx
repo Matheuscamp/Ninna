@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Carregando, Pagina, Voltar } from "@/components/ui";
+import { Carregando, Pagina, TituloPagina, Voltar } from "@/components/ui";
 import { SEMANA_A_TERMO, TEXTOS_CONTRACOES } from "@/content/contracoes";
 import { exigirUsuariaPronta, getPlano } from "@/lib/dal";
 import { ContadorContracoes } from "./contador";
@@ -16,7 +16,7 @@ async function Contador() {
   return (
     <>
       {prematuro && (
-        <p role="alert" className="rounded-2xl bg-[#fdecea] px-4 py-3 text-[15px] font-semibold leading-relaxed text-[#8a1c12]">
+        <p role="alert" className="rounded-2xl bg-alerta-50 px-4 py-3 text-[15px] font-semibold leading-relaxed text-alerta-900">
           {TEXTOS_CONTRACOES.prematuro}
         </p>
       )}
@@ -42,15 +42,15 @@ export default function ContracoesPage() {
   return (
     <Pagina>
       <Voltar href="/app" />
-      <h1 className="text-[26px] font-bold leading-tight">Contador de contrações</h1>
+      <TituloPagina titulo="Contador de contrações" ilustracao="calendario" fundo="bg-pessego" />
       <p className="-mt-2 text-[15px] leading-relaxed text-suave">{TEXTOS_CONTRACOES.como}</p>
       <Suspense fallback={<Carregando />}>
         <Contador />
       </Suspense>
 
       {/* Sempre visível, também no plano gratuito: sinais de que não dá para esperar o ritmo. */}
-      <section aria-labelledby="titulo-ir-agora" className="flex flex-col gap-3 rounded-3xl bg-white p-5">
-        <h2 id="titulo-ir-agora" className="text-lg font-bold text-[#8a1c12]">
+      <section aria-labelledby="titulo-ir-agora" className="flex flex-col gap-3 rounded-3xl bg-white/90 shadow-suave p-5">
+        <h2 id="titulo-ir-agora" className="text-lg font-bold text-alerta-900">
           Vá à maternidade agora, sem esperar, se:
         </h2>
         <ul className="flex flex-col gap-2.5">

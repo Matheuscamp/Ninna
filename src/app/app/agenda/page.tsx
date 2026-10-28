@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Carregando, Pagina } from "@/components/ui";
+import { Carregando, Pagina, TituloPagina } from "@/components/ui";
 import { UsoDoPlano } from "@/components/uso-do-plano";
 import { separarConsultas } from "@/lib/agenda";
 import { limite } from "@/lib/planos";
@@ -125,7 +125,7 @@ async function Agenda({ searchParams }: { searchParams: PageProps<"/app/agenda">
         </p>
       )}
 
-      <nav aria-label="Filtrar consultas" className="grid grid-cols-3 gap-1 rounded-2xl bg-white p-1">
+      <nav aria-label="Filtrar consultas" className="grid grid-cols-3 gap-1 rounded-2xl bg-white/90 shadow-suave p-1">
         {ABAS.map((a) => {
           const ativa = a.id === aba;
           const total = listas[a.id].length;
@@ -178,18 +178,17 @@ async function Agenda({ searchParams }: { searchParams: PageProps<"/app/agenda">
 export default function AgendaPage({ searchParams }: PageProps<"/app/agenda">) {
   return (
     <Pagina>
-      <div className="flex items-center justify-between gap-3">
-        <h1 className="text-[26px] font-bold">Agenda</h1>
+      <TituloPagina titulo="Agenda" subtitulo="Consultas e exames do pré-natal" ilustracao="calendario" fundo="bg-azul-100">
         <Link
           href="/app/agenda/nova"
-          className="flex h-11 items-center gap-1.5 rounded-2xl bg-rosa-600 px-4 text-[15px] font-semibold text-white hover:bg-rosa-700"
+          className="flex h-11 items-center gap-1.5 rounded-2xl bg-rosa-600 px-4 text-[15px] font-semibold text-white shadow-rosa hover:bg-rosa-700"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true" className="size-5 fill-none stroke-current" strokeWidth={2.2} strokeLinecap="round">
             <path d="M12 5v14M5 12h14" />
           </svg>
           Nova
         </Link>
-      </div>
+      </TituloPagina>
       <Suspense fallback={<Carregando />}>
         <Agenda searchParams={searchParams} />
       </Suspense>

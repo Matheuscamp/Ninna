@@ -59,7 +59,7 @@ function CartaoFicha({ ficha, hoje }: { ficha: FichaSaude; hoje: string }) {
   const vazia = itens.length === 0 && !temContato && !ficha.alergias && !ficha.medicamentos;
 
   return (
-    <section aria-labelledby="titulo-ficha" className="flex flex-col gap-4 rounded-3xl bg-white p-4">
+    <section aria-labelledby="titulo-ficha" className="flex flex-col gap-4 rounded-3xl bg-white/90 shadow-suave p-4">
       <div className="flex items-center justify-between gap-3">
         <h2 id="titulo-ficha" className="text-[13px] font-bold uppercase tracking-wide text-suave">
           Ficha de saúde
@@ -213,7 +213,7 @@ export function PerfilVisual({ email, plano, semanas, perfil, ficha, fotoUrl, ho
 
         <div className="flex flex-col gap-5">
           {/* Conta: hierarquia secundária. */}
-          <section aria-labelledby="titulo-conta" className="flex items-center gap-4 rounded-3xl bg-white p-4">
+          <section aria-labelledby="titulo-conta" className="flex items-center gap-4 rounded-3xl bg-white/90 shadow-suave p-4">
             <Avatar url={fotoUrl} nome={nome ?? email ?? "?"} />
             <div className="flex min-w-0 flex-1 flex-col gap-1">
               <h2 id="titulo-conta" className="sr-only">
@@ -241,7 +241,7 @@ export function PerfilVisual({ email, plano, semanas, perfil, ficha, fotoUrl, ho
 
           {ficha && <CartaoFicha ficha={ficha} hoje={hoje} />}
 
-          <section aria-label="Plano" className="overflow-hidden rounded-3xl bg-white">
+          <section aria-label="Plano" className="overflow-hidden rounded-3xl bg-white/90 shadow-suave">
             <Link href="/app/premium" className={CLASSE_ITEM}>
               <ConteudoItem
                 icone={<Icone>{ICONES.estrela}</Icone>}
@@ -252,7 +252,7 @@ export function PerfilVisual({ email, plano, semanas, perfil, ficha, fotoUrl, ho
           </section>
 
           {/* Configurações: só ações que existem de verdade. */}
-          <section aria-labelledby="titulo-privacidade" className="overflow-hidden rounded-3xl bg-white">
+          <section aria-labelledby="titulo-privacidade" className="overflow-hidden rounded-3xl bg-white/90 shadow-suave">
             <h2 id="titulo-privacidade" className="px-4 pb-1 pt-4 text-[13px] font-bold uppercase tracking-wide text-suave">
               Privacidade e dados
             </h2>
@@ -284,7 +284,7 @@ export function PerfilVisual({ email, plano, semanas, perfil, ficha, fotoUrl, ho
             </div>
           </section>
 
-          <section aria-label="Sessão" className="overflow-hidden rounded-3xl bg-white">
+          <section aria-label="Sessão" className="overflow-hidden rounded-3xl bg-white/90 shadow-suave">
             <ItemSair icone={<Icone>{ICONES.sair}</Icone>} />
           </section>
         </div>

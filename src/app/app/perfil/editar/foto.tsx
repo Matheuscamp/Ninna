@@ -65,7 +65,7 @@ export function EditorFoto({ urlInicial, nome }: { urlInicial: string | null; no
   }
 
   return (
-    <section aria-labelledby="titulo-foto" className="flex items-center gap-4 rounded-3xl bg-white p-4">
+    <section aria-labelledby="titulo-foto" className="flex items-center gap-4 rounded-3xl bg-white/90 shadow-suave p-4">
       <div className="relative">
         <Avatar url={url} nome={nome} tamanho="size-20" texto="text-3xl" />
         {pendente && (

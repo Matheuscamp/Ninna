@@ -8,7 +8,7 @@ export function FormExcluir() {
 
   return (
     <form action={acao} className="flex flex-col gap-4">
-      <label className="flex gap-3 rounded-2xl bg-white p-4">
+      <label className="flex gap-3 rounded-2xl bg-white/90 shadow-suave p-4">
         <input type="checkbox" name="confirmo" required className="mt-1 size-5 shrink-0 accent-alerta" />
         <span className="text-[15px] leading-relaxed">Entendo que minha conta e meus dados serão apagados para sempre.</span>
       </label>

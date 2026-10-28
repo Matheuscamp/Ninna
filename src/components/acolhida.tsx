@@ -3,17 +3,18 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Ilustracao, type NomeIlustracao } from "./ilustracoes";
 
-// Peças visuais das telas públicas (início, triagem, entrar e cadastro):
+// Peças do design system do Ninna (regras em CLAUDE.md, seção "Design system"):
 // fundo com formas suaves, a cena da cegonha, bolhas com ilustrações e ícones de traço.
+// Usadas nas telas públicas e na área logada.
 
 // Fundo em degradê com formas desfocadas. As formas são só decoração.
 export function FundoSuave({ children }: { children: ReactNode }) {
   return (
-    <div className="relative isolate flex min-h-full flex-1 flex-col overflow-hidden bg-linear-to-b from-rosa-50 via-azul-50 to-azul-50">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+    <div className="relative isolate flex min-h-full flex-1 flex-col overflow-hidden bg-linear-to-b from-rosa-50 via-azul-50 to-azul-50 print:bg-none">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 print:hidden">
         <div className="absolute -left-24 -top-24 size-72 rounded-full bg-rosa-100/70 blur-3xl" />
         <div className="absolute -right-20 top-40 size-80 rounded-full bg-azul-100/80 blur-3xl" />
-        <div className="absolute -bottom-24 left-1/3 size-72 rounded-full bg-[#e6dcf7]/60 blur-3xl" />
+        <div className="absolute -bottom-24 left-1/3 size-72 rounded-full bg-lilas/60 blur-3xl" />
       </div>
       {children}
     </div>
@@ -35,7 +36,7 @@ export function CenaNinna({ compacta = false }: { compacta?: boolean }) {
   return (
     <div
       aria-hidden="true"
-      className={`relative mx-auto w-full overflow-hidden rounded-[2.5rem] bg-linear-to-br from-rosa-100 via-[#f6e6f0] to-azul-100 shadow-[0_20px_60px_-30px_rgba(184,60,112,0.55)] ${
+      className={`relative mx-auto w-full overflow-hidden rounded-[2.5rem] bg-linear-to-br from-rosa-100 via-[#f6e6f0] to-azul-100 shadow-flutuante ${
         compacta ? "h-44 max-w-md" : "aspect-[5/4] max-w-lg"
       }`}
     >
@@ -116,5 +117,29 @@ export function Selo({ icone, children }: { icone: NomeIcone; children: ReactNod
       </span>
       {children}
     </span>
+  );
+}
+
+// Tela pública avulsa: fundo do padrão, cabeçalho com a logo e o conteúdo num
+// cartão, com uma ilustração em bolha no topo (opcional).
+export function TelaAvulsa({
+  ilustracao,
+  fundo = "bg-rosa-100",
+  children,
+}: {
+  ilustracao?: NomeIlustracao;
+  fundo?: string;
+  children: ReactNode;
+}) {
+  return (
+    <FundoSuave>
+      <main className="mx-auto flex w-full max-w-md flex-1 flex-col gap-6 px-5 pb-8 pt-5">
+        <CabecalhoPublico />
+        <section className="flex flex-col gap-5 rounded-[2rem] bg-white/90 p-6 shadow-suave sm:p-8">
+          {ilustracao && <Bolha nome={ilustracao} fundo={fundo} className="size-20" />}
+          {children}
+        </section>
+      </main>
+    </FundoSuave>
   );
 }

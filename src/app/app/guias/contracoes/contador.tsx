@@ -23,7 +23,7 @@ function hora(instante: number) {
 
 function Numero({ rotulo, valor }: { rotulo: string; valor: string }) {
   return (
-    <div className="flex flex-col items-center gap-0.5 rounded-2xl bg-white px-2 py-3 text-center">
+    <div className="flex flex-col items-center gap-0.5 rounded-2xl bg-white/90 shadow-suave px-2 py-3 text-center">
       <span className="text-xl font-bold tabular-nums">{valor}</span>
       <span className="text-[12px] leading-tight text-suave">{rotulo}</span>
     </div>
@@ -156,7 +156,7 @@ export function ContadorContracoes() {
               Desfazer última
             </button>
           </div>
-          <table className="w-full overflow-hidden rounded-3xl bg-white text-left text-[15px]">
+          <table className="w-full overflow-hidden rounded-3xl bg-white/90 shadow-suave text-left text-[15px]">
             <thead className="text-[12px] uppercase tracking-wide text-suave">
               <tr>
                 <th scope="col" className="px-4 pb-1 pt-3 font-semibold">
@@ -182,7 +182,7 @@ export function ContadorContracoes() {
           </table>
 
           {apagando ? (
-            <div className="flex items-center justify-between gap-3 rounded-2xl bg-[#fdecea] p-3">
+            <div className="flex items-center justify-between gap-3 rounded-2xl bg-alerta-50 p-3">
               <span className="text-sm">Apagar todos os registros deste aparelho?</span>
               <span className="flex gap-2">
                 <button type="button" onClick={recomecar} className="h-10 rounded-xl bg-alerta px-3 text-sm font-semibold text-white">

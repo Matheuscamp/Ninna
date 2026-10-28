@@ -35,7 +35,7 @@ export function TarefasInicio({ tarefas, feitasIniciais }: { tarefas: { id: stri
   }
 
   return (
-    <div className="flex flex-col gap-1 rounded-3xl bg-white p-2">
+    <div className="flex flex-col gap-1 rounded-3xl bg-white/90 shadow-suave p-2">
       {tarefas.map((t) => {
         const feita = feitas.has(t.id);
         return (
@@ -48,7 +48,7 @@ export function TarefasInicio({ tarefas, feitasIniciais }: { tarefas: { id: stri
           >
             <span
               aria-hidden="true"
-              className={`flex size-5 shrink-0 items-center justify-center rounded-md border-2 text-white ${feita ? "border-rosa-600 bg-rosa-600" : "border-[#b9c7d4]"}`}
+              className={`flex size-5 shrink-0 items-center justify-center rounded-md border-2 text-white ${feita ? "border-rosa-600 bg-rosa-600" : "border-caixa"}`}
             >
               {feita && (
                 <svg viewBox="0 0 24 24" className="size-3 fill-none stroke-current" strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round">

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import Image from "next/image";
 import { Bolha, Icone } from "@/components/acolhida";
-import { FUNDOS, Ilustracao, type Fundo, type NomeIlustracao } from "@/components/ilustracoes";
+import { FUNDOS, Ilustracao, VISUAL_DO_PERFIL } from "@/components/ilustracoes";
 import { AvisoMedico, BotaoPrimario, Opcao } from "@/components/ui";
 import {
   calcularDum,
@@ -22,14 +22,6 @@ import { guardarPendente } from "./pendente";
 
 type Rascunho = Partial<Respostas>;
 
-// Ilustração e cor de cada perfil no resultado.
-const VISUAL_PERFIL: Record<ReturnType<typeof classificarPerfil>, { ilustracao: NomeIlustracao; fundo: Fundo }> = {
-  tentante: { ilustracao: "folha", fundo: "menta" },
-  suspeita: { ilustracao: "teste", fundo: "lilas" },
-  gestante: { ilustracao: "coracao", fundo: "rosa" },
-  puerpera: { ilustracao: "bebe", fundo: "azul" },
-  acolhimento: { ilustracao: "flor", fundo: "baunilha" },
-};
 type Passo = "momento" | "teste" | "data" | "detalhes" | "historia" | "saude" | "acompanhante";
 
 function passos(r: Rascunho): Passo[] {
@@ -178,7 +170,7 @@ export function AssistenteTriagem() {
   if (resultado !== undefined) {
     const perfil = classificarPerfil(r as Respostas);
     const info = PERFIS[perfil];
-    const visual = VISUAL_PERFIL[perfil];
+    const visual = VISUAL_DO_PERFIL[perfil];
     return (
       <div className="flex flex-1 flex-col gap-5">
         {cabecalho}
@@ -290,7 +282,7 @@ export function AssistenteTriagem() {
             />
           ))}
           {r.fonteData === "semanas" && (
-            <div className="mt-2 flex items-center justify-between rounded-3xl bg-white p-5">
+            <div className="mt-2 flex items-center justify-between rounded-3xl bg-white/90 shadow-suave p-5">
               <button
                 type="button"
                 aria-label="Menos uma semana"

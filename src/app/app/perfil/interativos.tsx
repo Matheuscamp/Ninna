@@ -14,7 +14,7 @@ export function ConteudoItem({ icone, titulo, descricao, tom = "neutro", seta = 
     <>
       <span
         aria-hidden="true"
-        className={`flex size-10 shrink-0 items-center justify-center rounded-xl ${tom === "alerta" ? "bg-[#fdecea] text-alerta" : "bg-rosa-50 text-rosa-600"}`}
+        className={`flex size-10 shrink-0 items-center justify-center rounded-xl ${tom === "alerta" ? "bg-alerta-50 text-alerta" : "bg-rosa-50 text-rosa-600"}`}
       >
         {icone}
       </span>
@@ -40,7 +40,7 @@ export function RefazerTriagem() {
       <button
         type="button"
         onClick={() => dialogo.current?.showModal()}
-        className="flex h-11 items-center justify-center gap-2 rounded-2xl bg-white px-4 text-[15px] font-semibold text-azul-900 transition hover:bg-white/80 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-rosa-600"
+        className="flex h-11 items-center justify-center gap-2 rounded-2xl bg-white/90 shadow-suave px-4 text-[15px] font-semibold text-azul-900 transition hover:bg-white/80 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-rosa-600"
       >
         <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4.5 fill-none stroke-current" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4" />
@@ -52,7 +52,7 @@ export function RefazerTriagem() {
         ref={dialogo}
         aria-labelledby="titulo-refazer"
         onClick={(e) => e.target === dialogo.current && dialogo.current?.close()}
-        className="m-auto w-[min(92vw,26rem)] rounded-3xl bg-white p-0 text-tinta shadow-xl backdrop:bg-tinta/40"
+        className="m-auto w-[min(92vw,26rem)] rounded-3xl bg-white/90 shadow-suave p-0 text-tinta shadow-xl backdrop:bg-tinta/40"
       >
         <div className="flex flex-col gap-4 p-6">
           <h2 id="titulo-refazer" className="text-xl font-bold">

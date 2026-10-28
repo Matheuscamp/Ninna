@@ -21,7 +21,7 @@ async function Edicao({ params }: { params: PageProps<"/app/documentos/[id]/edit
 
   return (
     <>
-      <a href={`/app/documentos/${doc.id}/arquivo`} target="_blank" rel="noopener" className="flex items-center gap-3 rounded-3xl bg-white p-3">
+      <a href={`/app/documentos/${doc.id}/arquivo`} target="_blank" rel="noopener" className="flex items-center gap-3 rounded-3xl bg-white/90 shadow-suave p-3">
         <span className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-azul-50 text-rosa-600">
           {miniatura ? (
             // eslint-disable-next-line @next/next/no-img-element -- link assinado temporário do Storage privado
@@ -58,7 +58,7 @@ export default function EditarDocumentoPage({ params }: PageProps<"/app/document
   return (
     <Pagina>
       <Voltar href="/app/documentos" rotulo="Documentos" />
-      <h1 className="text-[26px] font-bold">Editar documento</h1>
+      <h1 className="text-[28px] font-bold leading-tight tracking-tight">Editar documento</h1>
       <Suspense fallback={<Carregando />}>
         <Edicao params={params} />
       </Suspense>

@@ -79,7 +79,7 @@ export function GuiaSemana({ semanaAtual, feitasIniciais }: { semanaAtual: numbe
         <span className="text-[13px] text-suave">{semana} de 40 semanas</span>
       </div>
 
-      <section className="flex flex-col gap-3 rounded-3xl bg-white p-5">
+      <section className="flex flex-col gap-3 rounded-3xl bg-white/90 shadow-suave p-5">
         <h2 className="text-lg font-bold">{fase.titulo}</h2>
         <p className="text-[15px] leading-relaxed text-suave">{fase.resumo}</p>
         <div className="flex flex-col gap-1 rounded-2xl bg-rosa-50 p-3.5">
@@ -104,11 +104,11 @@ export function GuiaSemana({ semanaAtual, feitasIniciais }: { semanaAtual: numbe
               type="button"
               aria-pressed={feita}
               onClick={() => alternar(t.id)}
-              className="flex min-h-13 items-center gap-3 rounded-2xl bg-white p-3.5 text-left"
+              className="flex min-h-13 items-center gap-3 rounded-2xl bg-white/90 shadow-suave p-3.5 text-left"
             >
               <span
                 aria-hidden="true"
-                className={`flex size-6 shrink-0 items-center justify-center rounded-lg border-2 text-white ${feita ? "border-rosa-600 bg-rosa-600" : "border-[#b9c7d4]"}`}
+                className={`flex size-6 shrink-0 items-center justify-center rounded-lg border-2 text-white ${feita ? "border-rosa-600 bg-rosa-600" : "border-caixa"}`}
               >
                 {feita && (
                   <svg viewBox="0 0 24 24" className="size-3.5 fill-none stroke-current" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
@@ -130,7 +130,7 @@ export function GuiaSemana({ semanaAtual, feitasIniciais }: { semanaAtual: numbe
       <section className="flex flex-col gap-3">
         <h2 className="text-lg font-bold">Exames desta fase</h2>
         {fase.exames.length === 0 ? (
-          <p className="rounded-2xl bg-white p-4 text-[15px] leading-relaxed text-suave">
+          <p className="rounded-2xl bg-white/90 shadow-suave p-4 text-[15px] leading-relaxed text-suave">
             Nenhum exame novo nesta fase. Mantenha as consultas do pré-natal em dia.
           </p>
         ) : (
@@ -139,7 +139,7 @@ export function GuiaSemana({ semanaAtual, feitasIniciais }: { semanaAtual: numbe
             {fase.exames.map((id) => {
               const e = EXAMES[id];
               return (
-                <details key={id} className="group rounded-2xl bg-white">
+                <details key={id} className="group rounded-2xl bg-white/90 shadow-suave">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4">
                     <span className="flex flex-col gap-0.5">
                       <span className="font-semibold">{e.nome}</span>

@@ -19,7 +19,7 @@ async function Envio() {
       <UsoDoPlano usados={total} limite={limite(plano, "documentos")} rotulo="documentos" />
       {vagas === 0 ? (
         // Limite atingido: no lugar da área de envio, explica o que fazer.
-        <div className="flex flex-col items-center gap-3 rounded-3xl bg-white px-6 py-8 text-center">
+        <div className="flex flex-col items-center gap-3 rounded-3xl bg-white/90 shadow-suave px-6 py-8 text-center">
           <p className="text-lg font-bold">Você chegou ao limite do plano gratuito</p>
           <p className="text-[15px] leading-relaxed text-suave">
             O plano gratuito guarda até {limite(plano, "documentos")} documentos. Exclua algum que não precisa mais para liberar espaço,
@@ -43,7 +43,7 @@ export default function EnviarDocumentosPage() {
   return (
     <Pagina>
       <Voltar href="/app/documentos" rotulo="Documentos" />
-      <h1 className="text-[26px] font-bold">Enviar documentos</h1>
+      <h1 className="text-[28px] font-bold leading-tight tracking-tight">Enviar documentos</h1>
       <Suspense fallback={<Carregando />}>
         <Envio />
       </Suspense>

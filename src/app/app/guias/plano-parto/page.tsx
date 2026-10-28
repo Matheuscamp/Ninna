@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Carregando, Pagina, Voltar } from "@/components/ui";
+import { Carregando, Pagina, TituloPagina, Voltar } from "@/components/ui";
 import { exigirUsuariaPronta, getPlano, getPlanoDeParto } from "@/lib/dal";
 import { FormPlanoParto } from "./form";
 
@@ -28,7 +28,7 @@ async function Conteudo() {
 
   const salvo = await getPlanoDeParto(usuaria.id);
   if (salvo === "indisponivel") {
-    return <p className="rounded-2xl bg-white p-4 text-[15px] text-suave">O plano de parto ainda não está disponível. Tente de novo mais tarde.</p>;
+    return <p className="rounded-2xl bg-white/90 shadow-suave p-4 text-[15px] text-suave">O plano de parto ainda não está disponível. Tente de novo mais tarde.</p>;
   }
 
   return (
@@ -50,7 +50,7 @@ export default function PlanoPartoPage() {
   return (
     <Pagina>
       <Voltar href="/app/guias/parto" rotulo="Tipos de parto" />
-      <h1 className="text-[26px] font-bold leading-tight">Plano de parto</h1>
+      <TituloPagina titulo="Plano de parto" ilustracao="prancheta" fundo="bg-pessego" />
       <p className="-mt-2 text-[15px] leading-relaxed text-suave">
         Registre como você gostaria que fosse o seu parto. Responda só o que quiser e converse sobre o plano com sua equipe antes do grande dia.
       </p>

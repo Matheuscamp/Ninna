@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { Carregando, Pagina, Voltar } from "@/components/ui";
+import { Carregando, Pagina, TituloPagina, Voltar } from "@/components/ui";
 import { SEMANA_MAX, SEMANA_MIN } from "@/content/guias";
 import { exigirUsuariaPronta, listarTarefasFeitas } from "@/lib/dal";
 import { GuiaSemana } from "./guia-semana";
@@ -20,7 +20,7 @@ export default function GuiaSemanaPage() {
   return (
     <Pagina>
       <Voltar href="/app" />
-      <h1 className="text-[26px] font-bold leading-tight">O que fazer nesta fase</h1>
+      <TituloPagina titulo="O que fazer nesta fase" ilustracao="prancheta" fundo="bg-azul-100" />
       <Suspense fallback={<Carregando />}>
         <Conteudo />
       </Suspense>

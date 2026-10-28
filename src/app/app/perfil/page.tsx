@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AvisoMedico, Carregando, Pagina } from "@/components/ui";
+import { AvisoMedico, Carregando, Pagina, TituloPagina } from "@/components/ui";
 import { exigirUsuariaPronta, getFicha, getPlano, linkDaFoto } from "@/lib/dal";
 import { PerfilVisual } from "./visual";
 
@@ -29,7 +29,7 @@ async function Conteudo({ searchParams }: { searchParams: PageProps<"/app/perfil
 export default function PerfilPage({ searchParams }: PageProps<"/app/perfil">) {
   return (
     <Pagina larga>
-      <h1 className="text-[26px] font-bold">Perfil</h1>
+      <TituloPagina titulo="Perfil" ilustracao="coracao" fundo="bg-rosa-100" />
       <Suspense fallback={<Carregando />}>
         <Conteudo searchParams={searchParams} />
       </Suspense>

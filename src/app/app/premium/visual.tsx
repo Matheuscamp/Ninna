@@ -43,7 +43,7 @@ function Pagamentos({ pagamentos, agora }: { pagamentos: PagamentoPremium[]; ago
       <h2 id="titulo-pagamentos" className="text-lg font-bold">
         Seus pagamentos
       </h2>
-      <ul className="flex flex-col divide-y divide-azul-50 rounded-3xl bg-white px-5">
+      <ul className="flex flex-col divide-y divide-azul-50 rounded-3xl bg-white/90 shadow-suave px-5">
         {pagamentos.map((p) => (
           <li key={p.id} className="flex flex-col gap-1 py-4">
             <div className="flex items-baseline justify-between gap-3">
@@ -96,7 +96,7 @@ export function PremiumVisual({
         <p className="-mt-2 text-[17px] leading-relaxed text-suave">Mais espaço para organizar o pré-natal, com tudo num lugar só.</p>
       )}
 
-      <ul className="flex flex-col gap-4 rounded-3xl bg-white p-5">
+      <ul className="flex flex-col gap-4 rounded-3xl bg-white/90 shadow-suave p-5">
         {BENEFICIOS.map((b) => (
           <li key={b.titulo} className="flex gap-3">
             <Check />

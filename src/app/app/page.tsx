@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
+import { FUNDOS, Ilustracao, VISUAL_DO_PERFIL } from "@/components/ilustracoes";
 import { AvisoMedico, Carregando, Logo, Pagina } from "@/components/ui";
 import { artigosDoPerfil } from "@/content/artigos";
 import { faseDaSemana } from "@/content/guias";
@@ -39,7 +40,7 @@ type Atalho = { href: string; rotulo: string; icone: keyof typeof ICONES; cor: s
 const SEMANA_CONTRACOES = 34;
 
 function atalhosDoPerfil(perfil: Perfil, semanas: number | null): Atalho[] {
-  const alerta: Atalho = { href: "/app/alertas", rotulo: "Sinais de alerta", icone: "alerta", cor: "bg-[#fdecea] text-[#8a1c12]" };
+  const alerta: Atalho = { href: "/app/alertas", rotulo: "Sinais de alerta", icone: "alerta", cor: "bg-alerta-50 text-alerta-900" };
   const novaConsulta: Atalho = { href: "/app/agenda/nova", rotulo: "Nova consulta", icone: "consulta", cor: "bg-rosa-50 text-rosa-600" };
   const conteudo: Atalho = { href: "/app/conteudo", rotulo: "Conteúdo", icone: "livro", cor: "bg-azul-100 text-azul-900" };
   switch (perfil) {
@@ -74,20 +75,22 @@ const PROXIMO_PASSO: Record<Exclude<Perfil, "gestante">, { href: string; rotulo:
   acolhimento: { href: "/app/conteudo", rotulo: "Ver conteúdo de apoio" },
 };
 
-function CartaoPrincipal({ perfil, semanas }: { perfil: PerfilUsuaria & { perfil: Perfil }; semanas: number | null }) {
+export function CartaoPrincipal({ perfil, semanas }: { perfil: PerfilUsuaria & { perfil: Perfil }; semanas: number | null }) {
   if (perfil.perfil === "gestante" && semanas !== null && perfil.dum) {
     const progresso = Math.min(100, Math.round((semanas / 40) * 100));
     const faltam = Math.max(0, 40 - semanas);
     return (
-      <section aria-labelledby="titulo-semana" className="flex flex-col gap-4 rounded-3xl bg-azul-100 p-5 text-azul-900">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-semibold text-azul-700">{trimestre(semanas)}º trimestre</span>
-            <h2 id="titulo-semana" className="text-[32px] font-bold leading-none">
-              Semana {semanas}
-            </h2>
-          </div>
-          <span className="rounded-full bg-white px-3 py-1 text-[13px] font-bold">
+      <section
+        aria-labelledby="titulo-semana"
+        className="relative flex flex-col gap-4 overflow-hidden rounded-[2rem] bg-linear-to-br from-rosa-100 via-[#f6e6f0] to-azul-100 p-5 text-azul-900 shadow-flutuante"
+      >
+        <Ilustracao nome="coracao" className="pointer-events-none absolute -right-3 -top-3 h-28 opacity-90" />
+        <div className="relative flex flex-col gap-1">
+          <span className="text-sm font-semibold text-azul-700">{trimestre(semanas)}º trimestre</span>
+          <h2 id="titulo-semana" className="text-[34px] font-bold leading-none tracking-tight">
+            Semana {semanas}
+          </h2>
+          <span className="mt-1.5 self-start rounded-full bg-white/80 px-3 py-1 text-[13px] font-bold shadow-suave">
             {faltam > 0 ? `faltam ${faltam} semanas` : "reta final"}
           </span>
         </div>
@@ -98,7 +101,7 @@ function CartaoPrincipal({ perfil, semanas }: { perfil: PerfilUsuaria & { perfil
             aria-valuemin={0}
             aria-valuemax={40}
             aria-valuenow={semanas}
-            className="h-2.5 overflow-hidden rounded-full bg-white"
+            className="h-2.5 overflow-hidden rounded-full bg-white/80"
           >
             <div className="h-full rounded-full bg-rosa-600" style={{ width: `${progresso}%` }} />
           </div>
@@ -108,7 +111,7 @@ function CartaoPrincipal({ perfil, semanas }: { perfil: PerfilUsuaria & { perfil
           </div>
         </div>
         <p className="text-[15px] leading-relaxed">{faseDaSemana(semanas).resumo}</p>
-        <Link href="/app/guias/semana" className="flex h-11 items-center justify-center rounded-2xl bg-white text-[15px] font-semibold text-azul-900">
+        <Link href="/app/guias/semana" className="flex h-12 items-center justify-center rounded-2xl bg-white/90 text-[15px] font-semibold text-azul-900 shadow-suave hover:bg-white">
           Ver o que fazer nesta semana
         </Link>
       </section>
@@ -117,13 +120,15 @@ function CartaoPrincipal({ perfil, semanas }: { perfil: PerfilUsuaria & { perfil
 
   const info = PERFIS[perfil.perfil];
   const passo = perfil.perfil === "gestante" ? null : PROXIMO_PASSO[perfil.perfil];
+  const visual = VISUAL_DO_PERFIL[perfil.perfil];
   return (
-    <section className="flex flex-col gap-3 rounded-3xl bg-azul-100 p-5 text-azul-900">
-      <span className="text-sm font-semibold text-azul-700">Seu momento</span>
-      <h2 className="text-[28px] font-bold leading-tight">{info.titulo}</h2>
-      <p className="text-[15px] leading-relaxed">{info.descricao}</p>
+    <section className={`relative flex flex-col gap-3 overflow-hidden rounded-[2rem] p-5 shadow-flutuante ${FUNDOS[visual.fundo]}`}>
+      <Ilustracao nome={visual.ilustracao} className="pointer-events-none absolute -right-2 -top-2 h-28" />
+      <span className="relative text-sm font-semibold text-tinta/70">Seu momento</span>
+      <h2 className="relative max-w-[65%] text-[30px] font-bold leading-tight tracking-tight">{info.titulo}</h2>
+      <p className="relative text-[15px] leading-relaxed text-tinta/85">{info.descricao}</p>
       {passo && (
-        <Link href={passo.href} className="flex h-11 items-center justify-center rounded-2xl bg-white text-[15px] font-semibold">
+        <Link href={passo.href} className="relative flex h-12 items-center justify-center rounded-2xl bg-white/90 text-[15px] font-semibold shadow-suave hover:bg-white">
           {passo.rotulo}
         </Link>
       )}
@@ -137,7 +142,7 @@ function Secao({ titulo, acao, children }: { titulo: string; acao?: { href: stri
       <div className="flex items-baseline justify-between gap-3">
         <h2 className="text-lg font-bold">{titulo}</h2>
         {acao && (
-          <Link href={acao.href} className="text-sm font-semibold text-rosa-600">
+          <Link href={acao.href} className="rounded-full bg-white/80 px-3 py-1 text-[13px] font-semibold text-rosa-700 shadow-suave hover:bg-white">
             {acao.rotulo}
           </Link>
         )}
@@ -165,7 +170,7 @@ async function Inicio() {
     <>
       <header className="flex items-center justify-between gap-3">
         <div className="flex flex-col">
-          <h1 className="text-2xl font-bold">Olá{perfil.nome ? `, ${perfil.nome}` : ""}!</h1>
+          <h1 className="text-[28px] font-bold leading-tight tracking-tight">Olá{perfil.nome ? `, ${perfil.nome}` : ""}!</h1>
           <p className="text-sm capitalize text-suave">{formatarHoje(agora)}</p>
         </div>
         <Logo tamanho={44} />
@@ -176,7 +181,7 @@ async function Inicio() {
       <nav aria-label="Atalhos" className="grid grid-cols-4 gap-2">
         {atalhosDoPerfil(perfil.perfil, semanas).map((a) => (
           <Link key={a.href + a.rotulo} href={a.href} className="flex flex-col items-center gap-1.5 rounded-2xl p-1 text-center">
-            <span className={`flex size-14 items-center justify-center rounded-2xl ${a.cor}`}>
+            <span className={`flex size-14 items-center justify-center rounded-2xl shadow-suave ${a.cor}`}>
               <Icone nome={a.icone} />
             </span>
             <span className="text-[12px] font-semibold leading-tight">{a.rotulo}</span>
@@ -194,7 +199,7 @@ async function Inicio() {
           </Link>
         )}
         {proxima ? (
-          <Link href="/app/agenda" className="flex items-center gap-4 rounded-3xl bg-white p-4">
+          <Link href="/app/agenda" className="flex items-center gap-4 rounded-3xl bg-white/90 shadow-suave p-4">
             <span aria-hidden="true" className="flex w-14 shrink-0 flex-col items-center rounded-2xl bg-azul-100 py-2 text-azul-900">
               <span className="text-[11px] font-bold uppercase">{partesDaData(proxima.data_hora).diaSemana}</span>
               <span className="text-2xl font-bold leading-none">{partesDaData(proxima.data_hora).dia}</span>
@@ -228,7 +233,7 @@ async function Inicio() {
       <Secao titulo="Para você" acao={{ href: "/app/conteudo", rotulo: "Ver conteúdo" }}>
         <div className="flex flex-col gap-2.5">
           {artigos.map((a) => (
-            <Link key={a.slug} href={`/app/conteudo/${a.slug}`} className="flex items-center gap-3 rounded-2xl bg-white p-4">
+            <Link key={a.slug} href={`/app/conteudo/${a.slug}`} className="flex items-center gap-3 rounded-2xl bg-white/90 shadow-suave p-4">
               <span aria-hidden="true" className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-rosa-50 text-rosa-600">
                 <Icone nome="livro" className="size-5" />
               </span>

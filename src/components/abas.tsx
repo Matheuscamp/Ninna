@@ -51,8 +51,8 @@ export function Abas() {
 
 export function BarraDeAbas({ pathname }: { pathname: string }) {
   return (
-    <nav aria-label="Navegação principal" className="fixed inset-x-0 bottom-0 z-10 border-t border-linha bg-white print:hidden">
-      <ul className="mx-auto grid h-[72px] max-w-md grid-cols-5">
+    <nav aria-label="Navegação principal" className="fixed inset-x-0 bottom-0 z-10 border-t border-white/70 bg-white/85 shadow-[0_-10px_30px_-20px_rgba(31,42,68,0.35)] backdrop-blur-md print:hidden">
+      <ul className="mx-auto grid h-[72px] max-w-lg grid-cols-5 px-1">
         {ABAS.map((aba) => {
           const ativa = abaAtiva(pathname, aba.href);
           return (
@@ -60,18 +60,20 @@ export function BarraDeAbas({ pathname }: { pathname: string }) {
               <Link
                 href={aba.href}
                 aria-current={ativa ? "page" : undefined}
-                className={`flex h-full flex-col items-center justify-center gap-1 text-[11px] font-semibold ${ativa ? "text-rosa-600" : "text-suave"}`}
+                className={`group flex h-full flex-col items-center justify-center gap-0.5 text-[11px] font-semibold ${ativa ? "text-rosa-700" : "text-suave"}`}
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  className="size-6 fill-none stroke-current"
-                  strokeWidth={1.8}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  {aba.icone}
-                </svg>
+                <span className={`flex h-8 w-14 items-center justify-center rounded-full transition ${ativa ? "bg-rosa-100" : "group-hover:bg-azul-50"}`}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    className="size-6 fill-none stroke-current"
+                    strokeWidth={ativa ? 2.1 : 1.8}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {aba.icone}
+                  </svg>
+                </span>
                 {aba.rotulo}
               </Link>
             </li>

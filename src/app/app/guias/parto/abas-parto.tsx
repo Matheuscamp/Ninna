@@ -9,7 +9,7 @@ export function AbasParto() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div role="tablist" aria-label="Tipos de parto" className="grid grid-cols-3 gap-1 rounded-2xl bg-white p-1">
+      <div role="tablist" aria-label="Tipos de parto" className="grid grid-cols-3 gap-1 rounded-2xl bg-white/90 shadow-suave p-1">
         {PARTOS.map((p) => (
           <button
             key={p.id}
@@ -31,7 +31,7 @@ export function AbasParto() {
           <h2 className="text-[22px] font-bold">{parto.nome}</h2>
           <p className="text-[15px] leading-relaxed">{parto.desc}</p>
         </section>
-        <section className="flex flex-col gap-3 rounded-3xl bg-white p-5">
+        <section className="flex flex-col gap-3 rounded-3xl bg-white/90 shadow-suave p-5">
           <h3 className="font-bold text-azul-700">Pontos positivos</h3>
           <ul className="flex flex-col gap-2.5">
             {parto.pros.map((item) => (
@@ -44,7 +44,7 @@ export function AbasParto() {
             ))}
           </ul>
         </section>
-        <section className="flex flex-col gap-3 rounded-3xl bg-white p-5">
+        <section className="flex flex-col gap-3 rounded-3xl bg-white/90 shadow-suave p-5">
           <h3 className="font-bold text-rosa-600">Pontos de atenção</h3>
           <ul className="flex flex-col gap-2.5">
             {parto.contras.map((item) => (
@@ -57,7 +57,7 @@ export function AbasParto() {
             ))}
           </ul>
         </section>
-        <section className="flex flex-col gap-1 rounded-3xl bg-white px-5 py-4">
+        <section className="flex flex-col gap-1 rounded-3xl bg-white/90 shadow-suave px-5 py-4">
           <h3 className="text-sm font-bold">Recuperação</h3>
           <p className="text-[15px] leading-relaxed text-suave">{parto.recuperacao}</p>
         </section>

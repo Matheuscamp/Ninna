@@ -249,7 +249,7 @@ export function EnvioDocumentos({ vagas }: { vagas: number | null }) {
           {itens.map((item) => {
             const bloqueado = enviando || item.estado === "concluido" || item.estado === "enviando";
             return (
-              <li key={item.chave} className="flex flex-col gap-4 rounded-3xl bg-white p-4">
+              <li key={item.chave} className="flex flex-col gap-4 rounded-3xl bg-white/90 shadow-suave p-4">
                 <div className="flex items-center gap-3">
                   <div className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-azul-50 text-rosa-600">
                     {item.previa ? (

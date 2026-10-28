@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { BotaoPrimario, Pagina } from "@/components/ui";
+import { BotaoPrimario, Pagina, TituloPagina } from "@/components/ui";
 
 export default function ErroNoPainel({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
@@ -10,7 +10,7 @@ export default function ErroNoPainel({ error, reset }: { error: Error & { digest
 
   return (
     <Pagina>
-      <h1 className="text-2xl font-bold">Algo deu errado</h1>
+      <TituloPagina titulo="Algo deu errado" ilustracao="lupa" fundo="bg-azul-100" />
       <p className="leading-relaxed text-suave">
         Não conseguimos carregar esta tela agora. Confira sua internet e tente de novo.
       </p>

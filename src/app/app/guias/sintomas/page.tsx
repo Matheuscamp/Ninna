@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Pagina, Voltar } from "@/components/ui";
+import { Pagina, TituloPagina, Voltar } from "@/components/ui";
 import { PASSOS_CONFIRMAR } from "@/content/guias";
 import { ChecadorSintomas } from "./checador";
 
@@ -11,7 +11,7 @@ export default function GuiaSintomasPage() {
   return (
     <Pagina>
       <Voltar href="/app" />
-      <h1 className="text-[26px] font-bold leading-tight">O que você está sentindo?</h1>
+      <TituloPagina titulo="O que você está sentindo?" ilustracao="lupa" fundo="bg-lilas" />
       <p className="-mt-2 text-[15px] leading-relaxed text-suave">
         Toque nos sinais que você percebeu. Nenhum sintoma, sozinho, confirma ou descarta a gravidez.
       </p>
@@ -19,7 +19,7 @@ export default function GuiaSintomasPage() {
 
       <section id="confirmar" className="flex scroll-mt-4 flex-col gap-3">
         <h2 className="text-lg font-bold">Como confirmar e quais consultas fazer</h2>
-        <ol className="flex flex-col gap-4 rounded-3xl bg-white p-5">
+        <ol className="flex flex-col gap-4 rounded-3xl bg-white/90 shadow-suave p-5">
           {PASSOS_CONFIRMAR.map((p, i) => (
             <li key={p.titulo} className="flex gap-3">
               <span aria-hidden="true" className="flex size-7 shrink-0 items-center justify-center rounded-full bg-azul-100 text-sm font-bold text-azul-900">
