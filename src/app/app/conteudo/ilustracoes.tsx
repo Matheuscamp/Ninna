@@ -43,6 +43,12 @@ export const VISUAL_DOS_ARTIGOS: Record<string, { ilustracao: NomeIlustracao; fu
   "plano-pos-parto": { ilustracao: "casa", fundo: "baunilha" },
   "sexualidade-pos-parto": { ilustracao: "coracao", fundo: "lilas" },
   "direitos-perda-gestacional": { ilustracao: "flor", fundo: "azul" },
+  "movimentos-do-bebe": { ilustracao: "bebe", fundo: "lilas" },
+  "suplementos-gestacao": { ilustracao: "gota", fundo: "baunilha" },
+  "enjoo-gestacao": { ilustracao: "folha", fundo: "menta" },
+  "toxoplasmose-prevencao": { ilustracao: "maca", fundo: "azul" },
+  "sexo-na-gestacao": { ilustracao: "coracao", fundo: "pessego" },
+  "amamentacao-volta-ao-trabalho": { ilustracao: "gota", fundo: "lilas" },
 };
 
 export function visualDoArtigo(slug: string) {

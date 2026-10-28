@@ -134,6 +134,41 @@ O banco grava cada pagamento pelo id do Mercado Pago (tabela `pagamentos`), ent�
    - `MERCADOPAGO_WEBHOOK_SECRET`: em Suas integrações › Webhooks, cadastre `https://SEU-DOMINIO/api/mercadopago/webhook` com o evento **Pagamentos** e copie a assinatura secreta. Com ela preenchida, avisos sem assinatura válida são recusados.
 3. O webhook precisa de endereço público (https). Em localhost ele não chega, mas a volta do checkout já credita o Premium.
 
+## Colocar no ar (teste fechado, grátis)
+
+Hospedagem na **Vercel** (plano Hobby, grátis), banco no **Supabase** (plano grátis) e pagamentos no **Mercado Pago em modo de teste** (ninguém é cobrado de verdade).
+
+**Proteções do teste fechado** (já no código):
+- `CODIGO_CONVITE`: com essa variável definida, o site inteiro só abre para quem digitar o código em `/convite` (o navegador lembra por 90 dias). Para abrir o site a todos, apague a variável.
+- Fora dos buscadores: `noindex` em todas as páginas e `robots.txt` bloqueando tudo (`src/app/layout.tsx` e `src/app/robots.ts`; ajustar no lançamento).
+- Cabeçalhos de segurança (`next.config.ts`): o site não abre dentro de outro site, HTTPS obrigatório e câmera, microfone e localização bloqueados.
+
+**Passo a passo:**
+1. Envie o código para o GitHub (`git push`). O `.env.local` nunca vai junto (está no `.gitignore`).
+2. Em vercel.com, entre com a conta do GitHub, clique em **Add New › Project** e importe o repositório `Ninna`. A Vercel detecta o Next.js sozinha.
+3. Antes de clicar em **Deploy**, abra **Environment Variables** e cadastre:
+   - `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (os mesmos do `.env.local`);
+   - `SUPABASE_SECRET_KEY` (secreta: só aqui, nunca no código);
+   - `MERCADOPAGO_ACCESS_TOKEN` com a credencial **de teste**;
+   - `CODIGO_CONVITE` com um código difícil de adivinhar, por exemplo três palavras: `cegonha-lua-girassol`;
+   - `NEXT_PUBLIC_SITE_URL` fica para o passo 5.
+4. Clique em **Deploy**. Em 1 ou 2 minutos sai um endereço como `https://ninna-xxxx.vercel.app`.
+5. Volte em **Settings › Environment Variables**, cadastre `NEXT_PUBLIC_SITE_URL` com esse endereço e faça **Redeploy** (aba Deployments, menu do último deploy).
+6. No Supabase, em **Authentication › URL Configuration**:
+   - **Site URL**: o endereço da Vercel;
+   - **Redirect URLs**: acrescente `https://SEU-ENDERECO.vercel.app/auth/callback` (mantenha o de localhost para continuar testando no computador).
+7. Login com Google (se usar): no Google Cloud Console, as URIs de redirecionamento ficam no Supabase, então não muda nada; só confira se o domínio da Vercel está nas origens autorizadas, se você tiver cadastrado alguma.
+8. Webhook do Mercado Pago (opcional no teste, porque a volta do checkout e o botão "Verificar pagamento" já liberam o Premium): em Suas integrações › Webhooks, cadastre `https://SEU-ENDERECO.vercel.app/api/mercadopago/webhook`, evento Pagamentos, e copie a assinatura para a variável `MERCADOPAGO_WEBHOOK_SECRET` na Vercel (e faça Redeploy).
+9. Abra o endereço, digite o código de convite e faça o caminho completo: triagem, cadastro, Premium de teste.
+
+Depois disso, cada `git push` na branch `main` publica uma nova versão sozinho.
+
+**Cuidados no teste fechado:**
+- Passe o código só para quem você convidar e avise que é uma versão de testes: os textos de saúde e jurídicos ainda não foram revisados.
+- Peça para testarem com dados fictícios sempre que possível, principalmente em documentos e ficha de saúde.
+- O plano Hobby da Vercel é para uso não comercial. Antes de cobrar de verdade (credenciais de produção do Mercado Pago), mude para um plano pago ou outra hospedagem. Veja também a seção "Antes de lançar".
+- O Supabase grátis pausa o projeto depois de 7 dias sem nenhum acesso. Se acontecer, é só reativar no painel.
+
 ## Antes de lançar
 
 Itens que não se resolvem só com código:
@@ -142,6 +177,7 @@ Itens que não se resolvem só com código:
 - [ ] **Revisão jurídica** dos Termos de Uso e da Política de Privacidade por advogado (de preferência com experiência em LGPD e saúde). Ao mudar algo importante, atualize `VERSAO_TEXTOS_JURIDICOS` e suba `VERSAO_CONSENTIMENTO` em `src/lib/consentimento.ts`, para as usuárias aceitarem de novo.
 - [ ] **Revisão dos conteúdos de saúde** (`src/content/`) por obstetra ou enfermeira obstétrica.
 - [ ] **Empresa e nota fiscal:** abrir CNPJ (MEI, se a atividade e o faturamento permitirem, ou ME) e emitir nota fiscal de serviço (NFS-e) a cada venda do Premium. Um contador indica o enquadramento e o código de serviço. A emissão pode ser manual no portal da prefeitura no começo e depois automatizada por um serviço de NFS-e ligado ao webhook de pagamentos.
+- [ ] **Abrir o site a todos:** apagar `CODIGO_CONVITE` na Vercel, tirar o `noindex` de `src/app/layout.tsx` e liberar as páginas públicas em `src/app/robots.ts`.
 - [ ] **Mercado Pago em produção:** credenciais de produção da conta da empresa, webhook cadastrado no domínio final e `MERCADOPAGO_WEBHOOK_SECRET` preenchido.
 - [ ] **E-mail próprio (SMTP):**
   1. Crie uma conta no Resend e adicione o domínio do Ninna, configurando no DNS os registros que o Resend indicar (SPF e DKIM).

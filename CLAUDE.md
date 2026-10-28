@@ -23,6 +23,9 @@ Toda tela segue o mesmo padrão visual (o da página inicial, triagem e login). 
 - **Texto branco** só sobre `rosa-600` ou `alerta`. Pastéis sempre com texto escuro.
 - Mobile primeiro: conferir em 375px e no computador (grades `sm:`/`lg:`).
 
+## Teste fechado
+Para o teste fechado na Vercel, o site abre só para convidados: `CODIGO_CONVITE` (Vercel) faz o `src/proxy.ts` mandar tudo para `/convite` até a pessoa digitar o código; caminhos liberados ficam em `src/lib/convite.ts` (inclua ali qualquer rota que precise funcionar sem cookie, como webhooks). Também está fora dos buscadores (`noindex` no layout e `robots.ts`). Passo a passo de publicação no README, "Colocar no ar".
+
 ## Armadilhas já encontradas
 - O `fetch` do Next duplica respostas para cache: leitura parcial + cancelamento trava. Para buscas diretas use `fetchSupabase` (`src/lib/supabase/fetch.ts`), que também refaz conexões que travam (a rede local às vezes oscila).
 - O servidor de desenvolvimento (Turbopack) às vezes mantém módulos antigos: se a tela não refletir o código, confira com `npx next build && npx next start -p 3001` e reinicie o `npm run dev`.

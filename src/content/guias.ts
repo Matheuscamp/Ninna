@@ -1,7 +1,8 @@
 import type { Perfil } from "@/lib/triagem";
 
 // Conteúdo de saúde dos guias. Baseado na Caderneta Brasileira da Gestante
-// (Ministério da Saúde, 2026), reescrito em linguagem do app: precisa ser revisado
+// (Ministério da Saúde, 2026) e no Protocolo de Pré-Natal de Risco Habitual
+// (SMS Porto Alegre, 2026), reescrito em linguagem do app: precisa ser revisado
 // por obstetra ou enfermeira obstétrica antes do lançamento, e depois migrar para o CMS (RNF10).
 // Os ids de tarefa ficam gravados no banco (task_progress): ao mudar um texto, mantenha o id.
 
@@ -15,20 +16,20 @@ export const EXAMES = {
   sorologias: {
     nome: "Testes de infecções (HIV, sífilis, hepatites B e C, toxoplasmose, HTLV)",
     quando: "1º e 3º trimestres (HIV e sífilis também no parto)",
-    oque: "Detectam infecções que podem passar para o bebê. Muitos são testes rápidos, feitos na própria UBS. Descobertas cedo, todas têm tratamento ou prevenção.",
+    oque: "Detectam infecções que podem passar para o bebê. Muitos são testes rápidos, feitos na própria UBS, e o parceiro também deve fazer os dele. Se você não tem imunidade à toxoplasmose, o exame é repetido a cada trimestre e vale caprichar na prevenção. Descobertas cedo, todas têm tratamento ou prevenção.",
     preparo: "Coleta de sangue ou furinho no dedo, sem preparo.",
   },
   urina: { nome: "Urina tipo 1 e urocultura", quando: "1º e 3º trimestres", oque: "Procura infecção urinária, comum na gestação e muitas vezes sem sintomas. Sem tratamento, ela pode levar a parto prematuro.", preparo: "Colete o jato do meio da primeira urina da manhã." },
   ultra1: { nome: "Ultrassom obstétrico", quando: "Idealmente entre 7 e 12 semanas", oque: "Confirma a idade gestacional, a data provável do parto e o número de bebês. Algumas equipes pedem também o ultrassom entre 11 e 14 semanas, que mede a translucência nucal.", preparo: "Siga a orientação da clínica; algumas pedem bexiga cheia." },
   morfo: { nome: "Ultrassom morfológico", quando: "Entre 20 e 24 semanas, se indicado", oque: "Avalia em detalhe a formação dos órgãos do bebê. Não é feito de rotina em todos os serviços: pergunte à sua equipe.", preparo: "Sem preparo especial." },
-  dtpa: { nome: "Vacina dTpa (difteria, tétano e coqueluche)", quando: "A partir da 20ª semana, em toda gestação", oque: "Os anticorpos passam para o bebê e o protegem contra a coqueluche nos primeiros meses de vida. Precisa ser repetida a cada gravidez, mesmo que você já tenha tomado antes. Grátis no SUS.", preparo: "Leve sua caderneta de vacinação." },
-  vsr: { nome: "Vacina contra o VSR (vírus sincicial respiratório)", quando: "A partir da 28ª semana, dose única por gestação", oque: "Protege o bebê contra bronquiolite e pneumonia nos primeiros meses, quando o VSR é a principal causa de internação. Grátis no SUS.", preparo: "Leve sua caderneta de vacinação." },
+  dtpa: { nome: "Vacina dTpa (difteria, tétano e coqueluche)", quando: "A partir da 20ª semana, em toda gestação (até a 36ª)", oque: "Os anticorpos passam para o bebê e o protegem contra a coqueluche nos primeiros meses de vida. Precisa ser repetida a cada gravidez, mesmo que você já tenha tomado antes. Grátis no SUS.", preparo: "Leve sua caderneta de vacinação." },
+  vsr: { nome: "Vacina contra o VSR (vírus sincicial respiratório)", quando: "A partir da 28ª semana, de preferência até a 36ª", oque: "Protege o bebê contra bronquiolite e pneumonia nos primeiros meses, quando o VSR é a principal causa de internação. Grátis no SUS.", preparo: "Leve sua caderneta de vacinação." },
   influenza: { nome: "Vacina da gripe", quando: "Qualquer fase da gestação, uma dose por temporada", oque: "Previne casos graves de gripe na gestação. Se não tomar na gravidez, ainda pode tomar até 45 dias depois do parto.", preparo: "Leve sua caderneta de vacinação." },
   hepatiteB: { nome: "Vacina da hepatite B", quando: "Se o esquema estiver incompleto", oque: "São 3 doses. Se você não tem todas, a equipe inicia ou completa durante a gestação.", preparo: "Leve sua caderneta de vacinação para conferir as doses." },
-  covid: { nome: "Vacina da Covid-19", quando: "1 dose por gestação, 6 meses após a última dose", oque: "Reduz o risco de Covid grave para você e para o bebê.", preparo: "Leve sua caderneta de vacinação." },
+  covid: { nome: "Vacina da Covid-19", quando: "Uma dose por ano, em qualquer fase da gestação", oque: "Reduz o risco de Covid grave para você e passa anticorpos para o bebê. Pode ser tomada no mesmo dia que outras vacinas.", preparo: "Leve sua caderneta de vacinação." },
   totg: { nome: "Teste de tolerância à glicose (TOTG)", quando: "Entre 24 e 28 semanas", oque: "Rastreia o diabetes gestacional, que costuma não dar sintomas. Você toma um líquido doce e colhe sangue em jejum, depois de 1 hora e depois de 2 horas.", preparo: "Jejum de 8 horas; reserve cerca de 2h30 no laboratório." },
   coombs: { nome: "Coombs indireto", quando: "Para quem é Rh negativo (1º, 2º e 3º trimestres)", oque: "Verifica se seu corpo produziu anticorpos contra o sangue do bebê. Se preciso, existe uma vacina preventiva.", preparo: "Coleta de sangue, sem preparo." },
-  strepto: { nome: "Pesquisa de estreptococo B", quando: "Entre 35 e 37 semanas, se a equipe pedir", oque: "Bactéria comum e inofensiva para você, mas que pode afetar o bebê no parto. Se der positivo, você recebe antibiótico durante o parto.", preparo: "Coleta rápida com cotonete na vagina e no ânus." },
+  strepto: { nome: "Pesquisa de estreptococo B", quando: "Entre 35 e 37 semanas", oque: "Bactéria comum e inofensiva para você, mas que pode afetar o bebê no parto. Se der positivo, não há tratamento antes: você recebe antibiótico na maternidade, durante o parto. Peça para anotarem o resultado em destaque na caderneta.", preparo: "Coleta rápida com cotonete na vagina e no ânus." },
   ctg: { nome: "Cardiotocografia", quando: "Fim da gestação, se a equipe pedir", oque: "Registra os batimentos do bebê e as contrações por 20 a 30 minutos para checar se ele está bem.", preparo: "Faça uma refeição leve antes." },
 } satisfies Record<string, Exame>;
 
@@ -60,7 +61,9 @@ export const FASES: Fase[] = [
     consultas: MENSAIS,
     tarefas: [
       { id: "f1-consulta", texto: "Agendar a primeira consulta de pré-natal (até a 12ª semana)" },
+      { id: "f1-segunda-consulta", texto: "Marcar a segunda consulta, 2 a 3 semanas depois da primeira" },
       { id: "f1-acido-folico", texto: "Tomar o ácido fólico indicado pela equipe" },
+      { id: "f1-ferro", texto: "Tomar o sulfato ferroso, se a equipe indicar (1 hora antes do almoço)" },
       { id: "f1-habitos", texto: "Evitar álcool, cigarro e remédios sem orientação" },
       { id: "f1-vacinas", texto: "Levar a caderneta de vacinação para conferir gripe, hepatite B e Covid-19" },
       { id: "f1-parceria", texto: "Convidar a parceria para o pré-natal do parceiro, com consultas e exames dele" },
@@ -88,6 +91,7 @@ export const FASES: Fase[] = [
     tarefas: [
       { id: "f3-consultas", texto: "Manter as consultas mensais" },
       { id: "f3-dentista", texto: "Ir ao dentista na UBS (pré-natal odontológico, um direito seu)" },
+      { id: "f3-calcio", texto: "Tomar o cálcio, se a equipe indicar, com comida e longe do ferro" },
       { id: "f3-atividade", texto: "Manter-se ativa: 30 a 60 minutos de atividade leve por dia, se a equipe liberar" },
       { id: "f3-enxoval", texto: "Começar a pensar no enxoval com calma (o bebê precisa de pouca coisa)" },
     ],
@@ -115,6 +119,7 @@ export const FASES: Fase[] = [
       { id: "f5-totg", texto: "Fazer o teste de tolerância à glicose" },
       { id: "f5-coombs", texto: "Se for Rh negativo, repetir o Coombs" },
       { id: "f5-maternidade", texto: "Saber qual é sua maternidade de referência e como chegar lá" },
+      { id: "f5-movimentos", texto: "Aprender a contar os movimentos do bebê (veja o artigo em Conteúdo)" },
     ],
     exames: ["totg", "coombs"],
   },
@@ -142,7 +147,7 @@ export const FASES: Fase[] = [
       { id: "f7-acompanhante", texto: "Combinar quem vai te acompanhar no parto (e quem fica com outros filhos)" },
       { id: "f7-pos-parto", texto: "Organizar quem ajuda em casa nos primeiros dias depois do parto" },
       { id: "f7-trabalho", texto: "Organizar licença-maternidade ou afastamento da escola" },
-      { id: "f7-strepto", texto: "Fazer o exame de estreptococo B, se a equipe pedir" },
+      { id: "f7-strepto", texto: "Fazer o exame de estreptococo B e anotar o resultado na caderneta" },
     ],
     exames: ["strepto"],
   },
@@ -155,6 +160,8 @@ export const FASES: Fase[] = [
       { id: "f8-sinais", texto: "Reconhecer os sinais de trabalho de parto (use o contador de contrações)" },
       { id: "f8-cartao", texto: "Levar a caderneta da gestante sempre com você" },
       { id: "f8-consultas", texto: "Ir às consultas semanais" },
+      { id: "f8-41-semanas", texto: "Se chegar a 41 semanas sem o parto, ir à maternidade para avaliação" },
+      { id: "f8-binomio", texto: "Combinar a consulta com o bebê na UBS entre o 3º e o 5º dia depois do parto" },
     ],
     exames: ["ctg"],
   },
@@ -235,6 +242,11 @@ const ALERTAS_GESTACAO = [
   "Febre de 37,8 °C ou mais",
   "Dor ou ardência para urinar",
   "Manchas vermelhas na pele ou olhos vermelhos",
+  "Contrações regulares antes de 37 semanas",
+  "Coceira forte nas palmas das mãos e nas solas dos pés, pior à noite e sem manchas na pele",
+  "Vômitos que não deixam você comer nem beber",
+  "Dor, inchaço ou calor em uma das pernas",
+  "Pancada ou queda com batida na barriga",
   "Dor forte no peito ou falta de ar",
   "Desmaio, convulsão ou mal-estar muito forte",
 ];
