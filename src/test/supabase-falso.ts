@@ -25,7 +25,6 @@ export function criarSupabaseFalso() {
       getClaims: vi.fn(async () => ({ data: { claims: { sub: "usuaria-1", email: "teste@exemplo.com" } }, error: null })),
       signUp: vi.fn(),
       signInWithPassword: vi.fn(),
-      signInWithOAuth: vi.fn(),
       signOut: vi.fn(async () => ({ error: null })),
     },
     from: vi.fn((tabela: string) => {

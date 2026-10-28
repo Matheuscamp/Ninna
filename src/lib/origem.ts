@@ -1,7 +1,7 @@
 import "server-only";
 import { headers } from "next/headers";
 
-// Endereço público do site, para links que saem do app (e-mails, login com Google, checkout).
+// Endereço público do site, para links que saem do app (e-mails e checkout).
 // Só a origem (protocolo + domínio + porta): um caminho a mais no
 // NEXT_PUBLIC_SITE_URL duplicaria o /auth/callback dos links.
 export async function origem() {

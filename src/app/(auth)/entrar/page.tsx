@@ -7,7 +7,6 @@ export const metadata: Metadata = { title: "Entrar" };
 
 const ERROS_RETORNO: Record<string, string> = {
   link: "Esse link de confirmação expirou ou já foi usado. Entre com seu e-mail e senha.",
-  google: "Não foi possível entrar com o Google. Tente com e-mail e senha.",
 };
 
 // Os parâmetros da URL são lidos no servidor, para o HTML inicial já sair

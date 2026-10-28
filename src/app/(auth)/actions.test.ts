@@ -79,7 +79,7 @@ describe("cadastro: erros do Supabase viram mensagens claras", () => {
   const casos: [string, number, RegExp][] = [
     ["over_email_send_rate_limit", 429, /envio de e-mails foi pausado/],
     ["over_request_rate_limit", 429, /Muitas tentativas/],
-    ["email_provider_disabled", 400, /cadastro por e-mail está desativado/],
+    ["email_provider_disabled", 400, /O cadastro está desativado no momento/],
     ["user_already_exists", 422, /Já existe uma conta/],
     ["email_exists", 422, /Já existe uma conta/],
     ["weak_password", 422, /senha é muito fraca/],
@@ -136,7 +136,7 @@ describe("login", () => {
     };
     expect(await tentar(new AuthApiError("x", 400, "invalid_credentials"))).toBe("E-mail ou senha incorretos.");
     expect(await tentar(new AuthApiError("x", 400, "email_not_confirmed"))).toMatch(/Confirme seu e-mail/);
-    expect(await tentar(new AuthApiError("x", 400, "email_provider_disabled"))).toMatch(/login por e-mail está desativado/);
+    expect(await tentar(new AuthApiError("x", 400, "email_provider_disabled"))).toMatch(/O login está desativado no momento/);
     expect(await tentar(new AuthApiError("x", 429, "over_request_rate_limit"))).toMatch(/Muitas tentativas/);
     expect(await tentar(new AuthRetryableFetchError("fetch failed", 0))).toMatch(/Confira sua internet/);
   });

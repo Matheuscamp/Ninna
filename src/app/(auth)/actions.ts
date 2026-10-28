@@ -18,7 +18,7 @@ const ERROS_CADASTRO: Record<string, string> = {
   user_already_exists: "Já existe uma conta com esse e-mail. Tente entrar.",
   weak_password: "Essa senha é muito fraca. Use pelo menos 8 caracteres, misturando letras e números.",
   signup_disabled: "Novos cadastros estão desativados no momento.",
-  email_provider_disabled: "O cadastro por e-mail está desativado no momento. Tente entrar com o Google.",
+  email_provider_disabled: "O cadastro está desativado no momento. Tente de novo mais tarde.",
 };
 
 export type EstadoForm =
@@ -67,7 +67,7 @@ export async function entrar(_estado: EstadoForm, formData: FormData): Promise<E
   }
   if (error?.code === "over_request_rate_limit") return { erro: ERROS_CADASTRO.over_request_rate_limit, valores };
   if (error?.code === "email_provider_disabled") {
-    return { erro: "O login por e-mail está desativado no momento. Tente entrar com o Google.", valores };
+    return { erro: "O login está desativado no momento. Tente de novo mais tarde.", valores };
   }
   if (error) return { erro: "E-mail ou senha incorretos.", valores };
 
@@ -113,17 +113,6 @@ export async function cadastrar(_estado: EstadoForm, formData: FormData): Promis
   // Com confirmação de e-mail ligada no Supabase, ainda não há sessão.
   if (!data.session) return { enviado: true };
   redirect("/consentimento");
-}
-
-export async function entrarComGoogle(formData: FormData) {
-  const next = destinoSeguro(formData.get("next"));
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: { redirectTo: `${await origem()}/auth/callback?next=${encodeURIComponent(next)}` },
-  });
-  if (error || !data.url) redirect("/entrar?erro=google");
-  redirect(data.url);
 }
 
 export async function sair() {

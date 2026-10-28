@@ -35,8 +35,7 @@ export default function PrivacidadePage() {
 
       <Secao id="dados" titulo="2. Quais dados guardamos">
         <p>
-          <strong>Conta:</strong> e-mail, senha (guardada de forma cifrada, ninguém consegue lê-la) e nome. Se você entrar com o Google, recebemos seu
-          e-mail e nome da conta Google.
+          <strong>Conta:</strong> e-mail, senha (guardada de forma cifrada, ninguém consegue lê-la) e nome.
         </p>
         <p>
           <strong>Dados de saúde</strong>, que a LGPD chama de dados sensíveis:
@@ -91,9 +90,6 @@ export default function PrivacidadePage() {
           <li>
             <strong>Mercado Pago:</strong> processamento dos pagamentos do Premium. O Mercado Pago trata os dados do pagamento conforme a política de
             privacidade dele.
-          </li>
-          <li>
-            <strong>Google:</strong> apenas se você escolher entrar com o Google.
           </li>
           <li>
             <strong>Provedores de hospedagem e de envio de e-mail</strong>, para o site funcionar e para enviarmos e-mails da sua conta.

@@ -29,8 +29,6 @@ npm run dev
 
 Abra http://localhost:3000.
 
-**Login com Google (opcional):** em Authentication › Providers › Google, cole o Client ID e o Secret criados no Google Cloud Console. Sem isso, o botão "Continuar com Google" volta para a tela de login com erro.
-
 **Pagamento do Premium (opcional):** veja [Assinatura Premium](#assinatura-premium-mercado-pago). Sem as credenciais, a tela do Premium abre mas o botão de pagar avisa que o pagamento não está disponível.
 
 **Confirmação de e-mail:** se estiver ligada no Supabase (padrão), o cadastro mostra "Confira seu e-mail" e o link leva direto ao consentimento.
@@ -73,7 +71,7 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 | `src/lib/dal.ts` | Único ponto que lê sessão, consentimento e perfil |
 | `src/lib/supabase/` | Clientes do Supabase para servidor e proxy |
 | `src/proxy.ts` | Renova a sessão e manda quem não está logada para `/entrar` |
-| `src/app/(auth)/` | Entrar, cadastro, Google, sair |
+| `src/app/(auth)/` | Entrar, cadastro (e-mail e senha), sair |
 | `src/app/consentimento/` | Tela e registro do consentimento |
 | `src/app/triagem/` | Assistente da triagem e gravação |
 | `src/content/` | Conteúdo dos guias e artigos, com base na Caderneta Brasileira da Gestante (Ministério da Saúde, 2026); a revisar por profissional e depois vai para o CMS |
@@ -157,9 +155,8 @@ Hospedagem na **Vercel** (plano Hobby, grátis), banco no **Supabase** (plano gr
 6. No Supabase, em **Authentication › URL Configuration**:
    - **Site URL**: o endereço da Vercel;
    - **Redirect URLs**: acrescente `https://SEU-ENDERECO.vercel.app/auth/callback` (mantenha o de localhost para continuar testando no computador).
-7. Login com Google (se usar): no Google Cloud Console, as URIs de redirecionamento ficam no Supabase, então não muda nada; só confira se o domínio da Vercel está nas origens autorizadas, se você tiver cadastrado alguma.
-8. Webhook do Mercado Pago (opcional no teste, porque a volta do checkout e o botão "Verificar pagamento" já liberam o Premium): em Suas integrações › Webhooks, cadastre `https://SEU-ENDERECO.vercel.app/api/mercadopago/webhook`, evento Pagamentos, e copie a assinatura para a variável `MERCADOPAGO_WEBHOOK_SECRET` na Vercel (e faça Redeploy).
-9. Abra o endereço, digite o código de convite e faça o caminho completo: triagem, cadastro, Premium de teste.
+7. Webhook do Mercado Pago (opcional no teste, porque a volta do checkout e o botão "Verificar pagamento" já liberam o Premium): em Suas integrações › Webhooks, cadastre `https://SEU-ENDERECO.vercel.app/api/mercadopago/webhook`, evento Pagamentos, e copie a assinatura para a variável `MERCADOPAGO_WEBHOOK_SECRET` na Vercel (e faça Redeploy).
+8. Abra o endereço, digite o código de convite e faça o caminho completo: triagem, cadastro, Premium de teste.
 
 Depois disso, cada `git push` na branch `main` publica uma nova versão sozinho.
 
