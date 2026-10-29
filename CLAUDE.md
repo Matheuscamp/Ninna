@@ -24,8 +24,13 @@ Toda tela segue o mesmo padrão visual (o da página inicial, triagem e login). 
 - **Texto branco** só sobre `rosa-600` ou `alerta`. Pastéis sempre com texto escuro.
 - Mobile primeiro: conferir em 375px e no computador (grades `sm:`/`lg:`).
 
-## Teste fechado
-Para o teste fechado na Vercel, o site abre só para convidados: `CODIGO_CONVITE` (Vercel) faz o `src/proxy.ts` mandar tudo para `/convite` até a pessoa digitar o código; caminhos liberados ficam em `src/lib/convite.ts` (inclua ali qualquer rota que precise funcionar sem cookie, como webhooks). Também está fora dos buscadores (`noindex` no layout e `robots.ts`). Passo a passo de publicação no README, "Colocar no ar".
+## No ar (teste com convidados)
+- Produção na Vercel: **https://ninna-six.vercel.app** (cada `git push` na `main` publica). Endereços com `matheuscamp` no nome são internos e pedem login da Vercel; o link para compartilhar é o acima.
+- Variáveis na Vercel: as do `.env.local` + `NEXT_PUBLIC_SITE_URL`. Mercado Pago em **modo de teste** (vendedor = conta de teste; para pagar: cartão de teste do painel e e-mail terminado em `@testuser.com`, senão dá "uma das partes é de teste").
+- A volta automática do checkout (`auto_return`) só funciona em https: no `localhost` o Mercado Pago recusa; lá use o botão "Verificar pagamento".
+- `CODIGO_CONVITE` existe no código (`src/proxy.ts` manda para `/convite`; caminhos liberados em `src/lib/convite.ts`), mas a dona optou por **não** usá-lo: o site está aberto a quem tiver o link, e fora dos buscadores (`noindex` no layout e `robots.ts`).
+- Login só por e-mail e senha (o Google foi removido; falta desligar o provedor no painel do Supabase).
+- Passo a passo de publicação no README, "Colocar no ar".
 
 ## Armadilhas já encontradas
 - O `fetch` do Next duplica respostas para cache: leitura parcial + cancelamento trava. Para buscas diretas use `fetchSupabase` (`src/lib/supabase/fetch.ts`), que também refaz conexões que travam (a rede local às vezes oscila).
@@ -43,4 +48,6 @@ Textos em `src/content/` são uma primeira versão e precisam de revisão de obs
 Termos de Uso (`/termos`) e Política de Privacidade (`/privacidade`) também são primeira versão, para revisão de advogado; os dados do responsável ficam em `src/content/juridico.ts`. Ao coletar um dado novo, usar um fornecedor novo ou mudar preço/regra do Premium, atualize esses textos e suba `VERSAO_CONSENTIMENTO`.
 
 ## Próximas etapas
-Lembretes de consulta (notificação/e-mail), PWA com modo offline. O que falta para lançar está na seção "Antes de lançar" do README.
+- Coletar feedback dos convidados do teste.
+- Ideias já conversadas e ainda não feitas: contador de movimentos do bebê (regra do protocolo: 6 movimentos em até 1 hora), diário de saúde (peso e pressão com gráfico), lembretes de consulta e de vencimento do Premium (dependem de e-mail próprio), PWA com modo offline.
+- O que falta para lançar de verdade está na seção "Antes de lançar" do README (revisão profissional dos textos, dados do responsável, CNPJ e nota fiscal, SMTP próprio, Mercado Pago em produção, plano pago da Vercel).

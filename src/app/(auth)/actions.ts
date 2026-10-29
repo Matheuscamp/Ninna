@@ -1,6 +1,6 @@
 "use server";
 
-import { isAuthRetryableFetchError } from "@supabase/supabase-js";
+import { isAuthRetryableFetchError, isAuthSessionMissingError } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { origem } from "@/lib/origem";
@@ -113,6 +113,68 @@ export async function cadastrar(_estado: EstadoForm, formData: FormData): Promis
   // Com confirmação de e-mail ligada no Supabase, ainda não há sessão.
   if (!data.session) return { enviado: true };
   redirect("/consentimento");
+}
+
+const novaSenhaPedidoSchema = z.object({
+  email: z.email({ error: "Informe um e-mail válido." }),
+});
+
+// Envia o link de recuperação. A resposta é a mesma exista ou não uma conta com
+// esse e-mail, para a tela não revelar quem tem cadastro.
+export async function pedirNovaSenha(_estado: EstadoForm, formData: FormData): Promise<EstadoForm> {
+  const valores = valoresDigitados(formData);
+  const campos = novaSenhaPedidoSchema.safeParse({ email: formData.get("email") });
+  if (!campos.success) return { erros: z.flattenError(campos.error).fieldErrors, valores };
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.resetPasswordForEmail(campos.data.email, {
+    redirectTo: `${await origem()}/auth/callback?next=/nova-senha`,
+  });
+  if (isAuthRetryableFetchError(error)) return { erro: SEM_CONEXAO, valores };
+  if (error?.code === "over_email_send_rate_limit" || error?.code === "over_request_rate_limit") {
+    return { erro: "Muitos pedidos em pouco tempo. Aguarde alguns minutos e tente de novo.", valores };
+  }
+  if (error) {
+    console.error("[nova senha] erro do Supabase:", error.code ?? "sem_codigo", error.status);
+    return { erro: "Não foi possível enviar o e-mail agora. Tente de novo em alguns minutos.", valores };
+  }
+
+  return { enviado: true, valores };
+}
+
+const novaSenhaSchema = z
+  .object({
+    senha: z.string().min(8, { error: "Use pelo menos 8 caracteres." }),
+    confirmacao: z.string(),
+  })
+  .refine((c) => c.senha === c.confirmacao, { error: "As senhas não são iguais.", path: ["confirmacao"] });
+
+const ERROS_NOVA_SENHA: Record<string, string> = {
+  same_password: "A nova senha precisa ser diferente da anterior.",
+  weak_password: ERROS_CADASTRO.weak_password,
+  over_request_rate_limit: ERROS_CADASTRO.over_request_rate_limit,
+};
+
+// Grava a nova senha. Chega aqui com a sessão aberta pelo link do e-mail (/auth/callback).
+export async function definirNovaSenha(_estado: EstadoForm, formData: FormData): Promise<EstadoForm> {
+  const campos = novaSenhaSchema.safeParse({ senha: formData.get("senha"), confirmacao: formData.get("confirmacao") });
+  if (!campos.success) return { erros: z.flattenError(campos.error).fieldErrors };
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.updateUser({ password: campos.data.senha });
+  if (isAuthRetryableFetchError(error)) return { erro: SEM_CONEXAO };
+  if (isAuthSessionMissingError(error)) {
+    return { erro: "Seu link expirou. Peça um novo em “Esqueci minha senha”." };
+  }
+  if (error) {
+    console.error("[nova senha] erro do Supabase:", error.code ?? "sem_codigo", error.status);
+    return { erro: (error.code && ERROS_NOVA_SENHA[error.code]) ?? "Não foi possível trocar a senha agora. Tente de novo." };
+  }
+
+  // Quem pediu a troca pode ter perdido o celular ou a senha vazado: encerra as
+  // sessões abertas em outros aparelhos. Se falhar, a senha nova já vale.
+  await supabase.auth.signOut({ scope: "others" });
+  return { enviado: true };
 }
 
 export async function sair() {

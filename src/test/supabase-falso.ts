@@ -26,6 +26,10 @@ export function criarSupabaseFalso() {
       signUp: vi.fn(),
       signInWithPassword: vi.fn(),
       signOut: vi.fn(async () => ({ error: null })),
+      resetPasswordForEmail: vi.fn(async () => ({ data: {}, error: null as unknown })),
+      updateUser: vi.fn(async () => ({ data: { user: { id: "usuaria-1" } }, error: null as unknown })),
+      exchangeCodeForSession: vi.fn(async () => ({ data: {}, error: null as unknown })),
+      verifyOtp: vi.fn(async () => ({ data: {}, error: null as unknown })),
     },
     from: vi.fn((tabela: string) => {
       const consulta = criarConsulta(resultados[tabela]);

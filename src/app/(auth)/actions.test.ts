@@ -1,4 +1,4 @@
-import { AuthApiError, AuthRetryableFetchError } from "@supabase/supabase-js";
+import { AuthApiError, AuthRetryableFetchError, AuthSessionMissingError } from "@supabase/supabase-js";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { criarSupabaseFalso, destinoDe } from "@/test/supabase-falso";
 
@@ -16,7 +16,7 @@ vi.mock("next/navigation", async () => {
   };
 });
 
-const { cadastrar, entrar } = await import("./actions");
+const { cadastrar, definirNovaSenha, entrar, pedirNovaSenha } = await import("./actions");
 
 function formulario(campos: Record<string, string>) {
   const fd = new FormData();
@@ -146,5 +146,64 @@ describe("login", () => {
     expect(r?.erros?.email).toBeDefined();
     expect(r?.erros?.senha).toBeDefined();
     expect(estado.falso.supabase.auth.signInWithPassword).not.toHaveBeenCalled();
+  });
+});
+
+describe("esqueci minha senha", () => {
+  it("envia o link que volta pelo /auth/callback para a tela de nova senha", async () => {
+    const r = await pedirNovaSenha(undefined, formulario({ email: VALIDO.email }));
+    expect(r).toEqual({ enviado: true, valores: { nome: undefined, email: VALIDO.email } });
+    expect(estado.falso.supabase.auth.resetPasswordForEmail).toHaveBeenCalledWith(VALIDO.email, {
+      redirectTo: "http://localhost:3000/auth/callback?next=/nova-senha",
+    });
+  });
+
+  it("valida o e-mail antes de chamar o Supabase", async () => {
+    const r = await pedirNovaSenha(undefined, formulario({ email: "nao-e-email" }));
+    expect(r?.erros?.email?.[0]).toBe("Informe um e-mail válido.");
+    expect(estado.falso.supabase.auth.resetPasswordForEmail).not.toHaveBeenCalled();
+  });
+
+  it("explica limite de envios e queda de conexão", async () => {
+    const tentar = async (error: unknown) => {
+      estado.falso.supabase.auth.resetPasswordForEmail.mockResolvedValue({ data: {}, error });
+      return (await pedirNovaSenha(undefined, formulario({ email: VALIDO.email })))?.erro;
+    };
+    expect(await tentar(new AuthApiError("x", 429, "over_email_send_rate_limit"))).toMatch(/Muitos pedidos/);
+    expect(await tentar(new AuthApiError("x", 429, "over_request_rate_limit"))).toMatch(/Muitos pedidos/);
+    expect(await tentar(new AuthRetryableFetchError("fetch failed", 0))).toMatch(/Confira sua internet/);
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    expect(await tentar(new AuthApiError("x", 500, "desconhecido"))).toMatch(/Não foi possível enviar/);
+  });
+});
+
+describe("nova senha", () => {
+  const senhas = (senha: string, confirmacao = senha) => formulario({ senha, confirmacao });
+
+  it("grava a senha e encerra as sessões dos outros aparelhos", async () => {
+    expect(await definirNovaSenha(undefined, senhas("novasenha456"))).toEqual({ enviado: true });
+    expect(estado.falso.supabase.auth.updateUser).toHaveBeenCalledWith({ password: "novasenha456" });
+    expect(estado.falso.supabase.auth.signOut).toHaveBeenCalledWith({ scope: "others" });
+  });
+
+  it("recusa senha curta ou diferente da confirmação sem chamar o Supabase", async () => {
+    expect((await definirNovaSenha(undefined, senhas("123")))?.erros?.senha?.[0]).toBe("Use pelo menos 8 caracteres.");
+    expect((await definirNovaSenha(undefined, senhas("novasenha456", "outrasenha789")))?.erros?.confirmacao?.[0]).toBe(
+      "As senhas não são iguais.",
+    );
+    expect(estado.falso.supabase.auth.updateUser).not.toHaveBeenCalled();
+  });
+
+  it("explica cada tipo de falha", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    const tentar = async (error: unknown) => {
+      estado.falso.supabase.auth.updateUser.mockResolvedValue({ data: { user: null } as never, error });
+      return (await definirNovaSenha(undefined, senhas("novasenha456")))?.erro;
+    };
+    expect(await tentar(new AuthSessionMissingError())).toMatch(/link expirou/);
+    expect(await tentar(new AuthApiError("x", 422, "same_password"))).toMatch(/diferente da anterior/);
+    expect(await tentar(new AuthApiError("x", 422, "weak_password"))).toMatch(/senha é muito fraca/);
+    expect(await tentar(new AuthRetryableFetchError("fetch failed", 0))).toMatch(/Confira sua internet/);
+    expect(estado.falso.supabase.auth.signOut).not.toHaveBeenCalled();
   });
 });

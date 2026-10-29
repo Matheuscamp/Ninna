@@ -71,7 +71,7 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 | `src/lib/dal.ts` | Único ponto que lê sessão, consentimento e perfil |
 | `src/lib/supabase/` | Clientes do Supabase para servidor e proxy |
 | `src/proxy.ts` | Renova a sessão e manda quem não está logada para `/entrar` |
-| `src/app/(auth)/` | Entrar, cadastro (e-mail e senha), sair |
+| `src/app/(auth)/` | Entrar, cadastro (e-mail e senha), esqueci minha senha (`/esqueci-senha` → link por e-mail → `/nova-senha`), sair |
 | `src/app/consentimento/` | Tela e registro do consentimento |
 | `src/app/triagem/` | Assistente da triagem e gravação |
 | `src/content/` | Conteúdo dos guias e artigos, com base na Caderneta Brasileira da Gestante (Ministério da Saúde, 2026); a revisar por profissional e depois vai para o CMS |
@@ -180,7 +180,8 @@ Itens que não se resolvem só com código:
   1. Crie uma conta no Resend e adicione o domínio do Ninna, configurando no DNS os registros que o Resend indicar (SPF e DKIM).
   2. No Supabase, em Authentication › Emails › SMTP Settings, ative o SMTP próprio com os dados do Resend (host `smtp.resend.com`, porta 465, usuário `resend`, senha = API key do Resend) e um remetente do domínio, como `nao-responda@seudominio`.
   3. Religue a confirmação de e-mail em Authentication › Sign In / Providers › Email › Confirm email.
-  4. Ajuste `NEXT_PUBLIC_SITE_URL` e as Redirect URLs para o domínio final.
+  4. Em Authentication › Emails › Templates › **Reset Password** (só dá para editar depois do SMTP próprio), troque o link do e-mail para `{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=recovery&next=/nova-senha` (em português, se quiser, no assunto e no texto). Com o modelo padrão, o link de nova senha só funciona no mesmo navegador em que o pedido foi feito.
+  5. Ajuste `NEXT_PUBLIC_SITE_URL` e as Redirect URLs para o domínio final.
 
 ## Scripts
 
