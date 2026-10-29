@@ -19,7 +19,7 @@ Já entregue: **login**, **consentimento LGPD**, **triagem** e o **painel** (In�
 
    Todas as tabelas têm RLS ligado.
 3. Copie `.env.example` para `.env.local` e preencha a URL e a publishable key do projeto.
-4. Em Authentication › URL Configuration, adicione `http://localhost:3000/auth/callback` às Redirect URLs.
+4. Em Authentication › URL Configuration, adicione `http://localhost:3000/**` às Redirect URLs (com `/**` no fim: os links levam `?next=...` e um endereço exato não aceita isso).
 5. Instale e rode:
 
 ```bash
@@ -154,7 +154,7 @@ Hospedagem na **Vercel** (plano Hobby, grátis), banco no **Supabase** (plano gr
 5. Volte em **Settings › Environment Variables**, cadastre `NEXT_PUBLIC_SITE_URL` com esse endereço e faça **Redeploy** (aba Deployments, menu do último deploy).
 6. No Supabase, em **Authentication › URL Configuration**:
    - **Site URL**: o endereço da Vercel;
-   - **Redirect URLs**: acrescente `https://SEU-ENDERECO.vercel.app/auth/callback` (mantenha o de localhost para continuar testando no computador).
+   - **Redirect URLs**: acrescente `https://SEU-ENDERECO.vercel.app/**` (mantenha o de localhost para continuar testando no computador; o `/**` no fim é necessário).
 7. Webhook do Mercado Pago (opcional no teste, porque a volta do checkout e o botão "Verificar pagamento" já liberam o Premium): em Suas integrações › Webhooks, cadastre `https://SEU-ENDERECO.vercel.app/api/mercadopago/webhook`, evento Pagamentos, e copie a assinatura para a variável `MERCADOPAGO_WEBHOOK_SECRET` na Vercel (e faça Redeploy).
 8. Abra o endereço, digite o código de convite e faça o caminho completo: triagem, cadastro, Premium de teste.
 
