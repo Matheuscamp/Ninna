@@ -1,0 +1,41 @@
+{
+  "titulo": "Amamentação nos primeiros dias",
+  "fonte": "Caderneta da Gestante (MS, 2026) e Protocolo de Pré-Natal (SMS Porto Alegre, 2026)",
+  "cenas": [
+    {
+      "id": "gancho",
+      "fala": "Amamentar é aprendizado, para você e para o bebê. Dificuldades no começo são comuns e quase sempre têm solução.",
+      "tela": "Bebê na bolha azul com coração flutuando."
+    },
+    {
+      "id": "quando",
+      "fala": "Nos primeiros meses, o bebê mama quando quer, de oito a doze vezes por dia. Não espere o choro: mão na boca, língua para fora e virar a cabeça procurando já são sinais de fome.",
+      "tela": "Contador de 8 a 12 mamadas; três sinais de fome entrando como cartões."
+    },
+    {
+      "id": "pega",
+      "fala": "Na pega certa, o bebê abocanha boa parte da aréola, não só o bico. Deixe ele esvaziar uma mama antes de oferecer a outra: o leite do fim é o que mais sustenta.",
+      "tela": "Esquema simples da pega (sem anatomia detalhada); barra de \"leite do fim\" enchendo."
+    },
+    {
+      "id": "cuidados",
+      "fala": "Para proteger o mamilo, passe o próprio leite antes e depois da mamada. E evite chupeta, mamadeira e protetor de mamilo: eles confundem o bebê.",
+      "tela": "Gota com visto; chupeta e mamadeira com símbolo de evitar."
+    },
+    {
+      "id": "sinal",
+      "fala": "Fralda com bastante xixi é sinal de que ele está mamando bem.",
+      "tela": "Fralda com visto verde."
+    },
+    {
+      "id": "alerta",
+      "fala": "Mama vermelha, quente e dolorida, com febre, pode ser mastite: procure a UBS e não pare de amamentar. E quem vive com HIV ou HTLV não deve amamentar; o bebê tem direito a fórmula de graça.",
+      "tela": "Fundo esquenta; termômetro; cartão \"procure a UBS\"."
+    },
+    {
+      "id": "encerramento",
+      "fala": "Leite materno é recomendado de forma exclusiva até os seis meses. No Ninna, você encontra mais apoio para o pós-parto.",
+      "tela": "Logo e corações."
+    }
+  ]
+}

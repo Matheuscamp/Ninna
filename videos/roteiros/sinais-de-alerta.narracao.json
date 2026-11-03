@@ -1,0 +1,938 @@
+{
+  "voz": "pt-BR-FranciscaNeural",
+  "cenas": {
+    "gancho": {
+      "duracao": 7.724,
+      "palavras": [
+        {
+          "text": " Na",
+          "startMs": 52,
+          "endMs": 221,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " gestação,",
+          "startMs": 234,
+          "endMs": 938,
+          "timestampMs": 234,
+          "confidence": null
+        },
+        {
+          "text": " alguns",
+          "startMs": 1146,
+          "endMs": 1523,
+          "timestampMs": 1146,
+          "confidence": null
+        },
+        {
+          "text": " sinais",
+          "startMs": 1536,
+          "endMs": 1966,
+          "timestampMs": 1536,
+          "confidence": null
+        },
+        {
+          "text": " pedem",
+          "startMs": 1979,
+          "endMs": 2318,
+          "timestampMs": 1979,
+          "confidence": null
+        },
+        {
+          "text": " atenção",
+          "startMs": 2331,
+          "endMs": 2800,
+          "timestampMs": 2331,
+          "confidence": null
+        },
+        {
+          "text": " na",
+          "startMs": 2813,
+          "endMs": 2969,
+          "timestampMs": 2813,
+          "confidence": null
+        },
+        {
+          "text": " hora.",
+          "startMs": 2982,
+          "endMs": 3307,
+          "timestampMs": 2982,
+          "confidence": null
+        },
+        {
+          "text": " Saber",
+          "startMs": 3581,
+          "endMs": 4037,
+          "timestampMs": 3581,
+          "confidence": null
+        },
+        {
+          "text": " reconhecer",
+          "startMs": 4050,
+          "endMs": 4648,
+          "timestampMs": 4050,
+          "confidence": null
+        },
+        {
+          "text": " cada",
+          "startMs": 4688,
+          "endMs": 4974,
+          "timestampMs": 4688,
+          "confidence": null
+        },
+        {
+          "text": " um",
+          "startMs": 4987,
+          "endMs": 5091,
+          "timestampMs": 4987,
+          "confidence": null
+        },
+        {
+          "text": " protege",
+          "startMs": 5104,
+          "endMs": 5664,
+          "timestampMs": 5104,
+          "confidence": null
+        },
+        {
+          "text": " você",
+          "startMs": 5677,
+          "endMs": 6094,
+          "timestampMs": 5677,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 6120,
+          "endMs": 6185,
+          "timestampMs": 6120,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 6198,
+          "endMs": 6250,
+          "timestampMs": 6198,
+          "confidence": null
+        },
+        {
+          "text": " seu",
+          "startMs": 6263,
+          "endMs": 6445,
+          "timestampMs": 6263,
+          "confidence": null
+        },
+        {
+          "text": " bebê.",
+          "startMs": 6458,
+          "endMs": 6875,
+          "timestampMs": 6458,
+          "confidence": null
+        }
+      ]
+    },
+    "barriga": {
+      "duracao": 7.371,
+      "palavras": [
+        {
+          "text": " Procure",
+          "startMs": 52,
+          "endMs": 417,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " atendimento",
+          "startMs": 430,
+          "endMs": 1120,
+          "timestampMs": 430,
+          "confidence": null
+        },
+        {
+          "text": " se",
+          "startMs": 1133,
+          "endMs": 1263,
+          "timestampMs": 1133,
+          "confidence": null
+        },
+        {
+          "text": " tiver",
+          "startMs": 1276,
+          "endMs": 1602,
+          "timestampMs": 1276,
+          "confidence": null
+        },
+        {
+          "text": " sangramento",
+          "startMs": 1615,
+          "endMs": 2292,
+          "timestampMs": 1615,
+          "confidence": null
+        },
+        {
+          "text": " pela",
+          "startMs": 2305,
+          "endMs": 2513,
+          "timestampMs": 2305,
+          "confidence": null
+        },
+        {
+          "text": " vagina,",
+          "startMs": 2526,
+          "endMs": 3073,
+          "timestampMs": 2526,
+          "confidence": null
+        },
+        {
+          "text": " perda",
+          "startMs": 3151,
+          "endMs": 3477,
+          "timestampMs": 3151,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 3490,
+          "endMs": 3581,
+          "timestampMs": 3490,
+          "confidence": null
+        },
+        {
+          "text": " líquido,",
+          "startMs": 3594,
+          "endMs": 4050,
+          "timestampMs": 3594,
+          "confidence": null
+        },
+        {
+          "text": " ou",
+          "startMs": 4284,
+          "endMs": 4427,
+          "timestampMs": 4284,
+          "confidence": null
+        },
+        {
+          "text": " dor",
+          "startMs": 4440,
+          "endMs": 4635,
+          "timestampMs": 4440,
+          "confidence": null
+        },
+        {
+          "text": " forte",
+          "startMs": 4648,
+          "endMs": 5104,
+          "timestampMs": 4648,
+          "confidence": null
+        },
+        {
+          "text": " na",
+          "startMs": 5117,
+          "endMs": 5221,
+          "timestampMs": 5117,
+          "confidence": null
+        },
+        {
+          "text": " barriga",
+          "startMs": 5234,
+          "endMs": 5703,
+          "timestampMs": 5234,
+          "confidence": null
+        },
+        {
+          "text": " que",
+          "startMs": 5716,
+          "endMs": 5820,
+          "timestampMs": 5716,
+          "confidence": null
+        },
+        {
+          "text": " não",
+          "startMs": 5833,
+          "endMs": 6029,
+          "timestampMs": 5833,
+          "confidence": null
+        },
+        {
+          "text": " passa.",
+          "startMs": 6042,
+          "endMs": 6523,
+          "timestampMs": 6042,
+          "confidence": null
+        }
+      ]
+    },
+    "pressao": {
+      "duracao": 11.446,
+      "palavras": [
+        {
+          "text": " Dor",
+          "startMs": 52,
+          "endMs": 339,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 352,
+          "endMs": 456,
+          "timestampMs": 352,
+          "confidence": null
+        },
+        {
+          "text": " cabeça",
+          "startMs": 469,
+          "endMs": 898,
+          "timestampMs": 469,
+          "confidence": null
+        },
+        {
+          "text": " forte,",
+          "startMs": 911,
+          "endMs": 1419,
+          "timestampMs": 911,
+          "confidence": null
+        },
+        {
+          "text": " visão",
+          "startMs": 1523,
+          "endMs": 1901,
+          "timestampMs": 1523,
+          "confidence": null
+        },
+        {
+          "text": " embaçada",
+          "startMs": 1914,
+          "endMs": 2604,
+          "timestampMs": 1914,
+          "confidence": null
+        },
+        {
+          "text": " ou",
+          "startMs": 2669,
+          "endMs": 2786,
+          "timestampMs": 2669,
+          "confidence": null
+        },
+        {
+          "text": " com",
+          "startMs": 2800,
+          "endMs": 2995,
+          "timestampMs": 2800,
+          "confidence": null
+        },
+        {
+          "text": " pontos",
+          "startMs": 3021,
+          "endMs": 3398,
+          "timestampMs": 3021,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 3411,
+          "endMs": 3503,
+          "timestampMs": 3411,
+          "confidence": null
+        },
+        {
+          "text": " luz,",
+          "startMs": 3516,
+          "endMs": 3880,
+          "timestampMs": 3516,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 4141,
+          "endMs": 4193,
+          "timestampMs": 4141,
+          "confidence": null
+        },
+        {
+          "text": " inchaço",
+          "startMs": 4206,
+          "endMs": 4701,
+          "timestampMs": 4206,
+          "confidence": null
+        },
+        {
+          "text": " repentino",
+          "startMs": 4714,
+          "endMs": 5299,
+          "timestampMs": 4714,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 5313,
+          "endMs": 5430,
+          "timestampMs": 5313,
+          "confidence": null
+        },
+        {
+          "text": " rosto,",
+          "startMs": 5443,
+          "endMs": 5885,
+          "timestampMs": 5443,
+          "confidence": null
+        },
+        {
+          "text": " nas",
+          "startMs": 6120,
+          "endMs": 6302,
+          "timestampMs": 6120,
+          "confidence": null
+        },
+        {
+          "text": " mãos",
+          "startMs": 6315,
+          "endMs": 6537,
+          "timestampMs": 6315,
+          "confidence": null
+        },
+        {
+          "text": " ou",
+          "startMs": 6550,
+          "endMs": 6693,
+          "timestampMs": 6550,
+          "confidence": null
+        },
+        {
+          "text": " nas",
+          "startMs": 6706,
+          "endMs": 6901,
+          "timestampMs": 6706,
+          "confidence": null
+        },
+        {
+          "text": " pernas",
+          "startMs": 6914,
+          "endMs": 7396,
+          "timestampMs": 6914,
+          "confidence": null
+        },
+        {
+          "text": " podem",
+          "startMs": 7409,
+          "endMs": 7721,
+          "timestampMs": 7409,
+          "confidence": null
+        },
+        {
+          "text": " ser",
+          "startMs": 7734,
+          "endMs": 7917,
+          "timestampMs": 7734,
+          "confidence": null
+        },
+        {
+          "text": " sinal",
+          "startMs": 7930,
+          "endMs": 8307,
+          "timestampMs": 7930,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 8320,
+          "endMs": 8411,
+          "timestampMs": 8320,
+          "confidence": null
+        },
+        {
+          "text": " pressão",
+          "startMs": 8425,
+          "endMs": 8815,
+          "timestampMs": 8425,
+          "confidence": null
+        },
+        {
+          "text": " alta.",
+          "startMs": 8828,
+          "endMs": 9219,
+          "timestampMs": 8828,
+          "confidence": null
+        },
+        {
+          "text": " Não",
+          "startMs": 9492,
+          "endMs": 9701,
+          "timestampMs": 9492,
+          "confidence": null
+        },
+        {
+          "text": " espere",
+          "startMs": 9714,
+          "endMs": 10104,
+          "timestampMs": 9714,
+          "confidence": null
+        },
+        {
+          "text": " passar.",
+          "startMs": 10117,
+          "endMs": 10599,
+          "timestampMs": 10117,
+          "confidence": null
+        }
+      ]
+    },
+    "outros": {
+      "duracao": 11.718,
+      "palavras": [
+        {
+          "text": " Febre",
+          "startMs": 52,
+          "endMs": 469,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 482,
+          "endMs": 625,
+          "timestampMs": 482,
+          "confidence": null
+        },
+        {
+          "text": " 37,8",
+          "startMs": 638,
+          "endMs": 2188,
+          "timestampMs": 638,
+          "confidence": null
+        },
+        {
+          "text": " ou",
+          "startMs": 2201,
+          "endMs": 2305,
+          "timestampMs": 2201,
+          "confidence": null
+        },
+        {
+          "text": " mais,",
+          "startMs": 2318,
+          "endMs": 2708,
+          "timestampMs": 2318,
+          "confidence": null
+        },
+        {
+          "text": " contrações",
+          "startMs": 2930,
+          "endMs": 3516,
+          "timestampMs": 2930,
+          "confidence": null
+        },
+        {
+          "text": " regulares",
+          "startMs": 3529,
+          "endMs": 4076,
+          "timestampMs": 3529,
+          "confidence": null
+        },
+        {
+          "text": " antes",
+          "startMs": 4089,
+          "endMs": 4492,
+          "timestampMs": 4089,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 4505,
+          "endMs": 4635,
+          "timestampMs": 4505,
+          "confidence": null
+        },
+        {
+          "text": " 37",
+          "startMs": 4648,
+          "endMs": 5352,
+          "timestampMs": 4648,
+          "confidence": null
+        },
+        {
+          "text": " semanas,",
+          "startMs": 5365,
+          "endMs": 6042,
+          "timestampMs": 5365,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 6211,
+          "endMs": 6315,
+          "timestampMs": 6211,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 6328,
+          "endMs": 6367,
+          "timestampMs": 6328,
+          "confidence": null
+        },
+        {
+          "text": " bebê",
+          "startMs": 6380,
+          "endMs": 6693,
+          "timestampMs": 6380,
+          "confidence": null
+        },
+        {
+          "text": " mexendo",
+          "startMs": 6706,
+          "endMs": 7227,
+          "timestampMs": 6706,
+          "confidence": null
+        },
+        {
+          "text": " menos",
+          "startMs": 7240,
+          "endMs": 7604,
+          "timestampMs": 7240,
+          "confidence": null
+        },
+        {
+          "text": " que",
+          "startMs": 7617,
+          "endMs": 7708,
+          "timestampMs": 7617,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 7721,
+          "endMs": 7760,
+          "timestampMs": 7721,
+          "confidence": null
+        },
+        {
+          "text": " normal",
+          "startMs": 7773,
+          "endMs": 8229,
+          "timestampMs": 7773,
+          "confidence": null
+        },
+        {
+          "text": " também",
+          "startMs": 8242,
+          "endMs": 8659,
+          "timestampMs": 8242,
+          "confidence": null
+        },
+        {
+          "text": " são",
+          "startMs": 8672,
+          "endMs": 8828,
+          "timestampMs": 8672,
+          "confidence": null
+        },
+        {
+          "text": " motivos",
+          "startMs": 8841,
+          "endMs": 9375,
+          "timestampMs": 8841,
+          "confidence": null
+        },
+        {
+          "text": " para",
+          "startMs": 9388,
+          "endMs": 9583,
+          "timestampMs": 9388,
+          "confidence": null
+        },
+        {
+          "text": " procurar",
+          "startMs": 9596,
+          "endMs": 10078,
+          "timestampMs": 9596,
+          "confidence": null
+        },
+        {
+          "text": " atendimento.",
+          "startMs": 10091,
+          "endMs": 10859,
+          "timestampMs": 10091,
+          "confidence": null
+        }
+      ]
+    },
+    "emergencia": {
+      "duracao": 7.437,
+      "palavras": [
+        {
+          "text": " Falta",
+          "startMs": 52,
+          "endMs": 495,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 508,
+          "endMs": 651,
+          "timestampMs": 508,
+          "confidence": null
+        },
+        {
+          "text": " ar,",
+          "startMs": 664,
+          "endMs": 885,
+          "timestampMs": 664,
+          "confidence": null
+        },
+        {
+          "text": " dor",
+          "startMs": 1029,
+          "endMs": 1237,
+          "timestampMs": 1029,
+          "confidence": null
+        },
+        {
+          "text": " forte",
+          "startMs": 1250,
+          "endMs": 1693,
+          "timestampMs": 1250,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 1706,
+          "endMs": 1823,
+          "timestampMs": 1706,
+          "confidence": null
+        },
+        {
+          "text": " peito,",
+          "startMs": 1836,
+          "endMs": 2240,
+          "timestampMs": 1836,
+          "confidence": null
+        },
+        {
+          "text": " desmaio",
+          "startMs": 2331,
+          "endMs": 2956,
+          "timestampMs": 2331,
+          "confidence": null
+        },
+        {
+          "text": " ou",
+          "startMs": 2982,
+          "endMs": 3112,
+          "timestampMs": 2982,
+          "confidence": null
+        },
+        {
+          "text": " convulsão",
+          "startMs": 3125,
+          "endMs": 3711,
+          "timestampMs": 3125,
+          "confidence": null
+        },
+        {
+          "text": " são",
+          "startMs": 3724,
+          "endMs": 3945,
+          "timestampMs": 3724,
+          "confidence": null
+        },
+        {
+          "text": " emergência:",
+          "startMs": 3958,
+          "endMs": 4687,
+          "timestampMs": 3958,
+          "confidence": null
+        },
+        {
+          "text": " ligue",
+          "startMs": 4870,
+          "endMs": 5117,
+          "timestampMs": 4870,
+          "confidence": null
+        },
+        {
+          "text": " 192,",
+          "startMs": 5130,
+          "endMs": 5951,
+          "timestampMs": 5130,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 6107,
+          "endMs": 6159,
+          "timestampMs": 6107,
+          "confidence": null
+        },
+        {
+          "text": " SAMU.",
+          "startMs": 6172,
+          "endMs": 6589,
+          "timestampMs": 6172,
+          "confidence": null
+        }
+      ]
+    },
+    "encerramento": {
+      "duracao": 9.776,
+      "palavras": [
+        {
+          "text": " Esses",
+          "startMs": 52,
+          "endMs": 404,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " são",
+          "startMs": 417,
+          "endMs": 599,
+          "timestampMs": 417,
+          "confidence": null
+        },
+        {
+          "text": " os",
+          "startMs": 612,
+          "endMs": 716,
+          "timestampMs": 612,
+          "confidence": null
+        },
+        {
+          "text": " principais.",
+          "startMs": 729,
+          "endMs": 1576,
+          "timestampMs": 729,
+          "confidence": null
+        },
+        {
+          "text": " A",
+          "startMs": 1849,
+          "endMs": 1940,
+          "timestampMs": 1849,
+          "confidence": null
+        },
+        {
+          "text": " lista",
+          "startMs": 1953,
+          "endMs": 2305,
+          "timestampMs": 1953,
+          "confidence": null
+        },
+        {
+          "text": " completa",
+          "startMs": 2318,
+          "endMs": 2891,
+          "timestampMs": 2318,
+          "confidence": null
+        },
+        {
+          "text": " está",
+          "startMs": 2904,
+          "endMs": 3151,
+          "timestampMs": 2904,
+          "confidence": null
+        },
+        {
+          "text": " na",
+          "startMs": 3164,
+          "endMs": 3281,
+          "timestampMs": 3164,
+          "confidence": null
+        },
+        {
+          "text": " seção",
+          "startMs": 3294,
+          "endMs": 3685,
+          "timestampMs": 3294,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 3698,
+          "endMs": 3776,
+          "timestampMs": 3698,
+          "confidence": null
+        },
+        {
+          "text": " alertas",
+          "startMs": 3789,
+          "endMs": 4297,
+          "timestampMs": 3789,
+          "confidence": null
+        },
+        {
+          "text": " do",
+          "startMs": 4310,
+          "endMs": 4427,
+          "timestampMs": 4310,
+          "confidence": null
+        },
+        {
+          "text": " Ninna.",
+          "startMs": 4440,
+          "endMs": 4844,
+          "timestampMs": 4440,
+          "confidence": null
+        },
+        {
+          "text": " Na",
+          "startMs": 5117,
+          "endMs": 5313,
+          "timestampMs": 5117,
+          "confidence": null
+        },
+        {
+          "text": " dúvida,",
+          "startMs": 5326,
+          "endMs": 5781,
+          "timestampMs": 5326,
+          "confidence": null
+        },
+        {
+          "text": " procure",
+          "startMs": 5807,
+          "endMs": 6211,
+          "timestampMs": 5807,
+          "confidence": null
+        },
+        {
+          "text": " atendimento:",
+          "startMs": 6224,
+          "endMs": 6992,
+          "timestampMs": 6224,
+          "confidence": null
+        },
+        {
+          "text": " você",
+          "startMs": 7266,
+          "endMs": 7526,
+          "timestampMs": 7266,
+          "confidence": null
+        },
+        {
+          "text": " nunca",
+          "startMs": 7539,
+          "endMs": 7891,
+          "timestampMs": 7539,
+          "confidence": null
+        },
+        {
+          "text": " está",
+          "startMs": 7904,
+          "endMs": 8138,
+          "timestampMs": 7904,
+          "confidence": null
+        },
+        {
+          "text": " exagerando.",
+          "startMs": 8151,
+          "endMs": 8919,
+          "timestampMs": 8151,
+          "confidence": null
+        }
+      ]
+    }
+  }
+}

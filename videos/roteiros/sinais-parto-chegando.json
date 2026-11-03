@@ -1,0 +1,36 @@
+{
+  "titulo": "Como saber se o parto está chegando",
+  "fonte": "Caderneta da Gestante (MS, 2026)",
+  "cenas": [
+    {
+      "id": "gancho",
+      "fala": "Será que chegou a hora? A partir de trinta e sete semanas, o corpo começa a dar sinais de que o parto está chegando.",
+      "tela": "Calendário virando até 37 semanas; bebê na bolha balançando."
+    },
+    {
+      "id": "treino",
+      "fala": "Primeiro vêm as contrações de treinamento: irregulares, parecidas com cólica, curtas e com intervalos longos. Elas podem durar horas ou até dias.",
+      "tela": "Linha de contrações com picos baixos e espaçados, desenhando-se."
+    },
+    {
+      "id": "latente",
+      "fala": "Depois, na fase latente, as contrações não somem mais, mas ainda não têm ritmo. Dá para ficar em casa: descanse, coma algo leve, tome um banho morno e peça uma massagem.",
+      "tela": "Casa com quatro cartões de conforto (cama, prato, chuveiro, mãos)."
+    },
+    {
+      "id": "ativa",
+      "fala": "Na fase ativa, as contrações ficam fortes e regulares, a cada dois ou três minutos. Essa é a hora de ir para a maternidade.",
+      "tela": "Picos altos e regulares; relógio marcando 2–3 min; cartão \"Hora da maternidade\"."
+    },
+    {
+      "id": "bolsa",
+      "fala": "Se a bolsa romper, observe a cor do líquido. Verde ou amarelo precisa de avaliação rápida. E, na dúvida se rompeu, vá ser avaliada.",
+      "tela": "Gota mudando de cor: transparente (ok) → verde/amarelo (alerta)."
+    },
+    {
+      "id": "encerramento",
+      "fala": "Use o contador de contrações do Ninna para acompanhar o ritmo. Boa hora!",
+      "tela": "Tela do contador de contrações; logo e \"Boa hora!\"."
+    }
+  ]
+}

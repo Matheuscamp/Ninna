@@ -1,0 +1,36 @@
+{
+  "titulo": "Primeira consulta de pré-natal",
+  "fonte": "Caderneta da Gestante (MS, 2026) e Protocolo de Pré-Natal (SMS Porto Alegre, 2026)",
+  "cenas": [
+    {
+      "id": "gancho",
+      "fala": "Vai começar o pré-natal? Que bom! Comece o quanto antes, de preferência até a décima segunda semana. É de graça na UBS.",
+      "tela": "Prancheta com visto; selo \"até a 12ª semana\"."
+    },
+    {
+      "id": "ritmo",
+      "fala": "São pelo menos sete consultas, alternando médica e enfermeira. Elas ficam mais frequentes perto do fim: mensais até vinte e oito semanas, a cada quinze dias até trinta e seis, e semanais até o parto.",
+      "tela": "Linha do tempo com bolinhas que ficam mais próximas umas das outras."
+    },
+    {
+      "id": "consulta",
+      "fala": "Em toda consulta, a equipe mede sua pressão e seu peso, ouve o coração do bebê a partir de doze semanas, confere as vacinas e explica os exames.",
+      "tela": "Quatro ícones entrando: pressão, balança, coração batendo, seringa."
+    },
+    {
+      "id": "contar",
+      "fala": "Na primeira consulta, conte tudo: remédios que você usa, alergias, gestações anteriores, doenças na família, e se você se sente segura em casa.",
+      "tela": "Lista que se preenche item a item."
+    },
+    {
+      "id": "levar",
+      "fala": "Leve documento, cartão do SUS ou do convênio, a caderneta da gestante e uma lista de dúvidas. Você pode levar um acompanhante.",
+      "tela": "Bolsa recebendo os itens um a um."
+    },
+    {
+      "id": "encerramento",
+      "fala": "E lembre: o pré-natal não tem alta. Ele segue até depois do parto. No Ninna, você organiza as consultas na agenda.",
+      "tela": "Tela da agenda do Ninna; logo."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "titulo": "Como contar os movimentos do bebê",
+  "fonte": "Caderneta da Gestante (MS, 2026) e Protocolo de Pré-Natal (SMS Porto Alegre, 2026)",
+  "cenas": [
+    {
+      "id": "gancho",
+      "fala": "Sabia que o seu bebê conversa com você antes mesmo de nascer? Cada chute, cada virada, é um sinal de que ele está bem. E dá para acompanhar isso em casa."
+    },
+    {
+      "id": "quando",
+      "fala": "Você começa a sentir o bebê mexer no segundo trimestre. Se já teve filhos, costuma sentir mais cedo. Movimentos ativos e frequentes são um ótimo sinal."
+    },
+    {
+      "id": "como",
+      "fala": "Funciona assim: depois de uma refeição, escolha um momento tranquilo. Sente-se, coloque a mão na barriga e conte cada movimento."
+    },
+    {
+      "id": "meta",
+      "fala": "A meta é chegar a seis movimentos em até uma hora. Chegou a seis antes disso? Pode parar. Está tudo certo!"
+    },
+    {
+      "id": "alerta",
+      "fala": "Agora, atenção. Não chegou a seis em uma hora? Conte por mais uma hora. Se de novo forem menos de seis, procure atendimento na hora."
+    },
+    {
+      "id": "urgente",
+      "fala": "E se o bebê ficar doze horas sem mexer durante o seu dia normal, não espere: vá à maternidade imediatamente."
+    },
+    {
+      "id": "fatores",
+      "fala": "Cansaço, remédios que dão sono, álcool e cigarro podem diminuir os movimentos. Na dúvida, procure atendimento."
+    },
+    {
+      "id": "encerramento",
+      "fala": "No Ninna, você encontra esse passo a passo e muito mais para cada fase da sua gestação. Cuide-se!"
+    }
+  ]
+}

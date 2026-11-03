@@ -1,0 +1,30 @@
+{
+  "name": "ninna-videos",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "narracao": "node --env-file=.env narracao.mjs",
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts",
+    "sons": "node sons.mjs",
+    "conferir": "node conferir.mjs",
+    "publicar": "node publicar.mjs"
+  },
+  "dependencies": {
+    "@remotion/captions": "4.0.539",
+    "@remotion/cli": "^4.0.539",
+    "@remotion/effects": "4.0.539",
+    "@remotion/google-fonts": "^4.0.539",
+    "@remotion/media": "4.0.539",
+    "@remotion/rough-notation": "4.0.539",
+    "@remotion/transitions": "4.0.539",
+    "microsoft-cognitiveservices-speech-sdk": "^1.53.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "titulo": "Sinais de alerta: quando procurar atendimento",
+  "fonte": "Caderneta da Gestante (MS, 2026)",
+  "cenas": [
+    {
+      "id": "gancho",
+      "fala": "Na gestação, alguns sinais pedem atenção na hora. Saber reconhecer cada um protege você e o seu bebê.",
+      "tela": "Selo \"Atenção\" balançando, bolha com coração pulsando."
+    },
+    {
+      "id": "barriga",
+      "fala": "Procure atendimento se tiver sangramento pela vagina, perda de líquido, ou dor forte na barriga que não passa.",
+      "tela": "Três cartões em tom de alerta entram um a um, junto com cada sinal."
+    },
+    {
+      "id": "pressao",
+      "fala": "Dor de cabeça forte, visão embaçada ou com pontos de luz, e inchaço repentino no rosto, nas mãos ou nas pernas podem ser sinal de pressão alta. Não espere passar.",
+      "tela": "Medidor de pressão subindo até a faixa vermelha; ícones de cabeça, olho e mão inchada."
+    },
+    {
+      "id": "outros",
+      "fala": "Febre de trinta e sete vírgula oito ou mais, contrações regulares antes de trinta e sete semanas, e o bebê mexendo menos que o normal também são motivos para procurar atendimento.",
+      "tela": "Termômetro subindo, relógio de contrações, bebê com ondas fracas."
+    },
+    {
+      "id": "emergencia",
+      "fala": "Falta de ar, dor forte no peito, desmaio ou convulsão são emergência: ligue um nove dois, o SAMU.",
+      "tela": "Tela vermelha com \"192\" grande pulsando."
+    },
+    {
+      "id": "encerramento",
+      "fala": "Esses são os principais. A lista completa está na seção de alertas do Ninna. Na dúvida, procure atendimento: você nunca está exagerando.",
+      "tela": "Logo, \"Na dúvida, procure atendimento\" com marca-texto."
+    }
+  ]
+}

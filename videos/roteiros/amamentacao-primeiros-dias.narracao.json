@@ -1,0 +1,1300 @@
+{
+  "voz": "pt-BR-FranciscaNeural",
+  "cenas": {
+    "gancho": {
+      "duracao": 8.009,
+      "palavras": [
+        {
+          "text": " Amamentar",
+          "startMs": 52,
+          "endMs": 664,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " é",
+          "startMs": 677,
+          "endMs": 742,
+          "timestampMs": 677,
+          "confidence": null
+        },
+        {
+          "text": " aprendizado,",
+          "startMs": 755,
+          "endMs": 1536,
+          "timestampMs": 755,
+          "confidence": null
+        },
+        {
+          "text": " para",
+          "startMs": 1563,
+          "endMs": 1771,
+          "timestampMs": 1563,
+          "confidence": null
+        },
+        {
+          "text": " você",
+          "startMs": 1784,
+          "endMs": 2201,
+          "timestampMs": 1784,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 2227,
+          "endMs": 2318,
+          "timestampMs": 2227,
+          "confidence": null
+        },
+        {
+          "text": " para",
+          "startMs": 2331,
+          "endMs": 2500,
+          "timestampMs": 2331,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 2513,
+          "endMs": 2539,
+          "timestampMs": 2513,
+          "confidence": null
+        },
+        {
+          "text": " bebê.",
+          "startMs": 2552,
+          "endMs": 2969,
+          "timestampMs": 2552,
+          "confidence": null
+        },
+        {
+          "text": " Dificuldades",
+          "startMs": 3242,
+          "endMs": 4115,
+          "timestampMs": 3242,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 4128,
+          "endMs": 4232,
+          "timestampMs": 4128,
+          "confidence": null
+        },
+        {
+          "text": " começo",
+          "startMs": 4245,
+          "endMs": 4740,
+          "timestampMs": 4245,
+          "confidence": null
+        },
+        {
+          "text": " são",
+          "startMs": 4753,
+          "endMs": 4961,
+          "timestampMs": 4753,
+          "confidence": null
+        },
+        {
+          "text": " comuns",
+          "startMs": 4974,
+          "endMs": 5378,
+          "timestampMs": 4974,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 5391,
+          "endMs": 5521,
+          "timestampMs": 5391,
+          "confidence": null
+        },
+        {
+          "text": " quase",
+          "startMs": 5547,
+          "endMs": 5911,
+          "timestampMs": 5547,
+          "confidence": null
+        },
+        {
+          "text": " sempre",
+          "startMs": 5925,
+          "endMs": 6354,
+          "timestampMs": 5925,
+          "confidence": null
+        },
+        {
+          "text": " têm",
+          "startMs": 6367,
+          "endMs": 6523,
+          "timestampMs": 6367,
+          "confidence": null
+        },
+        {
+          "text": " solução.",
+          "startMs": 6536,
+          "endMs": 7161,
+          "timestampMs": 6536,
+          "confidence": null
+        }
+      ]
+    },
+    "quando": {
+      "duracao": 12.137,
+      "palavras": [
+        {
+          "text": " Nos",
+          "startMs": 52,
+          "endMs": 234,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " primeiros",
+          "startMs": 247,
+          "endMs": 729,
+          "timestampMs": 247,
+          "confidence": null
+        },
+        {
+          "text": " meses,",
+          "startMs": 742,
+          "endMs": 1172,
+          "timestampMs": 742,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 1315,
+          "endMs": 1367,
+          "timestampMs": 1315,
+          "confidence": null
+        },
+        {
+          "text": " bebê",
+          "startMs": 1380,
+          "endMs": 1680,
+          "timestampMs": 1380,
+          "confidence": null
+        },
+        {
+          "text": " mama",
+          "startMs": 1693,
+          "endMs": 2044,
+          "timestampMs": 1693,
+          "confidence": null
+        },
+        {
+          "text": " quando",
+          "startMs": 2057,
+          "endMs": 2344,
+          "timestampMs": 2057,
+          "confidence": null
+        },
+        {
+          "text": " quer,",
+          "startMs": 2357,
+          "endMs": 2669,
+          "timestampMs": 2357,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 2878,
+          "endMs": 3021,
+          "timestampMs": 2878,
+          "confidence": null
+        },
+        {
+          "text": " 8",
+          "startMs": 3034,
+          "endMs": 3333,
+          "timestampMs": 3034,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 3346,
+          "endMs": 3425,
+          "timestampMs": 3346,
+          "confidence": null
+        },
+        {
+          "text": " 12",
+          "startMs": 3438,
+          "endMs": 3802,
+          "timestampMs": 3438,
+          "confidence": null
+        },
+        {
+          "text": " vezes",
+          "startMs": 3815,
+          "endMs": 4154,
+          "timestampMs": 3815,
+          "confidence": null
+        },
+        {
+          "text": " por",
+          "startMs": 4167,
+          "endMs": 4362,
+          "timestampMs": 4167,
+          "confidence": null
+        },
+        {
+          "text": " dia.",
+          "startMs": 4375,
+          "endMs": 4766,
+          "timestampMs": 4375,
+          "confidence": null
+        },
+        {
+          "text": " Não",
+          "startMs": 5039,
+          "endMs": 5247,
+          "timestampMs": 5039,
+          "confidence": null
+        },
+        {
+          "text": " espere",
+          "startMs": 5260,
+          "endMs": 5625,
+          "timestampMs": 5260,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 5638,
+          "endMs": 5677,
+          "timestampMs": 5638,
+          "confidence": null
+        },
+        {
+          "text": " choro:",
+          "startMs": 5690,
+          "endMs": 6120,
+          "timestampMs": 5690,
+          "confidence": null
+        },
+        {
+          "text": " mão",
+          "startMs": 6354,
+          "endMs": 6510,
+          "timestampMs": 6354,
+          "confidence": null
+        },
+        {
+          "text": " na",
+          "startMs": 6523,
+          "endMs": 6667,
+          "timestampMs": 6523,
+          "confidence": null
+        },
+        {
+          "text": " boca,",
+          "startMs": 6680,
+          "endMs": 7122,
+          "timestampMs": 6680,
+          "confidence": null
+        },
+        {
+          "text": " língua",
+          "startMs": 7318,
+          "endMs": 7643,
+          "timestampMs": 7318,
+          "confidence": null
+        },
+        {
+          "text": " para",
+          "startMs": 7656,
+          "endMs": 7878,
+          "timestampMs": 7656,
+          "confidence": null
+        },
+        {
+          "text": " fora",
+          "startMs": 7891,
+          "endMs": 8320,
+          "timestampMs": 7891,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 8333,
+          "endMs": 8385,
+          "timestampMs": 8333,
+          "confidence": null
+        },
+        {
+          "text": " virar",
+          "startMs": 8398,
+          "endMs": 8698,
+          "timestampMs": 8398,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 8711,
+          "endMs": 8763,
+          "timestampMs": 8711,
+          "confidence": null
+        },
+        {
+          "text": " cabeça",
+          "startMs": 8776,
+          "endMs": 9271,
+          "timestampMs": 8776,
+          "confidence": null
+        },
+        {
+          "text": " procurando",
+          "startMs": 9284,
+          "endMs": 9896,
+          "timestampMs": 9284,
+          "confidence": null
+        },
+        {
+          "text": " já",
+          "startMs": 9909,
+          "endMs": 10052,
+          "timestampMs": 9909,
+          "confidence": null
+        },
+        {
+          "text": " são",
+          "startMs": 10065,
+          "endMs": 10300,
+          "timestampMs": 10065,
+          "confidence": null
+        },
+        {
+          "text": " sinais",
+          "startMs": 10313,
+          "endMs": 10729,
+          "timestampMs": 10313,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 10742,
+          "endMs": 10833,
+          "timestampMs": 10742,
+          "confidence": null
+        },
+        {
+          "text": " fome.",
+          "startMs": 10846,
+          "endMs": 11289,
+          "timestampMs": 10846,
+          "confidence": null
+        }
+      ]
+    },
+    "pega": {
+      "duracao": 10.907,
+      "palavras": [
+        {
+          "text": " Na",
+          "startMs": 52,
+          "endMs": 208,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " pega",
+          "startMs": 221,
+          "endMs": 482,
+          "timestampMs": 221,
+          "confidence": null
+        },
+        {
+          "text": " certa,",
+          "startMs": 495,
+          "endMs": 1016,
+          "timestampMs": 495,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 1198,
+          "endMs": 1263,
+          "timestampMs": 1198,
+          "confidence": null
+        },
+        {
+          "text": " bebê",
+          "startMs": 1276,
+          "endMs": 1576,
+          "timestampMs": 1276,
+          "confidence": null
+        },
+        {
+          "text": " abocanha",
+          "startMs": 1589,
+          "endMs": 2122,
+          "timestampMs": 1589,
+          "confidence": null
+        },
+        {
+          "text": " boa",
+          "startMs": 2135,
+          "endMs": 2461,
+          "timestampMs": 2135,
+          "confidence": null
+        },
+        {
+          "text": " parte",
+          "startMs": 2474,
+          "endMs": 2799,
+          "timestampMs": 2474,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 2813,
+          "endMs": 2904,
+          "timestampMs": 2813,
+          "confidence": null
+        },
+        {
+          "text": " aréola,",
+          "startMs": 2917,
+          "endMs": 3333,
+          "timestampMs": 2917,
+          "confidence": null
+        },
+        {
+          "text": " não",
+          "startMs": 3385,
+          "endMs": 3581,
+          "timestampMs": 3385,
+          "confidence": null
+        },
+        {
+          "text": " só",
+          "startMs": 3594,
+          "endMs": 3802,
+          "timestampMs": 3594,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 3815,
+          "endMs": 3867,
+          "timestampMs": 3815,
+          "confidence": null
+        },
+        {
+          "text": " bico.",
+          "startMs": 3880,
+          "endMs": 4284,
+          "timestampMs": 3880,
+          "confidence": null
+        },
+        {
+          "text": " Deixe",
+          "startMs": 4557,
+          "endMs": 4909,
+          "timestampMs": 4557,
+          "confidence": null
+        },
+        {
+          "text": " ele",
+          "startMs": 4922,
+          "endMs": 5013,
+          "timestampMs": 4922,
+          "confidence": null
+        },
+        {
+          "text": " esvaziar",
+          "startMs": 5026,
+          "endMs": 5586,
+          "timestampMs": 5026,
+          "confidence": null
+        },
+        {
+          "text": " uma",
+          "startMs": 5599,
+          "endMs": 5729,
+          "timestampMs": 5599,
+          "confidence": null
+        },
+        {
+          "text": " mama",
+          "startMs": 5742,
+          "endMs": 6068,
+          "timestampMs": 5742,
+          "confidence": null
+        },
+        {
+          "text": " antes",
+          "startMs": 6120,
+          "endMs": 6484,
+          "timestampMs": 6120,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 6497,
+          "endMs": 6563,
+          "timestampMs": 6497,
+          "confidence": null
+        },
+        {
+          "text": " oferecer",
+          "startMs": 6576,
+          "endMs": 7057,
+          "timestampMs": 6576,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 7070,
+          "endMs": 7214,
+          "timestampMs": 7070,
+          "confidence": null
+        },
+        {
+          "text": " outra:",
+          "startMs": 7227,
+          "endMs": 7617,
+          "timestampMs": 7227,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 7904,
+          "endMs": 7969,
+          "timestampMs": 7904,
+          "confidence": null
+        },
+        {
+          "text": " leite",
+          "startMs": 7982,
+          "endMs": 8307,
+          "timestampMs": 7982,
+          "confidence": null
+        },
+        {
+          "text": " do",
+          "startMs": 8320,
+          "endMs": 8438,
+          "timestampMs": 8320,
+          "confidence": null
+        },
+        {
+          "text": " fim",
+          "startMs": 8451,
+          "endMs": 8802,
+          "timestampMs": 8451,
+          "confidence": null
+        },
+        {
+          "text": " é",
+          "startMs": 8854,
+          "endMs": 8932,
+          "timestampMs": 8854,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 8945,
+          "endMs": 9010,
+          "timestampMs": 8945,
+          "confidence": null
+        },
+        {
+          "text": " que",
+          "startMs": 9023,
+          "endMs": 9141,
+          "timestampMs": 9023,
+          "confidence": null
+        },
+        {
+          "text": " mais",
+          "startMs": 9154,
+          "endMs": 9401,
+          "timestampMs": 9154,
+          "confidence": null
+        },
+        {
+          "text": " sustenta.",
+          "startMs": 9414,
+          "endMs": 10052,
+          "timestampMs": 9414,
+          "confidence": null
+        }
+      ]
+    },
+    "cuidados": {
+      "duracao": 9.792,
+      "palavras": [
+        {
+          "text": " Para",
+          "startMs": 52,
+          "endMs": 247,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " proteger",
+          "startMs": 260,
+          "endMs": 794,
+          "timestampMs": 260,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 807,
+          "endMs": 846,
+          "timestampMs": 807,
+          "confidence": null
+        },
+        {
+          "text": " mamilo,",
+          "startMs": 859,
+          "endMs": 1367,
+          "timestampMs": 859,
+          "confidence": null
+        },
+        {
+          "text": " passe",
+          "startMs": 1432,
+          "endMs": 1745,
+          "timestampMs": 1432,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 1758,
+          "endMs": 1810,
+          "timestampMs": 1758,
+          "confidence": null
+        },
+        {
+          "text": " próprio",
+          "startMs": 1823,
+          "endMs": 2214,
+          "timestampMs": 1823,
+          "confidence": null
+        },
+        {
+          "text": " leite",
+          "startMs": 2227,
+          "endMs": 2591,
+          "timestampMs": 2227,
+          "confidence": null
+        },
+        {
+          "text": " antes",
+          "startMs": 2604,
+          "endMs": 2917,
+          "timestampMs": 2604,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 2930,
+          "endMs": 3073,
+          "timestampMs": 2930,
+          "confidence": null
+        },
+        {
+          "text": " depois",
+          "startMs": 3151,
+          "endMs": 3542,
+          "timestampMs": 3151,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 3555,
+          "endMs": 3659,
+          "timestampMs": 3555,
+          "confidence": null
+        },
+        {
+          "text": " mamada.",
+          "startMs": 3672,
+          "endMs": 4232,
+          "timestampMs": 3672,
+          "confidence": null
+        },
+        {
+          "text": " E",
+          "startMs": 4505,
+          "endMs": 4622,
+          "timestampMs": 4505,
+          "confidence": null
+        },
+        {
+          "text": " evite",
+          "startMs": 4635,
+          "endMs": 4974,
+          "timestampMs": 4635,
+          "confidence": null
+        },
+        {
+          "text": " chupeta,",
+          "startMs": 4987,
+          "endMs": 5586,
+          "timestampMs": 4987,
+          "confidence": null
+        },
+        {
+          "text": " mamadeira",
+          "startMs": 5625,
+          "endMs": 6185,
+          "timestampMs": 5625,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 6198,
+          "endMs": 6250,
+          "timestampMs": 6198,
+          "confidence": null
+        },
+        {
+          "text": " protetor",
+          "startMs": 6263,
+          "endMs": 6797,
+          "timestampMs": 6263,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 6810,
+          "endMs": 6901,
+          "timestampMs": 6810,
+          "confidence": null
+        },
+        {
+          "text": " mamilo:",
+          "startMs": 6914,
+          "endMs": 7422,
+          "timestampMs": 6914,
+          "confidence": null
+        },
+        {
+          "text": " eles",
+          "startMs": 7643,
+          "endMs": 7878,
+          "timestampMs": 7643,
+          "confidence": null
+        },
+        {
+          "text": " confundem",
+          "startMs": 7891,
+          "endMs": 8464,
+          "timestampMs": 7891,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 8477,
+          "endMs": 8529,
+          "timestampMs": 8477,
+          "confidence": null
+        },
+        {
+          "text": " bebê.",
+          "startMs": 8542,
+          "endMs": 8945,
+          "timestampMs": 8542,
+          "confidence": null
+        }
+      ]
+    },
+    "sinal": {
+      "duracao": 4.259,
+      "palavras": [
+        {
+          "text": " Fralda",
+          "startMs": 52,
+          "endMs": 469,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " com",
+          "startMs": 482,
+          "endMs": 612,
+          "timestampMs": 482,
+          "confidence": null
+        },
+        {
+          "text": " bastante",
+          "startMs": 625,
+          "endMs": 1146,
+          "timestampMs": 625,
+          "confidence": null
+        },
+        {
+          "text": " xixi",
+          "startMs": 1159,
+          "endMs": 1497,
+          "timestampMs": 1159,
+          "confidence": null
+        },
+        {
+          "text": " é",
+          "startMs": 1510,
+          "endMs": 1576,
+          "timestampMs": 1510,
+          "confidence": null
+        },
+        {
+          "text": " sinal",
+          "startMs": 1589,
+          "endMs": 2018,
+          "timestampMs": 1589,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 2031,
+          "endMs": 2148,
+          "timestampMs": 2031,
+          "confidence": null
+        },
+        {
+          "text": " que",
+          "startMs": 2161,
+          "endMs": 2266,
+          "timestampMs": 2161,
+          "confidence": null
+        },
+        {
+          "text": " ele",
+          "startMs": 2279,
+          "endMs": 2435,
+          "timestampMs": 2279,
+          "confidence": null
+        },
+        {
+          "text": " está",
+          "startMs": 2448,
+          "endMs": 2682,
+          "timestampMs": 2448,
+          "confidence": null
+        },
+        {
+          "text": " mamando",
+          "startMs": 2695,
+          "endMs": 3086,
+          "timestampMs": 2695,
+          "confidence": null
+        },
+        {
+          "text": " bem.",
+          "startMs": 3099,
+          "endMs": 3411,
+          "timestampMs": 3099,
+          "confidence": null
+        }
+      ]
+    },
+    "alerta": {
+      "duracao": 13.903,
+      "palavras": [
+        {
+          "text": " Mama",
+          "startMs": 52,
+          "endMs": 378,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " vermelha,",
+          "startMs": 391,
+          "endMs": 925,
+          "timestampMs": 391,
+          "confidence": null
+        },
+        {
+          "text": " quente",
+          "startMs": 1003,
+          "endMs": 1315,
+          "timestampMs": 1003,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 1328,
+          "endMs": 1354,
+          "timestampMs": 1328,
+          "confidence": null
+        },
+        {
+          "text": " dolorida,",
+          "startMs": 1367,
+          "endMs": 1927,
+          "timestampMs": 1367,
+          "confidence": null
+        },
+        {
+          "text": " com",
+          "startMs": 1953,
+          "endMs": 2135,
+          "timestampMs": 1953,
+          "confidence": null
+        },
+        {
+          "text": " febre,",
+          "startMs": 2148,
+          "endMs": 2604,
+          "timestampMs": 2148,
+          "confidence": null
+        },
+        {
+          "text": " pode",
+          "startMs": 2643,
+          "endMs": 2917,
+          "timestampMs": 2643,
+          "confidence": null
+        },
+        {
+          "text": " ser",
+          "startMs": 2930,
+          "endMs": 3138,
+          "timestampMs": 2930,
+          "confidence": null
+        },
+        {
+          "text": " mastite:",
+          "startMs": 3151,
+          "endMs": 3776,
+          "timestampMs": 3151,
+          "confidence": null
+        },
+        {
+          "text": " procure",
+          "startMs": 4036,
+          "endMs": 4440,
+          "timestampMs": 4036,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 4453,
+          "endMs": 4531,
+          "timestampMs": 4453,
+          "confidence": null
+        },
+        {
+          "text": " UBS",
+          "startMs": 4544,
+          "endMs": 5143,
+          "timestampMs": 4544,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 5156,
+          "endMs": 5195,
+          "timestampMs": 5156,
+          "confidence": null
+        },
+        {
+          "text": " não",
+          "startMs": 5208,
+          "endMs": 5456,
+          "timestampMs": 5208,
+          "confidence": null
+        },
+        {
+          "text": " pare",
+          "startMs": 5469,
+          "endMs": 5755,
+          "timestampMs": 5469,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 5768,
+          "endMs": 5859,
+          "timestampMs": 5768,
+          "confidence": null
+        },
+        {
+          "text": " amamentar.",
+          "startMs": 5872,
+          "endMs": 6497,
+          "timestampMs": 5872,
+          "confidence": null
+        },
+        {
+          "text": " E",
+          "startMs": 6771,
+          "endMs": 6875,
+          "timestampMs": 6771,
+          "confidence": null
+        },
+        {
+          "text": " quem",
+          "startMs": 6888,
+          "endMs": 7109,
+          "timestampMs": 6888,
+          "confidence": null
+        },
+        {
+          "text": " vive",
+          "startMs": 7122,
+          "endMs": 7448,
+          "timestampMs": 7122,
+          "confidence": null
+        },
+        {
+          "text": " com",
+          "startMs": 7461,
+          "endMs": 7617,
+          "timestampMs": 7461,
+          "confidence": null
+        },
+        {
+          "text": " HIV",
+          "startMs": 7630,
+          "endMs": 8216,
+          "timestampMs": 7630,
+          "confidence": null
+        },
+        {
+          "text": " ou",
+          "startMs": 8255,
+          "endMs": 8385,
+          "timestampMs": 8255,
+          "confidence": null
+        },
+        {
+          "text": " HTLV",
+          "startMs": 8398,
+          "endMs": 9284,
+          "timestampMs": 8398,
+          "confidence": null
+        },
+        {
+          "text": " não",
+          "startMs": 9297,
+          "endMs": 9479,
+          "timestampMs": 9297,
+          "confidence": null
+        },
+        {
+          "text": " deve",
+          "startMs": 9492,
+          "endMs": 9753,
+          "timestampMs": 9492,
+          "confidence": null
+        },
+        {
+          "text": " amamentar;",
+          "startMs": 9766,
+          "endMs": 10391,
+          "timestampMs": 9766,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 10781,
+          "endMs": 10833,
+          "timestampMs": 10781,
+          "confidence": null
+        },
+        {
+          "text": " bebê",
+          "startMs": 10846,
+          "endMs": 11198,
+          "timestampMs": 10846,
+          "confidence": null
+        },
+        {
+          "text": " tem",
+          "startMs": 11211,
+          "endMs": 11367,
+          "timestampMs": 11211,
+          "confidence": null
+        },
+        {
+          "text": " direito",
+          "startMs": 11380,
+          "endMs": 11810,
+          "timestampMs": 11380,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 11823,
+          "endMs": 11888,
+          "timestampMs": 11823,
+          "confidence": null
+        },
+        {
+          "text": " fórmula",
+          "startMs": 11901,
+          "endMs": 12396,
+          "timestampMs": 11901,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 12409,
+          "endMs": 12513,
+          "timestampMs": 12409,
+          "confidence": null
+        },
+        {
+          "text": " graça.",
+          "startMs": 12526,
+          "endMs": 13047,
+          "timestampMs": 12526,
+          "confidence": null
+        }
+      ]
+    },
+    "encerramento": {
+      "duracao": 8.405,
+      "palavras": [
+        {
+          "text": " Leite",
+          "startMs": 52,
+          "endMs": 391,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " materno",
+          "startMs": 404,
+          "endMs": 924,
+          "timestampMs": 404,
+          "confidence": null
+        },
+        {
+          "text": " é",
+          "startMs": 938,
+          "endMs": 977,
+          "timestampMs": 938,
+          "confidence": null
+        },
+        {
+          "text": " recomendado",
+          "startMs": 990,
+          "endMs": 1719,
+          "timestampMs": 990,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 1732,
+          "endMs": 1836,
+          "timestampMs": 1732,
+          "confidence": null
+        },
+        {
+          "text": " forma",
+          "startMs": 1849,
+          "endMs": 2214,
+          "timestampMs": 1849,
+          "confidence": null
+        },
+        {
+          "text": " exclusiva",
+          "startMs": 2227,
+          "endMs": 2943,
+          "timestampMs": 2227,
+          "confidence": null
+        },
+        {
+          "text": " até",
+          "startMs": 2982,
+          "endMs": 3190,
+          "timestampMs": 2982,
+          "confidence": null
+        },
+        {
+          "text": " os",
+          "startMs": 3203,
+          "endMs": 3307,
+          "timestampMs": 3203,
+          "confidence": null
+        },
+        {
+          "text": " 6",
+          "startMs": 3320,
+          "endMs": 3620,
+          "timestampMs": 3320,
+          "confidence": null
+        },
+        {
+          "text": " meses.",
+          "startMs": 3633,
+          "endMs": 4167,
+          "timestampMs": 3633,
+          "confidence": null
+        },
+        {
+          "text": " No",
+          "startMs": 4440,
+          "endMs": 4570,
+          "timestampMs": 4440,
+          "confidence": null
+        },
+        {
+          "text": " Ninna,",
+          "startMs": 4583,
+          "endMs": 4935,
+          "timestampMs": 4583,
+          "confidence": null
+        },
+        {
+          "text": " você",
+          "startMs": 5091,
+          "endMs": 5339,
+          "timestampMs": 5091,
+          "confidence": null
+        },
+        {
+          "text": " encontra",
+          "startMs": 5352,
+          "endMs": 5833,
+          "timestampMs": 5352,
+          "confidence": null
+        },
+        {
+          "text": " mais",
+          "startMs": 5846,
+          "endMs": 6042,
+          "timestampMs": 5846,
+          "confidence": null
+        },
+        {
+          "text": " apoio",
+          "startMs": 6055,
+          "endMs": 6563,
+          "timestampMs": 6055,
+          "confidence": null
+        },
+        {
+          "text": " para",
+          "startMs": 6576,
+          "endMs": 6745,
+          "timestampMs": 6576,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 6758,
+          "endMs": 6797,
+          "timestampMs": 6758,
+          "confidence": null
+        },
+        {
+          "text": " pós-parto.",
+          "startMs": 6810,
+          "endMs": 7552,
+          "timestampMs": 6810,
+          "confidence": null
+        }
+      ]
+    }
+  }
+}

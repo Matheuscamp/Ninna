@@ -3,7 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Carregando, Pagina, Voltar } from "@/components/ui";
+import { VideoCurto } from "@/components/video-curto";
 import { artigoPorSlug } from "@/content/artigos";
+import { videoPorSlug } from "@/content/videos";
 import { exigirUsuariaPronta, getPlano } from "@/lib/dal";
 import { FUNDOS, Ilustracao, visualDoArtigo } from "../ilustracoes";
 
@@ -17,6 +19,7 @@ async function Artigo({ params }: { params: PageProps<"/app/conteudo/[slug]">["p
   const bloqueado = artigo.premium && plano !== "premium";
 
   const visual = visualDoArtigo(artigo.slug);
+  const video = videoPorSlug(artigo.slug);
 
   return (
     <article className="flex flex-col gap-4">
@@ -37,6 +40,7 @@ async function Artigo({ params }: { params: PageProps<"/app/conteudo/[slug]">["p
         </div>
       ) : (
         <>
+          {video && <VideoCurto video={video} />}
           <p className="text-[17px] leading-relaxed">{artigo.resumo}</p>
           {artigo.pontos && (
             <ul className="flex flex-col gap-3 rounded-3xl bg-white/90 shadow-suave p-5">

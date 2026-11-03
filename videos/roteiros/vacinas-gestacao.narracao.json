@@ -1,0 +1,1036 @@
+{
+  "voz": "pt-BR-FranciscaNeural",
+  "cenas": {
+    "gancho": {
+      "duracao": 10.477,
+      "palavras": [
+        {
+          "text": " Sabia",
+          "startMs": 52,
+          "endMs": 612,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " que",
+          "startMs": 625,
+          "endMs": 729,
+          "timestampMs": 625,
+          "confidence": null
+        },
+        {
+          "text": " as",
+          "startMs": 742,
+          "endMs": 859,
+          "timestampMs": 742,
+          "confidence": null
+        },
+        {
+          "text": " vacinas",
+          "startMs": 872,
+          "endMs": 1432,
+          "timestampMs": 872,
+          "confidence": null
+        },
+        {
+          "text": " que",
+          "startMs": 1445,
+          "endMs": 1549,
+          "timestampMs": 1445,
+          "confidence": null
+        },
+        {
+          "text": " você",
+          "startMs": 1563,
+          "endMs": 1849,
+          "timestampMs": 1563,
+          "confidence": null
+        },
+        {
+          "text": " toma",
+          "startMs": 1862,
+          "endMs": 2175,
+          "timestampMs": 1862,
+          "confidence": null
+        },
+        {
+          "text": " na",
+          "startMs": 2188,
+          "endMs": 2292,
+          "timestampMs": 2188,
+          "confidence": null
+        },
+        {
+          "text": " gravidez",
+          "startMs": 2305,
+          "endMs": 2891,
+          "timestampMs": 2305,
+          "confidence": null
+        },
+        {
+          "text": " também",
+          "startMs": 2917,
+          "endMs": 3320,
+          "timestampMs": 2917,
+          "confidence": null
+        },
+        {
+          "text": " protegem",
+          "startMs": 3333,
+          "endMs": 3919,
+          "timestampMs": 3333,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 3932,
+          "endMs": 3971,
+          "timestampMs": 3932,
+          "confidence": null
+        },
+        {
+          "text": " bebê?",
+          "startMs": 3984,
+          "endMs": 4401,
+          "timestampMs": 3984,
+          "confidence": null
+        },
+        {
+          "text": " Os",
+          "startMs": 4675,
+          "endMs": 4857,
+          "timestampMs": 4675,
+          "confidence": null
+        },
+        {
+          "text": " anticorpos",
+          "startMs": 4870,
+          "endMs": 5547,
+          "timestampMs": 4870,
+          "confidence": null
+        },
+        {
+          "text": " passam",
+          "startMs": 5560,
+          "endMs": 5977,
+          "timestampMs": 5560,
+          "confidence": null
+        },
+        {
+          "text": " pela",
+          "startMs": 5990,
+          "endMs": 6198,
+          "timestampMs": 5990,
+          "confidence": null
+        },
+        {
+          "text": " placenta",
+          "startMs": 6211,
+          "endMs": 6745,
+          "timestampMs": 6211,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 6758,
+          "endMs": 6797,
+          "timestampMs": 6758,
+          "confidence": null
+        },
+        {
+          "text": " pelo",
+          "startMs": 6810,
+          "endMs": 7031,
+          "timestampMs": 6810,
+          "confidence": null
+        },
+        {
+          "text": " leite.",
+          "startMs": 7044,
+          "endMs": 7513,
+          "timestampMs": 7044,
+          "confidence": null
+        },
+        {
+          "text": " E",
+          "startMs": 7786,
+          "endMs": 7917,
+          "timestampMs": 7786,
+          "confidence": null
+        },
+        {
+          "text": " todas",
+          "startMs": 7943,
+          "endMs": 8307,
+          "timestampMs": 7943,
+          "confidence": null
+        },
+        {
+          "text": " são",
+          "startMs": 8320,
+          "endMs": 8503,
+          "timestampMs": 8320,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 8516,
+          "endMs": 8633,
+          "timestampMs": 8516,
+          "confidence": null
+        },
+        {
+          "text": " graça",
+          "startMs": 8646,
+          "endMs": 9049,
+          "timestampMs": 8646,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 9063,
+          "endMs": 9167,
+          "timestampMs": 9063,
+          "confidence": null
+        },
+        {
+          "text": " SUS.",
+          "startMs": 9180,
+          "endMs": 9622,
+          "timestampMs": 9180,
+          "confidence": null
+        }
+      ]
+    },
+    "dtpa": {
+      "duracao": 10.105,
+      "palavras": [
+        {
+          "text": " A",
+          "startMs": 52,
+          "endMs": 169,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " dTpa,",
+          "startMs": 182,
+          "endMs": 1003,
+          "timestampMs": 182,
+          "confidence": null
+        },
+        {
+          "text": " contra",
+          "startMs": 1081,
+          "endMs": 1419,
+          "timestampMs": 1081,
+          "confidence": null
+        },
+        {
+          "text": " difteria,",
+          "startMs": 1432,
+          "endMs": 2109,
+          "timestampMs": 1432,
+          "confidence": null
+        },
+        {
+          "text": " tétano",
+          "startMs": 2148,
+          "endMs": 2643,
+          "timestampMs": 2148,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 2656,
+          "endMs": 2708,
+          "timestampMs": 2656,
+          "confidence": null
+        },
+        {
+          "text": " coqueluche,",
+          "startMs": 2721,
+          "endMs": 3451,
+          "timestampMs": 2721,
+          "confidence": null
+        },
+        {
+          "text": " é",
+          "startMs": 3685,
+          "endMs": 3763,
+          "timestampMs": 3685,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 3776,
+          "endMs": 3828,
+          "timestampMs": 3776,
+          "confidence": null
+        },
+        {
+          "text": " partir",
+          "startMs": 3841,
+          "endMs": 4206,
+          "timestampMs": 3841,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 4219,
+          "endMs": 4375,
+          "timestampMs": 4219,
+          "confidence": null
+        },
+        {
+          "text": " 20ª",
+          "startMs": 4388,
+          "endMs": 4974,
+          "timestampMs": 4388,
+          "confidence": null
+        },
+        {
+          "text": " semana,",
+          "startMs": 4987,
+          "endMs": 5508,
+          "timestampMs": 4987,
+          "confidence": null
+        },
+        {
+          "text": " em",
+          "startMs": 5599,
+          "endMs": 5729,
+          "timestampMs": 5599,
+          "confidence": null
+        },
+        {
+          "text": " toda",
+          "startMs": 5755,
+          "endMs": 6029,
+          "timestampMs": 5755,
+          "confidence": null
+        },
+        {
+          "text": " gestação,",
+          "startMs": 6042,
+          "endMs": 6719,
+          "timestampMs": 6042,
+          "confidence": null
+        },
+        {
+          "text": " mesmo",
+          "startMs": 7031,
+          "endMs": 7383,
+          "timestampMs": 7031,
+          "confidence": null
+        },
+        {
+          "text": " que",
+          "startMs": 7396,
+          "endMs": 7500,
+          "timestampMs": 7396,
+          "confidence": null
+        },
+        {
+          "text": " você",
+          "startMs": 7513,
+          "endMs": 7799,
+          "timestampMs": 7513,
+          "confidence": null
+        },
+        {
+          "text": " já",
+          "startMs": 7813,
+          "endMs": 7956,
+          "timestampMs": 7813,
+          "confidence": null
+        },
+        {
+          "text": " tenha",
+          "startMs": 7982,
+          "endMs": 8229,
+          "timestampMs": 7982,
+          "confidence": null
+        },
+        {
+          "text": " tomado",
+          "startMs": 8242,
+          "endMs": 8737,
+          "timestampMs": 8242,
+          "confidence": null
+        },
+        {
+          "text": " antes.",
+          "startMs": 8750,
+          "endMs": 9258,
+          "timestampMs": 8750,
+          "confidence": null
+        }
+      ]
+    },
+    "vsr": {
+      "duracao": 12.892,
+      "palavras": [
+        {
+          "text": " A",
+          "startMs": 52,
+          "endMs": 169,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " vacina",
+          "startMs": 182,
+          "endMs": 651,
+          "timestampMs": 182,
+          "confidence": null
+        },
+        {
+          "text": " contra",
+          "startMs": 664,
+          "endMs": 1003,
+          "timestampMs": 664,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 1016,
+          "endMs": 1055,
+          "timestampMs": 1016,
+          "confidence": null
+        },
+        {
+          "text": " VSR",
+          "startMs": 1068,
+          "endMs": 1836,
+          "timestampMs": 1068,
+          "confidence": null
+        },
+        {
+          "text": " é",
+          "startMs": 1862,
+          "endMs": 1927,
+          "timestampMs": 1862,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 1940,
+          "endMs": 1992,
+          "timestampMs": 1940,
+          "confidence": null
+        },
+        {
+          "text": " partir",
+          "startMs": 2005,
+          "endMs": 2370,
+          "timestampMs": 2005,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 2383,
+          "endMs": 2552,
+          "timestampMs": 2383,
+          "confidence": null
+        },
+        {
+          "text": " 28ª",
+          "startMs": 2565,
+          "endMs": 3581,
+          "timestampMs": 2565,
+          "confidence": null
+        },
+        {
+          "text": " semana,",
+          "startMs": 3594,
+          "endMs": 4115,
+          "timestampMs": 3594,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 4375,
+          "endMs": 4466,
+          "timestampMs": 4375,
+          "confidence": null
+        },
+        {
+          "text": " preferência",
+          "startMs": 4479,
+          "endMs": 5156,
+          "timestampMs": 4479,
+          "confidence": null
+        },
+        {
+          "text": " até",
+          "startMs": 5182,
+          "endMs": 5391,
+          "timestampMs": 5182,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 5404,
+          "endMs": 5456,
+          "timestampMs": 5404,
+          "confidence": null
+        },
+        {
+          "text": " 36ª.",
+          "startMs": 5469,
+          "endMs": 6589,
+          "timestampMs": 5469,
+          "confidence": null
+        },
+        {
+          "text": " Ela",
+          "startMs": 6862,
+          "endMs": 7070,
+          "timestampMs": 6862,
+          "confidence": null
+        },
+        {
+          "text": " protege",
+          "startMs": 7083,
+          "endMs": 7617,
+          "timestampMs": 7083,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 7630,
+          "endMs": 7656,
+          "timestampMs": 7630,
+          "confidence": null
+        },
+        {
+          "text": " bebê",
+          "startMs": 7669,
+          "endMs": 8008,
+          "timestampMs": 7669,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 8021,
+          "endMs": 8151,
+          "timestampMs": 8021,
+          "confidence": null
+        },
+        {
+          "text": " bronquiolite,",
+          "startMs": 8164,
+          "endMs": 8958,
+          "timestampMs": 8164,
+          "confidence": null
+        },
+        {
+          "text": " principal",
+          "startMs": 9141,
+          "endMs": 9714,
+          "timestampMs": 9141,
+          "confidence": null
+        },
+        {
+          "text": " causa",
+          "startMs": 9740,
+          "endMs": 10117,
+          "timestampMs": 9740,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 10130,
+          "endMs": 10221,
+          "timestampMs": 10130,
+          "confidence": null
+        },
+        {
+          "text": " internação",
+          "startMs": 10234,
+          "endMs": 10859,
+          "timestampMs": 10234,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 10872,
+          "endMs": 10964,
+          "timestampMs": 10872,
+          "confidence": null
+        },
+        {
+          "text": " bebês",
+          "startMs": 10977,
+          "endMs": 11354,
+          "timestampMs": 10977,
+          "confidence": null
+        },
+        {
+          "text": " pequenos.",
+          "startMs": 11367,
+          "endMs": 12044,
+          "timestampMs": 11367,
+          "confidence": null
+        }
+      ]
+    },
+    "gripe": {
+      "duracao": 13.113,
+      "palavras": [
+        {
+          "text": " A",
+          "startMs": 52,
+          "endMs": 143,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 156,
+          "endMs": 313,
+          "timestampMs": 156,
+          "confidence": null
+        },
+        {
+          "text": " gripe,",
+          "startMs": 326,
+          "endMs": 768,
+          "timestampMs": 326,
+          "confidence": null
+        },
+        {
+          "text": " uma",
+          "startMs": 977,
+          "endMs": 1159,
+          "timestampMs": 977,
+          "confidence": null
+        },
+        {
+          "text": " dose",
+          "startMs": 1172,
+          "endMs": 1523,
+          "timestampMs": 1172,
+          "confidence": null
+        },
+        {
+          "text": " por",
+          "startMs": 1536,
+          "endMs": 1680,
+          "timestampMs": 1536,
+          "confidence": null
+        },
+        {
+          "text": " temporada,",
+          "startMs": 1706,
+          "endMs": 2435,
+          "timestampMs": 1706,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 2591,
+          "endMs": 2682,
+          "timestampMs": 2591,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 2695,
+          "endMs": 2747,
+          "timestampMs": 2695,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 2760,
+          "endMs": 2878,
+          "timestampMs": 2760,
+          "confidence": null
+        },
+        {
+          "text": " covid,",
+          "startMs": 2891,
+          "endMs": 3451,
+          "timestampMs": 2891,
+          "confidence": null
+        },
+        {
+          "text": " uma",
+          "startMs": 3542,
+          "endMs": 3750,
+          "timestampMs": 3542,
+          "confidence": null
+        },
+        {
+          "text": " dose",
+          "startMs": 3763,
+          "endMs": 4102,
+          "timestampMs": 3763,
+          "confidence": null
+        },
+        {
+          "text": " por",
+          "startMs": 4115,
+          "endMs": 4297,
+          "timestampMs": 4115,
+          "confidence": null
+        },
+        {
+          "text": " ano,",
+          "startMs": 4310,
+          "endMs": 4609,
+          "timestampMs": 4310,
+          "confidence": null
+        },
+        {
+          "text": " podem",
+          "startMs": 4805,
+          "endMs": 5091,
+          "timestampMs": 4805,
+          "confidence": null
+        },
+        {
+          "text": " ser",
+          "startMs": 5104,
+          "endMs": 5299,
+          "timestampMs": 5104,
+          "confidence": null
+        },
+        {
+          "text": " tomadas",
+          "startMs": 5313,
+          "endMs": 5807,
+          "timestampMs": 5313,
+          "confidence": null
+        },
+        {
+          "text": " em",
+          "startMs": 5820,
+          "endMs": 5990,
+          "timestampMs": 5820,
+          "confidence": null
+        },
+        {
+          "text": " qualquer",
+          "startMs": 6003,
+          "endMs": 6393,
+          "timestampMs": 6003,
+          "confidence": null
+        },
+        {
+          "text": " fase",
+          "startMs": 6406,
+          "endMs": 6784,
+          "timestampMs": 6406,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 6797,
+          "endMs": 6914,
+          "timestampMs": 6797,
+          "confidence": null
+        },
+        {
+          "text": " gestação.",
+          "startMs": 6927,
+          "endMs": 7591,
+          "timestampMs": 6927,
+          "confidence": null
+        },
+        {
+          "text": " E",
+          "startMs": 7865,
+          "endMs": 7943,
+          "timestampMs": 7865,
+          "confidence": null
+        },
+        {
+          "text": " se",
+          "startMs": 7956,
+          "endMs": 8099,
+          "timestampMs": 7956,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 8112,
+          "endMs": 8177,
+          "timestampMs": 8112,
+          "confidence": null
+        },
+        {
+          "text": " hepatite",
+          "startMs": 8190,
+          "endMs": 8737,
+          "timestampMs": 8190,
+          "confidence": null
+        },
+        {
+          "text": " B",
+          "startMs": 8750,
+          "endMs": 8958,
+          "timestampMs": 8750,
+          "confidence": null
+        },
+        {
+          "text": " estiver",
+          "startMs": 8971,
+          "endMs": 9388,
+          "timestampMs": 8971,
+          "confidence": null
+        },
+        {
+          "text": " incompleta,",
+          "startMs": 9401,
+          "endMs": 10143,
+          "timestampMs": 9401,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 10313,
+          "endMs": 10391,
+          "timestampMs": 10313,
+          "confidence": null
+        },
+        {
+          "text": " equipe",
+          "startMs": 10404,
+          "endMs": 10742,
+          "timestampMs": 10404,
+          "confidence": null
+        },
+        {
+          "text": " completa",
+          "startMs": 10755,
+          "endMs": 11341,
+          "timestampMs": 10755,
+          "confidence": null
+        },
+        {
+          "text": " sem",
+          "startMs": 11354,
+          "endMs": 11562,
+          "timestampMs": 11354,
+          "confidence": null
+        },
+        {
+          "text": " recomeçar.",
+          "startMs": 11576,
+          "endMs": 12266,
+          "timestampMs": 11576,
+          "confidence": null
+        }
+      ]
+    },
+    "depois": {
+      "duracao": 8.596,
+      "palavras": [
+        {
+          "text": " Tríplice",
+          "startMs": 52,
+          "endMs": 508,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " viral,",
+          "startMs": 521,
+          "endMs": 951,
+          "timestampMs": 521,
+          "confidence": null
+        },
+        {
+          "text": " catapora",
+          "startMs": 1107,
+          "endMs": 1745,
+          "timestampMs": 1107,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 1758,
+          "endMs": 1836,
+          "timestampMs": 1758,
+          "confidence": null
+        },
+        {
+          "text": " HPV",
+          "startMs": 1849,
+          "endMs": 2422,
+          "timestampMs": 1849,
+          "confidence": null
+        },
+        {
+          "text": " ficam",
+          "startMs": 2435,
+          "endMs": 2813,
+          "timestampMs": 2435,
+          "confidence": null
+        },
+        {
+          "text": " para",
+          "startMs": 2826,
+          "endMs": 3021,
+          "timestampMs": 2826,
+          "confidence": null
+        },
+        {
+          "text": " depois",
+          "startMs": 3034,
+          "endMs": 3412,
+          "timestampMs": 3034,
+          "confidence": null
+        },
+        {
+          "text": " do",
+          "startMs": 3425,
+          "endMs": 3542,
+          "timestampMs": 3425,
+          "confidence": null
+        },
+        {
+          "text": " parto.",
+          "startMs": 3555,
+          "endMs": 4023,
+          "timestampMs": 3555,
+          "confidence": null
+        },
+        {
+          "text": " Leve",
+          "startMs": 4297,
+          "endMs": 4622,
+          "timestampMs": 4297,
+          "confidence": null
+        },
+        {
+          "text": " sua",
+          "startMs": 4635,
+          "endMs": 4857,
+          "timestampMs": 4635,
+          "confidence": null
+        },
+        {
+          "text": " caderneta",
+          "startMs": 4870,
+          "endMs": 5508,
+          "timestampMs": 4870,
+          "confidence": null
+        },
+        {
+          "text": " em",
+          "startMs": 5521,
+          "endMs": 5638,
+          "timestampMs": 5521,
+          "confidence": null
+        },
+        {
+          "text": " toda",
+          "startMs": 5716,
+          "endMs": 6003,
+          "timestampMs": 5716,
+          "confidence": null
+        },
+        {
+          "text": " consulta",
+          "startMs": 6016,
+          "endMs": 6602,
+          "timestampMs": 6016,
+          "confidence": null
+        },
+        {
+          "text": " para",
+          "startMs": 6615,
+          "endMs": 6797,
+          "timestampMs": 6615,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 6810,
+          "endMs": 6836,
+          "timestampMs": 6810,
+          "confidence": null
+        },
+        {
+          "text": " equipe",
+          "startMs": 6849,
+          "endMs": 7174,
+          "timestampMs": 6849,
+          "confidence": null
+        },
+        {
+          "text": " conferir.",
+          "startMs": 7188,
+          "endMs": 7747,
+          "timestampMs": 7188,
+          "confidence": null
+        }
+      ]
+    },
+    "encerramento": {
+      "duracao": 3.725,
+      "palavras": [
+        {
+          "text": " Veja",
+          "startMs": 52,
+          "endMs": 456,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 469,
+          "endMs": 508,
+          "timestampMs": 469,
+          "confidence": null
+        },
+        {
+          "text": " calendário",
+          "startMs": 521,
+          "endMs": 1146,
+          "timestampMs": 521,
+          "confidence": null
+        },
+        {
+          "text": " completo",
+          "startMs": 1159,
+          "endMs": 1719,
+          "timestampMs": 1159,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 1732,
+          "endMs": 1823,
+          "timestampMs": 1732,
+          "confidence": null
+        },
+        {
+          "text": " vacinas",
+          "startMs": 1836,
+          "endMs": 2370,
+          "timestampMs": 1836,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 2383,
+          "endMs": 2474,
+          "timestampMs": 2383,
+          "confidence": null
+        },
+        {
+          "text": " Ninna.",
+          "startMs": 2487,
+          "endMs": 2878,
+          "timestampMs": 2487,
+          "confidence": null
+        }
+      ]
+    }
+  }
+}

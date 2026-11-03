@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import { cache, Suspense } from "react";
 import { Carregando, Pagina, Voltar } from "@/components/ui";
+import { VideoCurto } from "@/components/video-curto";
 import { ALERTAS_BEBE, alertasDoPerfil } from "@/content/guias";
+import { videoPorSlug } from "@/content/videos";
 import { exigirUsuariaPronta } from "@/lib/dal";
 
 export const metadata: Metadata = { title: "Sinais de alerta" };
+
+// A lista e o vídeo carregam em partes separadas da página; assim leem a sessão uma vez só.
+const usuariaPronta = cache(exigirUsuariaPronta);
 
 function Lista({ alertas }: { alertas: readonly string[] }) {
   return (
@@ -21,7 +26,7 @@ function Lista({ alertas }: { alertas: readonly string[] }) {
 
 // Sempre gratuito, em todos os perfis.
 async function Alertas() {
-  const { perfil } = await exigirUsuariaPronta();
+  const { perfil } = await usuariaPronta();
   return (
     <>
       <Lista alertas={alertasDoPerfil(perfil.perfil)} />
@@ -34,6 +39,21 @@ async function Alertas() {
         </section>
       )}
     </>
+  );
+}
+
+// O vídeo fica no fim da página: numa emergência, a lista e o SAMU aparecem primeiro.
+async function VideoDosAlertas() {
+  const { perfil } = await usuariaPronta();
+  const video = videoPorSlug("sinais-de-alerta");
+  if (!video || perfil.perfil !== video.perfil) return null;
+  return (
+    <section aria-labelledby="titulo-video" className="flex flex-col gap-3">
+      <h2 id="titulo-video" className="text-lg font-bold">
+        Entenda em 1 minuto
+      </h2>
+      <VideoCurto video={video} />
+    </section>
   );
 }
 
@@ -58,6 +78,9 @@ export default function AlertasPage() {
         </a>
         .
       </p>
+      <Suspense>
+        <VideoDosAlertas />
+      </Suspense>
       <p className="text-center text-[13px] text-suave">Conteúdo em revisão por profissional de saúde.</p>
     </Pagina>
   );

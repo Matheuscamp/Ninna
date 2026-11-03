@@ -1,0 +1,31 @@
+{
+  "titulo": "Deu positivo: e agora?",
+  "fonte": "Caderneta da Gestante (MS, 2026)",
+  "cenas": [
+    {
+      "id": "gancho",
+      "fala": "Deu positivo! E agora? Alegria, surpresa, medo, ou tudo isso junto. Não existe jeito certo de se sentir.",
+      "tela": "Teste de farmácia com duas listras aparecendo; bolhas de emoções surgindo em volta."
+    },
+    {
+      "id": "consulta",
+      "fala": "O primeiro passo é marcar a consulta de pré-natal, de preferência antes da décima segunda semana.",
+      "tela": "Calendário com a 12ª semana circulada à mão."
+    },
+    {
+      "id": "ubs",
+      "fala": "O pré-natal é de graça na UBS mais perto de você. Lá também fazem o teste rápido e os primeiros exames.",
+      "tela": "Casa da UBS com cruz; cartões \"de graça\", \"teste rápido\", \"primeiros exames\"."
+    },
+    {
+      "id": "sentimento",
+      "fala": "Se a gravidez não foi planejada, converse com a equipe sobre como está se sentindo. O seu tempo será respeitado.",
+      "tela": "Balão de conversa com coração, ritmo mais calmo."
+    },
+    {
+      "id": "encerramento",
+      "fala": "No Ninna, refaça a triagem como gestante para receber orientações para cada fase. A gente acompanha você.",
+      "tela": "Tela da triagem; logo e coração."
+    }
+  ]
+}

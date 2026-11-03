@@ -1,0 +1,896 @@
+{
+  "voz": "pt-BR-FranciscaNeural",
+  "cenas": {
+    "gancho": {
+      "duracao": 7.506,
+      "palavras": [
+        {
+          "text": " Enjoo",
+          "startMs": 52,
+          "endMs": 430,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " na",
+          "startMs": 443,
+          "endMs": 547,
+          "timestampMs": 443,
+          "confidence": null
+        },
+        {
+          "text": " gravidez?",
+          "startMs": 560,
+          "endMs": 1328,
+          "timestampMs": 560,
+          "confidence": null
+        },
+        {
+          "text": " Você",
+          "startMs": 1602,
+          "endMs": 1875,
+          "timestampMs": 1602,
+          "confidence": null
+        },
+        {
+          "text": " não",
+          "startMs": 1888,
+          "endMs": 2031,
+          "timestampMs": 1888,
+          "confidence": null
+        },
+        {
+          "text": " está",
+          "startMs": 2044,
+          "endMs": 2279,
+          "timestampMs": 2044,
+          "confidence": null
+        },
+        {
+          "text": " sozinha.",
+          "startMs": 2292,
+          "endMs": 2930,
+          "timestampMs": 2292,
+          "confidence": null
+        },
+        {
+          "text": " Ele",
+          "startMs": 3203,
+          "endMs": 3359,
+          "timestampMs": 3203,
+          "confidence": null
+        },
+        {
+          "text": " é",
+          "startMs": 3372,
+          "endMs": 3424,
+          "timestampMs": 3372,
+          "confidence": null
+        },
+        {
+          "text": " comum",
+          "startMs": 3438,
+          "endMs": 3789,
+          "timestampMs": 3438,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 3802,
+          "endMs": 3906,
+          "timestampMs": 3802,
+          "confidence": null
+        },
+        {
+          "text": " começo",
+          "startMs": 3919,
+          "endMs": 4440,
+          "timestampMs": 3919,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 4453,
+          "endMs": 4492,
+          "timestampMs": 4453,
+          "confidence": null
+        },
+        {
+          "text": " costuma",
+          "startMs": 4505,
+          "endMs": 4922,
+          "timestampMs": 4505,
+          "confidence": null
+        },
+        {
+          "text": " melhorar",
+          "startMs": 4935,
+          "endMs": 5404,
+          "timestampMs": 4935,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 5417,
+          "endMs": 5534,
+          "timestampMs": 5417,
+          "confidence": null
+        },
+        {
+          "text": " segundo",
+          "startMs": 5547,
+          "endMs": 5977,
+          "timestampMs": 5547,
+          "confidence": null
+        },
+        {
+          "text": " trimestre.",
+          "startMs": 5990,
+          "endMs": 6654,
+          "timestampMs": 5990,
+          "confidence": null
+        }
+      ]
+    },
+    "refeicoes": {
+      "duracao": 7.682,
+      "palavras": [
+        {
+          "text": " Faça",
+          "startMs": 52,
+          "endMs": 456,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 469,
+          "endMs": 573,
+          "timestampMs": 469,
+          "confidence": null
+        },
+        {
+          "text": " 5",
+          "startMs": 586,
+          "endMs": 951,
+          "timestampMs": 586,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 964,
+          "endMs": 1016,
+          "timestampMs": 964,
+          "confidence": null
+        },
+        {
+          "text": " 6",
+          "startMs": 1029,
+          "endMs": 1315,
+          "timestampMs": 1029,
+          "confidence": null
+        },
+        {
+          "text": " refeições",
+          "startMs": 1328,
+          "endMs": 1927,
+          "timestampMs": 1328,
+          "confidence": null
+        },
+        {
+          "text": " pequenas",
+          "startMs": 1940,
+          "endMs": 2409,
+          "timestampMs": 1940,
+          "confidence": null
+        },
+        {
+          "text": " por",
+          "startMs": 2422,
+          "endMs": 2604,
+          "timestampMs": 2422,
+          "confidence": null
+        },
+        {
+          "text": " dia.",
+          "startMs": 2617,
+          "endMs": 3034,
+          "timestampMs": 2617,
+          "confidence": null
+        },
+        {
+          "text": " Estômago",
+          "startMs": 3307,
+          "endMs": 3815,
+          "timestampMs": 3307,
+          "confidence": null
+        },
+        {
+          "text": " vazio",
+          "startMs": 3828,
+          "endMs": 4336,
+          "timestampMs": 3828,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 4349,
+          "endMs": 4414,
+          "timestampMs": 4349,
+          "confidence": null
+        },
+        {
+          "text": " estômago",
+          "startMs": 4427,
+          "endMs": 4948,
+          "timestampMs": 4427,
+          "confidence": null
+        },
+        {
+          "text": " cheio",
+          "startMs": 4961,
+          "endMs": 5352,
+          "timestampMs": 4961,
+          "confidence": null
+        },
+        {
+          "text": " demais",
+          "startMs": 5365,
+          "endMs": 5820,
+          "timestampMs": 5365,
+          "confidence": null
+        },
+        {
+          "text": " pioram",
+          "startMs": 5833,
+          "endMs": 6302,
+          "timestampMs": 5833,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 6315,
+          "endMs": 6354,
+          "timestampMs": 6315,
+          "confidence": null
+        },
+        {
+          "text": " enjoo.",
+          "startMs": 6367,
+          "endMs": 6823,
+          "timestampMs": 6367,
+          "confidence": null
+        }
+      ]
+    },
+    "manha": {
+      "duracao": 8.881,
+      "palavras": [
+        {
+          "text": " Comece",
+          "startMs": 52,
+          "endMs": 495,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " o",
+          "startMs": 508,
+          "endMs": 560,
+          "timestampMs": 508,
+          "confidence": null
+        },
+        {
+          "text": " dia",
+          "startMs": 573,
+          "endMs": 846,
+          "timestampMs": 573,
+          "confidence": null
+        },
+        {
+          "text": " com",
+          "startMs": 859,
+          "endMs": 1055,
+          "timestampMs": 859,
+          "confidence": null
+        },
+        {
+          "text": " algo",
+          "startMs": 1068,
+          "endMs": 1302,
+          "timestampMs": 1068,
+          "confidence": null
+        },
+        {
+          "text": " seco,",
+          "startMs": 1315,
+          "endMs": 1784,
+          "timestampMs": 1315,
+          "confidence": null
+        },
+        {
+          "text": " como",
+          "startMs": 1823,
+          "endMs": 2070,
+          "timestampMs": 1823,
+          "confidence": null
+        },
+        {
+          "text": " biscoito",
+          "startMs": 2083,
+          "endMs": 2604,
+          "timestampMs": 2083,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 2617,
+          "endMs": 2747,
+          "timestampMs": 2617,
+          "confidence": null
+        },
+        {
+          "text": " água",
+          "startMs": 2760,
+          "endMs": 3151,
+          "timestampMs": 2760,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 3164,
+          "endMs": 3216,
+          "timestampMs": 3164,
+          "confidence": null
+        },
+        {
+          "text": " sal",
+          "startMs": 3229,
+          "endMs": 3542,
+          "timestampMs": 3229,
+          "confidence": null
+        },
+        {
+          "text": " ou",
+          "startMs": 3555,
+          "endMs": 3672,
+          "timestampMs": 3555,
+          "confidence": null
+        },
+        {
+          "text": " torrada.",
+          "startMs": 3685,
+          "endMs": 4258,
+          "timestampMs": 3685,
+          "confidence": null
+        },
+        {
+          "text": " E",
+          "startMs": 4531,
+          "endMs": 4635,
+          "timestampMs": 4531,
+          "confidence": null
+        },
+        {
+          "text": " evite",
+          "startMs": 4648,
+          "endMs": 4987,
+          "timestampMs": 4648,
+          "confidence": null
+        },
+        {
+          "text": " frituras,",
+          "startMs": 5000,
+          "endMs": 5612,
+          "timestampMs": 5000,
+          "confidence": null
+        },
+        {
+          "text": " comidas",
+          "startMs": 5651,
+          "endMs": 6133,
+          "timestampMs": 5651,
+          "confidence": null
+        },
+        {
+          "text": " gordurosas",
+          "startMs": 6146,
+          "endMs": 6849,
+          "timestampMs": 6146,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 6862,
+          "endMs": 6992,
+          "timestampMs": 6862,
+          "confidence": null
+        },
+        {
+          "text": " cheiros",
+          "startMs": 7005,
+          "endMs": 7396,
+          "timestampMs": 7005,
+          "confidence": null
+        },
+        {
+          "text": " fortes.",
+          "startMs": 7409,
+          "endMs": 8034,
+          "timestampMs": 7409,
+          "confidence": null
+        }
+      ]
+    },
+    "liquidos": {
+      "duracao": 10.9,
+      "palavras": [
+        {
+          "text": " Beba",
+          "startMs": 52,
+          "endMs": 352,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " líquidos",
+          "startMs": 365,
+          "endMs": 820,
+          "timestampMs": 365,
+          "confidence": null
+        },
+        {
+          "text": " entre",
+          "startMs": 833,
+          "endMs": 1133,
+          "timestampMs": 833,
+          "confidence": null
+        },
+        {
+          "text": " as",
+          "startMs": 1146,
+          "endMs": 1237,
+          "timestampMs": 1146,
+          "confidence": null
+        },
+        {
+          "text": " refeições,",
+          "startMs": 1250,
+          "endMs": 1966,
+          "timestampMs": 1250,
+          "confidence": null
+        },
+        {
+          "text": " não",
+          "startMs": 2044,
+          "endMs": 2266,
+          "timestampMs": 2044,
+          "confidence": null
+        },
+        {
+          "text": " durante.",
+          "startMs": 2279,
+          "endMs": 2852,
+          "timestampMs": 2279,
+          "confidence": null
+        },
+        {
+          "text": " Bebidas",
+          "startMs": 3125,
+          "endMs": 3672,
+          "timestampMs": 3125,
+          "confidence": null
+        },
+        {
+          "text": " geladas",
+          "startMs": 3685,
+          "endMs": 4206,
+          "timestampMs": 3685,
+          "confidence": null
+        },
+        {
+          "text": " costumam",
+          "startMs": 4219,
+          "endMs": 4740,
+          "timestampMs": 4219,
+          "confidence": null
+        },
+        {
+          "text": " cair",
+          "startMs": 4753,
+          "endMs": 5078,
+          "timestampMs": 4753,
+          "confidence": null
+        },
+        {
+          "text": " melhor;",
+          "startMs": 5091,
+          "endMs": 5586,
+          "timestampMs": 5091,
+          "confidence": null
+        },
+        {
+          "text": " evite",
+          "startMs": 5885,
+          "endMs": 6224,
+          "timestampMs": 5885,
+          "confidence": null
+        },
+        {
+          "text": " as",
+          "startMs": 6237,
+          "endMs": 6328,
+          "timestampMs": 6237,
+          "confidence": null
+        },
+        {
+          "text": " com",
+          "startMs": 6341,
+          "endMs": 6536,
+          "timestampMs": 6341,
+          "confidence": null
+        },
+        {
+          "text": " gás",
+          "startMs": 6550,
+          "endMs": 6784,
+          "timestampMs": 6550,
+          "confidence": null
+        },
+        {
+          "text": " e",
+          "startMs": 6797,
+          "endMs": 6940,
+          "timestampMs": 6797,
+          "confidence": null
+        },
+        {
+          "text": " com",
+          "startMs": 6953,
+          "endMs": 7109,
+          "timestampMs": 6953,
+          "confidence": null
+        },
+        {
+          "text": " cafeína.",
+          "startMs": 7122,
+          "endMs": 7760,
+          "timestampMs": 7122,
+          "confidence": null
+        },
+        {
+          "text": " E",
+          "startMs": 8034,
+          "endMs": 8112,
+          "timestampMs": 8034,
+          "confidence": null
+        },
+        {
+          "text": " não",
+          "startMs": 8125,
+          "endMs": 8307,
+          "timestampMs": 8125,
+          "confidence": null
+        },
+        {
+          "text": " se",
+          "startMs": 8320,
+          "endMs": 8451,
+          "timestampMs": 8320,
+          "confidence": null
+        },
+        {
+          "text": " deite",
+          "startMs": 8464,
+          "endMs": 8789,
+          "timestampMs": 8464,
+          "confidence": null
+        },
+        {
+          "text": " logo",
+          "startMs": 8802,
+          "endMs": 9154,
+          "timestampMs": 8802,
+          "confidence": null
+        },
+        {
+          "text": " depois",
+          "startMs": 9167,
+          "endMs": 9557,
+          "timestampMs": 9167,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 9570,
+          "endMs": 9661,
+          "timestampMs": 9570,
+          "confidence": null
+        },
+        {
+          "text": " comer.",
+          "startMs": 9675,
+          "endMs": 10052,
+          "timestampMs": 9675,
+          "confidence": null
+        }
+      ]
+    },
+    "alerta": {
+      "duracao": 11.447,
+      "palavras": [
+        {
+          "text": " Mas",
+          "startMs": 52,
+          "endMs": 182,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " atenção:",
+          "startMs": 195,
+          "endMs": 885,
+          "timestampMs": 195,
+          "confidence": null
+        },
+        {
+          "text": " se",
+          "startMs": 1094,
+          "endMs": 1224,
+          "timestampMs": 1094,
+          "confidence": null
+        },
+        {
+          "text": " os",
+          "startMs": 1237,
+          "endMs": 1367,
+          "timestampMs": 1237,
+          "confidence": null
+        },
+        {
+          "text": " vômitos",
+          "startMs": 1380,
+          "endMs": 1836,
+          "timestampMs": 1380,
+          "confidence": null
+        },
+        {
+          "text": " não",
+          "startMs": 1849,
+          "endMs": 2005,
+          "timestampMs": 1849,
+          "confidence": null
+        },
+        {
+          "text": " deixarem",
+          "startMs": 2018,
+          "endMs": 2552,
+          "timestampMs": 2018,
+          "confidence": null
+        },
+        {
+          "text": " você",
+          "startMs": 2565,
+          "endMs": 2839,
+          "timestampMs": 2565,
+          "confidence": null
+        },
+        {
+          "text": " comer",
+          "startMs": 2852,
+          "endMs": 3203,
+          "timestampMs": 2852,
+          "confidence": null
+        },
+        {
+          "text": " nem",
+          "startMs": 3216,
+          "endMs": 3411,
+          "timestampMs": 3216,
+          "confidence": null
+        },
+        {
+          "text": " beber,",
+          "startMs": 3425,
+          "endMs": 3841,
+          "timestampMs": 3425,
+          "confidence": null
+        },
+        {
+          "text": " se",
+          "startMs": 4036,
+          "endMs": 4167,
+          "timestampMs": 4036,
+          "confidence": null
+        },
+        {
+          "text": " a",
+          "startMs": 4180,
+          "endMs": 4258,
+          "timestampMs": 4180,
+          "confidence": null
+        },
+        {
+          "text": " urina",
+          "startMs": 4271,
+          "endMs": 4609,
+          "timestampMs": 4271,
+          "confidence": null
+        },
+        {
+          "text": " diminuir",
+          "startMs": 4622,
+          "endMs": 5182,
+          "timestampMs": 4622,
+          "confidence": null
+        },
+        {
+          "text": " ou",
+          "startMs": 5195,
+          "endMs": 5273,
+          "timestampMs": 5195,
+          "confidence": null
+        },
+        {
+          "text": " você",
+          "startMs": 5286,
+          "endMs": 5547,
+          "timestampMs": 5286,
+          "confidence": null
+        },
+        {
+          "text": " perder",
+          "startMs": 5560,
+          "endMs": 5964,
+          "timestampMs": 5560,
+          "confidence": null
+        },
+        {
+          "text": " peso,",
+          "startMs": 5990,
+          "endMs": 6432,
+          "timestampMs": 5990,
+          "confidence": null
+        },
+        {
+          "text": " procure",
+          "startMs": 6510,
+          "endMs": 6927,
+          "timestampMs": 6510,
+          "confidence": null
+        },
+        {
+          "text": " atendimento.",
+          "startMs": 6940,
+          "endMs": 7708,
+          "timestampMs": 6940,
+          "confidence": null
+        },
+        {
+          "text": " Pode",
+          "startMs": 7982,
+          "endMs": 8229,
+          "timestampMs": 7982,
+          "confidence": null
+        },
+        {
+          "text": " ser",
+          "startMs": 8242,
+          "endMs": 8411,
+          "timestampMs": 8242,
+          "confidence": null
+        },
+        {
+          "text": " hiperêmese,",
+          "startMs": 8425,
+          "endMs": 9115,
+          "timestampMs": 8425,
+          "confidence": null
+        },
+        {
+          "text": " que",
+          "startMs": 9141,
+          "endMs": 9258,
+          "timestampMs": 9141,
+          "confidence": null
+        },
+        {
+          "text": " precisa",
+          "startMs": 9271,
+          "endMs": 9753,
+          "timestampMs": 9271,
+          "confidence": null
+        },
+        {
+          "text": " de",
+          "startMs": 9766,
+          "endMs": 9857,
+          "timestampMs": 9766,
+          "confidence": null
+        },
+        {
+          "text": " tratamento.",
+          "startMs": 9870,
+          "endMs": 10599,
+          "timestampMs": 9870,
+          "confidence": null
+        }
+      ]
+    },
+    "encerramento": {
+      "duracao": 4.038,
+      "palavras": [
+        {
+          "text": " Mais",
+          "startMs": 52,
+          "endMs": 391,
+          "timestampMs": 52,
+          "confidence": null
+        },
+        {
+          "text": " dicas",
+          "startMs": 404,
+          "endMs": 768,
+          "timestampMs": 404,
+          "confidence": null
+        },
+        {
+          "text": " para",
+          "startMs": 781,
+          "endMs": 1003,
+          "timestampMs": 781,
+          "confidence": null
+        },
+        {
+          "text": " cada",
+          "startMs": 1016,
+          "endMs": 1328,
+          "timestampMs": 1016,
+          "confidence": null
+        },
+        {
+          "text": " fase",
+          "startMs": 1341,
+          "endMs": 1693,
+          "timestampMs": 1341,
+          "confidence": null
+        },
+        {
+          "text": " da",
+          "startMs": 1706,
+          "endMs": 1810,
+          "timestampMs": 1706,
+          "confidence": null
+        },
+        {
+          "text": " gestação",
+          "startMs": 1823,
+          "endMs": 2409,
+          "timestampMs": 1823,
+          "confidence": null
+        },
+        {
+          "text": " estão",
+          "startMs": 2422,
+          "endMs": 2682,
+          "timestampMs": 2422,
+          "confidence": null
+        },
+        {
+          "text": " no",
+          "startMs": 2695,
+          "endMs": 2786,
+          "timestampMs": 2695,
+          "confidence": null
+        },
+        {
+          "text": " Ninna.",
+          "startMs": 2800,
+          "endMs": 3190,
+          "timestampMs": 2800,
+          "confidence": null
+        }
+      ]
+    }
+  }
+}

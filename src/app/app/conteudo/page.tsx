@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Carregando, Pagina, TituloPagina } from "@/components/ui";
+import { CartaoVideo } from "@/components/video-curto";
 import { artigosDoPerfil } from "@/content/artigos";
+import { videoPorSlug, videosDoPerfil } from "@/content/videos";
 import { exigirUsuariaPronta } from "@/lib/dal";
 import { PERFIS, type Perfil } from "@/lib/triagem";
 import { CartaoConteudo } from "./cartao";
@@ -35,12 +37,29 @@ const GRADE = "grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4";
 async function Lista() {
   const { perfil } = await exigirUsuariaPronta();
   const guias = GUIAS[perfil.perfil] ?? [];
+  const videos = videosDoPerfil(perfil.perfil);
 
   return (
     <>
       <p className="-mt-3 text-[15px] text-suave">
         Selecionado para o perfil {PERFIS[perfil.perfil].titulo}. Em revisão por profissionais de saúde.
       </p>
+
+      {videos.length > 0 && (
+        <section aria-labelledby="titulo-videos" className="flex flex-col gap-3">
+          <h2 id="titulo-videos" className="text-lg font-bold">
+            Vídeos curtos
+          </h2>
+          {/* Fileira com rolagem lateral; as bordas vão até o fim da tela no celular. */}
+          <ul className="-mx-5 flex snap-x scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:gap-4 sm:overflow-visible sm:px-0">
+            {videos.map((v) => (
+              <li key={v.slug} className="flex">
+                <CartaoVideo video={v} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {guias.length > 0 && (
         <section aria-labelledby="titulo-guias" className="flex flex-col gap-3">
@@ -64,7 +83,13 @@ async function Lista() {
         <ul className={GRADE}>
           {artigosDoPerfil(perfil.perfil).map((a) => (
             <li key={a.slug}>
-              <CartaoConteudo href={`/app/conteudo/${a.slug}`} titulo={a.titulo} premium={a.premium} {...visualDoArtigo(a.slug)} />
+              <CartaoConteudo
+                href={`/app/conteudo/${a.slug}`}
+                titulo={a.titulo}
+                premium={a.premium}
+                selo={videoPorSlug(a.slug) ? "Com vídeo" : undefined}
+                {...visualDoArtigo(a.slug)}
+              />
             </li>
           ))}
         </ul>

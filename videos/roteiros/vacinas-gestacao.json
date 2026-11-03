@@ -1,0 +1,36 @@
+{
+  "titulo": "Vacinas na gestação",
+  "fonte": "Caderneta da Gestante (MS, 2026) e Protocolo de Pré-Natal (SMS Porto Alegre, 2026)",
+  "cenas": [
+    {
+      "id": "gancho",
+      "fala": "Sabia que as vacinas que você toma na gravidez também protegem o bebê? Os anticorpos passam pela placenta e pelo leite. E todas são de graça no SUS.",
+      "tela": "Escudo envolvendo a bolha do bebê; partículas passando da mãe para o bebê."
+    },
+    {
+      "id": "dtpa",
+      "fala": "A dê tê pê á, contra difteria, tétano e coqueluche, é a partir da vigésima semana, em toda gestação, mesmo que você já tenha tomado antes.",
+      "tela": "Cartão da vacina com marcador na linha do tempo em 20 semanas."
+    },
+    {
+      "id": "vsr",
+      "fala": "A vacina contra o VSR é a partir da vigésima oitava semana, de preferência até a trigésima sexta. Ela protege o bebê da bronquiolite, principal causa de internação de bebês pequenos.",
+      "tela": "Marcador deslizando entre 28 e 36 semanas."
+    },
+    {
+      "id": "gripe",
+      "fala": "A da gripe, uma dose por temporada, e a da covid, uma dose por ano, podem ser tomadas em qualquer fase da gestação. E se a hepatite B estiver incompleta, a equipe completa sem recomeçar.",
+      "tela": "Três cartões virando: gripe, covid, hepatite B."
+    },
+    {
+      "id": "depois",
+      "fala": "Tríplice viral, catapora e HPV ficam para depois do parto. Leve sua caderneta em toda consulta para a equipe conferir.",
+      "tela": "Cartões indo para uma caixa \"depois do parto\"."
+    },
+    {
+      "id": "encerramento",
+      "fala": "Veja o calendário completo de vacinas no Ninna.",
+      "tela": "Logo."
+    }
+  ]
+}

@@ -76,6 +76,7 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 | `src/app/triagem/` | Assistente da triagem e gravação |
 | `src/content/` | Conteúdo dos guias e artigos, com base na Caderneta Brasileira da Gestante (Ministério da Saúde, 2026); a revisar por profissional e depois vai para o CMS |
 | `src/app/app/` | Painel: Início, Agenda, Conteúdo, Perfil, guias e alertas |
+| `videos/` | Projeto à parte (Remotion) que gera os vídeos curtos; `npm run publicar` lá dentro grava a versão leve e a capa em `public/videos/`, e a lista do app fica em `src/content/videos.ts` |
 | `src/lib/pagamentos.ts` | Regras do pagamento: referência do pedido, o que fazer com cada status, assinatura do webhook |
 | `src/lib/mercadopago.ts` | Chamadas à API do Mercado Pago e crédito do Premium |
 | `src/lib/documentos.ts` | Regras da Central de Documentos: categorias, tipos, tamanho, assinatura dos arquivos, filtros |
@@ -102,6 +103,8 @@ O plano fica na tabela `assinaturas`, que a usuária só pode ler (não pode se 
 Artigos marcados como Premium só abrem para quem é Premium. O contador de contrações também, mas os sinais para ir à maternidade na hora aparecem para todas. Os registros do contador ficam só no aparelho (localStorage, por até 12 horas) e funcionam sem internet. A regra de quando ir para a maternidade fica em `src/content/contracoes.ts`.
 
 O plano de parto guarda as respostas na tabela `planos_de_parto` (jsonb); as perguntas ficam em `src/content/plano-parto.ts`. O PDF é gerado pela impressão do navegador ("Salvar como PDF"), com estilos próprios para a folha A4. Sinais de alerta são sempre gratuitos.
+
+Os vídeos curtos aparecem na fileira "Vídeos curtos" do Conteúdo, no topo do artigo de mesmo nome e (o de sinais de alerta, para gestantes) no fim da página de alertas. São arquivos estáticos servidos pela própria Vercel, sem provedor de vídeo de terceiros, e só baixam quando ela dá o play.
 
 ## Assinatura Premium (Mercado Pago)
 

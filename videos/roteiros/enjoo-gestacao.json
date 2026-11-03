@@ -1,0 +1,36 @@
+{
+  "titulo": "Enjoo na gravidez: o que ajuda",
+  "fonte": "Caderneta da Gestante (MS, 2026) e Protocolo de Pré-Natal (SMS Porto Alegre, 2026)",
+  "cenas": [
+    {
+      "id": "gancho",
+      "fala": "Enjoo na gravidez? Você não está sozinha. Ele é comum no começo e costuma melhorar no segundo trimestre.",
+      "tela": "Bolha balançando como barco; ondinhas que se acalmam."
+    },
+    {
+      "id": "refeicoes",
+      "fala": "Faça de cinco a seis refeições pequenas por dia. Estômago vazio e estômago cheio demais pioram o enjoo.",
+      "tela": "Relógio com seis pratinhos aparecendo em volta."
+    },
+    {
+      "id": "manha",
+      "fala": "Comece o dia com algo seco, como biscoito de água e sal ou torrada. E evite frituras, comidas gordurosas e cheiros fortes.",
+      "tela": "Biscoito e torrada com visto; frituras com símbolo de evitar."
+    },
+    {
+      "id": "liquidos",
+      "fala": "Beba líquidos entre as refeições, não durante. Bebidas geladas costumam cair melhor; evite as com gás e com cafeína. E não se deite logo depois de comer.",
+      "tela": "Copo gelado com visto; refrigerante e café com símbolo de evitar."
+    },
+    {
+      "id": "alerta",
+      "fala": "Mas atenção: se os vômitos não deixarem você comer nem beber, se a urina diminuir ou você perder peso, procure atendimento. Pode ser hiperêmese, que precisa de tratamento.",
+      "tela": "Fundo esquenta; selo \"Atenção\"; três cartões de alerta."
+    },
+    {
+      "id": "encerramento",
+      "fala": "Mais dicas para cada fase da gestação estão no Ninna.",
+      "tela": "Logo."
+    }
+  ]
+}

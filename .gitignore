@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# vídeos (Remotion): dependências e vídeos gerados
+/videos/node_modules
+/videos/out
+/videos/public/sons
