@@ -2,7 +2,8 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { codigoDoConvite, COOKIE_CONVITE, destinoSeguro, DIAS_CONVITE, resumoDoConvite } from "@/lib/convite";
+import { codigoDoConvite, COOKIE_CONVITE, DIAS_CONVITE, resumoDoConvite } from "@/lib/convite";
+import { destinoSeguro } from "@/lib/destino";
 
 export type EstadoConvite = { erro?: string } | undefined;
 

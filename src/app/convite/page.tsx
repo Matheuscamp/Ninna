@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { TelaAvulsa } from "@/components/acolhida";
-import { destinoSeguro } from "@/lib/convite";
+import { destinoSeguro } from "@/lib/destino";
 import { FormConvite } from "./form";
 
 export const metadata: Metadata = { title: "Convite" };

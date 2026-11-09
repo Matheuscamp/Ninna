@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { caminhoLivre, codigoDoConvite, COOKIE_CONVITE, conviteValido } from "@/lib/convite";
+import { destinoSeguro } from "@/lib/destino";
 import { updateSession } from "@/lib/supabase/proxy";
 
 const ROTAS_PROTEGIDAS = ["/app", "/consentimento"];
@@ -32,8 +33,7 @@ export async function proxy(request: NextRequest) {
 
   // Quem já está logada não precisa ver as telas de entrar e de cadastro.
   if (user && ROTAS_DE_ENTRADA.includes(pathname)) {
-    const next = request.nextUrl.searchParams.get("next") ?? "/app";
-    const destino = next.startsWith("/") && !next.startsWith("//") ? next : "/app";
+    const destino = destinoSeguro(request.nextUrl.searchParams.get("next"), "/app");
     return NextResponse.redirect(new URL(destino, request.url));
   }
 

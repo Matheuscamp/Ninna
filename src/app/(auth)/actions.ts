@@ -3,6 +3,7 @@
 import { isAuthRetryableFetchError, isAuthSessionMissingError } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { destinoSeguro } from "@/lib/destino";
 import { origem } from "@/lib/origem";
 import { createClient } from "@/lib/supabase/server";
 
@@ -40,12 +41,6 @@ function valoresDigitados(formData: FormData) {
   return { nome: texto("nome"), email: texto("email") };
 }
 
-// Só aceita caminhos internos, para o "next" não virar um redirecionamento aberto.
-function destinoSeguro(next: FormDataEntryValue | null, padrao = "/app") {
-  const valor = typeof next === "string" ? next : "";
-  return valor.startsWith("/") && !valor.startsWith("//") ? valor : padrao;
-}
-
 const entrarSchema = z.object({
   email: z.email({ error: "Informe um e-mail válido." }),
   senha: z.string().min(1, { error: "Informe sua senha." }),
@@ -71,7 +66,7 @@ export async function entrar(_estado: EstadoForm, formData: FormData): Promise<E
   }
   if (error) return { erro: "E-mail ou senha incorretos.", valores };
 
-  redirect(destinoSeguro(formData.get("next")));
+  redirect(destinoSeguro(formData.get("next"), "/app"));
 }
 
 const cadastroSchema = z.object({

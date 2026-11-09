@@ -16,6 +16,7 @@ Já entregue: **login**, **consentimento LGPD**, **triagem** e o **painel** (In�
    - `20261101000000_ficha_saude.sql`: foto de perfil (bucket privado) e ficha pessoal e de saúde.
    - `20261102000000_pagamentos.sql`: pagamentos do Premium pelo Mercado Pago.
    - `20261103000000_plano_parto.sql`: plano de parto (Premium).
+   - `20261104000000_cotas.sql`: limites contra abuso (arquivos por usuária, linhas por tabela e tamanho de campos livres).
 
    Todas as tabelas têm RLS ligado.
 3. Copie `.env.example` para `.env.local` e preencha a URL e a publishable key do projeto.
@@ -183,7 +184,7 @@ Itens que não se resolvem só com código:
   1. Crie uma conta no Resend e adicione o domínio do Ninna, configurando no DNS os registros que o Resend indicar (SPF e DKIM).
   2. No Supabase, em Authentication › Emails › SMTP Settings, ative o SMTP próprio com os dados do Resend (host `smtp.resend.com`, porta 465, usuário `resend`, senha = API key do Resend) e um remetente do domínio, como `nao-responda@seudominio`.
   3. Religue a confirmação de e-mail em Authentication › Sign In / Providers › Email › Confirm email.
-  4. Em Authentication › Emails › Templates › **Reset Password** (só dá para editar depois do SMTP próprio), troque o link do e-mail para `{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=recovery&next=/nova-senha` (em português, se quiser, no assunto e no texto). Com o modelo padrão, o link de nova senha só funciona no mesmo navegador em que o pedido foi feito.
+  4. Em Authentication › Emails › Templates › **Reset Password** (só dá para editar depois do SMTP próprio), troque o link do e-mail para `{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=recovery&next=/nova-senha` (em português, se quiser, no assunto e no texto). Com o modelo padrão, o link de nova senha só funciona no mesmo navegador em que o pedido foi feito. Links com `token_hash` sempre passam pela tela `/confirmar-conta`, que mostra de qual conta é o link antes de seguir.
   5. Ajuste `NEXT_PUBLIC_SITE_URL` e as Redirect URLs para o domínio final.
 
 ## Scripts

@@ -22,9 +22,20 @@ describe("retorno dos links de e-mail", () => {
     expect(estado.falso.supabase.auth.exchangeCodeForSession).toHaveBeenCalledWith("abc");
   });
 
-  it("link com token_hash de recuperação funciona em qualquer aparelho", async () => {
-    expect(await abrir("token_hash=h1&type=recovery&next=/nova-senha")).toBe("https://ninna.com.br/nova-senha");
+  it("link com token_hash de recuperação funciona em qualquer aparelho e mostra a conta antes de seguir", async () => {
+    expect(await abrir("token_hash=h1&type=recovery&next=/nova-senha")).toBe("https://ninna.com.br/confirmar-conta?para=senha");
     expect(estado.falso.supabase.auth.verifyOtp).toHaveBeenCalledWith({ type: "recovery", token_hash: "h1" });
+  });
+
+  it("link com token_hash ignora o next, que pode ter sido trocado por quem repassou o link", async () => {
+    expect(await abrir("token_hash=h1&type=recovery&next=/app")).toBe("https://ninna.com.br/confirmar-conta?para=senha");
+    expect(await abrir("token_hash=h1&type=signup&next=/app")).toBe("https://ninna.com.br/confirmar-conta?para=cadastro");
+    expect(await abrir("token_hash=h1&type=email&next=/%5Csite-malicioso.com")).toBe("https://ninna.com.br/confirmar-conta?para=cadastro");
+  });
+
+  it("token_hash de recuperação vencido volta para pedir outro, mesmo sem next", async () => {
+    estado.falso.supabase.auth.verifyOtp.mockResolvedValue({ data: {}, error: vencido });
+    expect(await abrir("token_hash=h1&type=recovery")).toBe("https://ninna.com.br/esqueci-senha?erro=link");
   });
 
   it("recusa tipos de link que não usamos", async () => {
@@ -45,5 +56,7 @@ describe("retorno dos links de e-mail", () => {
 
   it("ignora destinos externos", async () => {
     expect(await abrir("code=abc&next=//site-malicioso.com")).toBe("https://ninna.com.br/app");
+    expect(await abrir("code=abc&next=/%5Csite-malicioso.com")).toBe("https://ninna.com.br/app");
+    expect(await abrir("code=abc&next=/%09/site-malicioso.com")).toBe("https://ninna.com.br/app");
   });
 });

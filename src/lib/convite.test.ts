@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { caminhoLivre, codigoDoConvite, conviteValido, destinoSeguro, resumoDoConvite } from "./convite";
+import { caminhoLivre, codigoDoConvite, conviteValido, resumoDoConvite } from "./convite";
 
 afterEach(() => {
   delete process.env.CODIGO_CONVITE;
@@ -31,12 +31,5 @@ describe("acesso por convite", () => {
     expect(caminhoLivre("/")).toBe(false);
     expect(caminhoLivre("/app")).toBe(false);
     expect(caminhoLivre("/convitezinho")).toBe(false);
-  });
-
-  it("só volta para caminhos internos", () => {
-    expect(destinoSeguro("/triagem")).toBe("/triagem");
-    expect(destinoSeguro("//site-malicioso.com")).toBe("/");
-    expect(destinoSeguro("https://site-malicioso.com")).toBe("/");
-    expect(destinoSeguro(null)).toBe("/");
   });
 });

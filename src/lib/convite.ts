@@ -29,8 +29,3 @@ export async function conviteValido(valorDoCookie: string | undefined, codigo: s
   if (!valorDoCookie) return false;
   return valorDoCookie === (await resumoDoConvite(codigo));
 }
-
-// Só aceita voltar para caminhos internos, para o "next" não virar um redirecionamento aberto.
-export function destinoSeguro(next: unknown) {
-  return typeof next === "string" && next.startsWith("/") && !next.startsWith("//") ? next : "/";
-}
