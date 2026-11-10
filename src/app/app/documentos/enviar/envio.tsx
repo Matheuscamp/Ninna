@@ -40,7 +40,8 @@ function enviarParaStorage(url: string, arquivo: File, aoProgredir: (pct: number
     xhr.open("PUT", url);
     xhr.setRequestHeader("content-type", arquivo.type);
     xhr.setRequestHeader("x-upsert", "false");
-    xhr.setRequestHeader("cache-control", "max-age=3600");
+    // Documento de saúde: o navegador não guarda cópia ao abrir (vale para envios daqui em diante).
+    xhr.setRequestHeader("cache-control", "no-store");
     const chave = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
     if (chave) xhr.setRequestHeader("apikey", chave);
     xhr.upload.onprogress = (e) => {

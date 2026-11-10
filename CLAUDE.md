@@ -29,7 +29,7 @@ Toda tela segue o mesmo padrão visual (o da página inicial, triagem e login). 
 - Variáveis na Vercel: as do `.env.local` + `NEXT_PUBLIC_SITE_URL`. Mercado Pago em **modo de teste** (vendedor = conta de teste; para pagar: cartão de teste do painel e e-mail terminado em `@testuser.com`, senão dá "uma das partes é de teste").
 - A volta automática do checkout (`auto_return`) só funciona em https: no `localhost` o Mercado Pago recusa; lá use o botão "Verificar pagamento".
 - `CODIGO_CONVITE` existe no código (`src/proxy.ts` manda para `/convite`; caminhos liberados em `src/lib/convite.ts`), mas a dona optou por **não** usá-lo: o site está aberto a quem tiver o link, e fora dos buscadores (`noindex` no layout e `robots.ts`).
-- Login só por e-mail e senha (o Google foi removido; falta desligar o provedor no painel do Supabase).
+- Login só por e-mail e senha (o Google foi removido do código e o provedor está desligado no Supabase).
 - Passo a passo de publicação no README, "Colocar no ar".
 
 ## Armadilhas já encontradas
