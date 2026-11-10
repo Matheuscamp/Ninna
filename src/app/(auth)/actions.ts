@@ -1,10 +1,13 @@
 "use server";
 
 import { isAuthRetryableFetchError, isAuthSessionMissingError } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { podeDefinirNovaSenha } from "@/lib/dal";
 import { destinoSeguro } from "@/lib/destino";
 import { origem } from "@/lib/origem";
+import { COOKIE_RECUPERACAO } from "@/lib/recuperacao";
 import { createClient } from "@/lib/supabase/server";
 
 const SEM_CONEXAO = "Não conseguimos conectar agora. Confira sua internet e tente de novo.";
@@ -150,17 +153,18 @@ const ERROS_NOVA_SENHA: Record<string, string> = {
   over_request_rate_limit: ERROS_CADASTRO.over_request_rate_limit,
 };
 
-// Grava a nova senha. Chega aqui com a sessão aberta pelo link do e-mail (/auth/callback).
+const LINK_DE_SENHA_EXPIROU = "Seu link expirou. Peça um novo em “Esqueci minha senha”.";
+
+// Grava a nova senha. Só com a sessão aberta pelo link do e-mail (/auth/callback).
 export async function definirNovaSenha(_estado: EstadoForm, formData: FormData): Promise<EstadoForm> {
   const campos = novaSenhaSchema.safeParse({ senha: formData.get("senha"), confirmacao: formData.get("confirmacao") });
   if (!campos.success) return { erros: z.flattenError(campos.error).fieldErrors };
+  if (!(await podeDefinirNovaSenha())) return { erro: LINK_DE_SENHA_EXPIROU };
 
   const supabase = await createClient();
   const { error } = await supabase.auth.updateUser({ password: campos.data.senha });
   if (isAuthRetryableFetchError(error)) return { erro: SEM_CONEXAO };
-  if (isAuthSessionMissingError(error)) {
-    return { erro: "Seu link expirou. Peça um novo em “Esqueci minha senha”." };
-  }
+  if (isAuthSessionMissingError(error)) return { erro: LINK_DE_SENHA_EXPIROU };
   if (error) {
     console.error("[nova senha] erro do Supabase:", error.code ?? "sem_codigo", error.status);
     return { erro: (error.code && ERROS_NOVA_SENHA[error.code]) ?? "Não foi possível trocar a senha agora. Tente de novo." };
@@ -169,11 +173,13 @@ export async function definirNovaSenha(_estado: EstadoForm, formData: FormData):
   // Quem pediu a troca pode ter perdido o celular ou a senha vazado: encerra as
   // sessões abertas em outros aparelhos. Se falhar, a senha nova já vale.
   await supabase.auth.signOut({ scope: "others" });
+  (await cookies()).delete(COOKIE_RECUPERACAO);
   return { enviado: true };
 }
 
 export async function sair() {
   const supabase = await createClient();
   await supabase.auth.signOut();
+  (await cookies()).delete(COOKIE_RECUPERACAO);
   redirect("/");
 }

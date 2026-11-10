@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
+import { FormSair } from "@/components/dados-do-aparelho";
 import { BotaoSecundario } from "@/components/ui";
 import { getUsuaria } from "@/lib/dal";
-import { sair } from "../actions";
 import { TelaAuth } from "../tela";
 import { CartaoConfirmarConta } from "./cartao";
 
@@ -20,9 +20,9 @@ async function Conteudo({ searchParams }: { searchParams: PageProps<"/confirmar-
       email={usuaria.email}
       continuar={para === "senha" ? "/nova-senha" : "/consentimento"}
       sair={
-        <form action={sair}>
+        <FormSair>
           <BotaoSecundario type="submit">Não é a minha conta, sair</BotaoSecundario>
-        </form>
+        </FormSair>
       }
     />
   );

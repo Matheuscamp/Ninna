@@ -21,7 +21,7 @@ async function Contador() {
         </p>
       )}
       {plano === "premium" ? (
-        <ContadorContracoes />
+        <ContadorContracoes usuariaId={usuaria.id} />
       ) : (
         <div className="flex flex-col gap-3 rounded-3xl bg-rosa-50 p-5">
           <p className="font-bold text-rosa-700">Recurso Premium</p>

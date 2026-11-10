@@ -1,5 +1,6 @@
 // Limites do plano gratuito. No Premium, os recursos abaixo são ilimitados.
-// O limite de documentos também é garantido no banco (migração 20261031000000_planos.sql).
+// Os dois limites também são garantidos no banco (migração 20261105000000_limites_gratuitos.sql):
+// ao mudar um número aqui, mude também lá.
 
 export type Plano = "gratuito" | "premium";
 

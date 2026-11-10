@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Carregando, Pagina, TituloPagina } from "@/components/ui";
 import { UsoDoPlano } from "@/components/uso-do-plano";
-import { separarConsultas } from "@/lib/agenda";
+import { LIMITE_GRATUITO, separarConsultas } from "@/lib/agenda";
 import { limite } from "@/lib/planos";
 import { exigirUsuariaPronta, getPlano, listarConsultas, type Consulta } from "@/lib/dal";
 import { partesDaData, quantoFalta } from "@/lib/datas";
@@ -19,6 +19,10 @@ const MENSAGENS: Record<string, { texto: string; erro?: boolean }> = {
   concluida: { texto: "Consulta marcada como concluída." },
   reaberta: { texto: "Consulta desmarcada. Ela voltou para a agenda." },
   erro: { texto: "Não foi possível concluir. Tente de novo.", erro: true },
+  limite: {
+    texto: `No plano gratuito você pode ter até ${LIMITE_GRATUITO} consultas futuras. Para desmarcar esta, remova outra ou assine o Premium.`,
+    erro: true,
+  },
 };
 
 type Aba = "proximas" | "confirmar" | "concluidas";

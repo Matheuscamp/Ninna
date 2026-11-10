@@ -2,16 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { REGRA_IR_PARA_MATERNIDADE, TEXTOS_CONTRACOES } from "@/content/contracoes";
-import { atingiuPadrao, comIntervalos, descartarAntigas, formatarDuracao, lerSalvas, resumoDoPeriodo, type Contracao } from "@/lib/contracoes";
+import { atingiuPadrao, comIntervalos, descartarAntigas, formatarDuracao, lerSalvas, limparRegistros, PREFIXO_CONTRACOES, resumoDoPeriodo, type Contracao } from "@/lib/contracoes";
 import { FUSO } from "@/lib/datas";
 
 // Os registros ficam só neste aparelho (localStorage): funcionam sem internet e
-// não vão para o servidor. Somem sozinhos depois de 12 horas ou ao recomeçar.
-const CHAVE = "ninna:contracoes";
-
-function salvar(contracoes: Contracao[], emAndamento: number | null) {
+// não vão para o servidor. Cada conta tem os seus, e eles somem depois de 12 horas,
+// ao recomeçar ou ao sair da conta.
+function guardar(chave: string, contracoes: Contracao[], emAndamento: number | null) {
   try {
-    localStorage.setItem(CHAVE, JSON.stringify({ contracoes, emAndamento }));
+    localStorage.setItem(chave, JSON.stringify({ contracoes, emAndamento }));
   } catch {
     // Armazenamento bloqueado (ex.: navegação privada): o contador segue só na memória.
   }
@@ -30,7 +29,9 @@ function Numero({ rotulo, valor }: { rotulo: string; valor: string }) {
   );
 }
 
-export function ContadorContracoes() {
+export function ContadorContracoes({ usuariaId }: { usuariaId: string }) {
+  const chave = `${PREFIXO_CONTRACOES}${usuariaId}`;
+  const salvar = (registros: Contracao[], aberta: number | null) => guardar(chave, registros, aberta);
   const [contracoes, setContracoes] = useState<Contracao[]>([]);
   const [emAndamento, setEmAndamento] = useState<number | null>(null);
   // O relógio só começa no navegador (o horário do servidor não serve para a tela).
@@ -42,17 +43,18 @@ export function ContadorContracoes() {
   useEffect(() => {
     let salvo: string | null = null;
     try {
-      salvo = localStorage.getItem(CHAVE);
+      salvo = localStorage.getItem(chave);
     } catch {}
-    const dados = lerSalvas(salvo);
     const instante = Date.now();
+    const dados = limparRegistros(lerSalvas(salvo), instante);
+    if (salvo !== null) guardar(chave, dados.contracoes, dados.emAndamento);
     /* eslint-disable react-hooks/set-state-in-effect -- leitura única do armazenamento do aparelho */
     setAgora(instante);
-    setContracoes(descartarAntigas(dados.contracoes, instante));
+    setContracoes(dados.contracoes);
     setEmAndamento(dados.emAndamento);
     setCarregado(true);
     /* eslint-enable react-hooks/set-state-in-effect */
-  }, []);
+  }, [chave]);
 
   // Relógio: a cada segundo durante uma contração; a cada 15 s entre elas.
   useEffect(() => {

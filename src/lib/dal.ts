@@ -1,5 +1,7 @@
 import "server-only";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { COOKIE_RECUPERACAO } from "@/lib/recuperacao";
 import { createClient } from "@/lib/supabase/server";
 import { TIPOS_CONSENTIMENTO, VERSAO_CONSENTIMENTO } from "@/lib/consentimento";
 import { hojeEmSaoPaulo } from "@/lib/datas";
@@ -28,6 +30,13 @@ export async function getUsuaria(): Promise<Usuaria | null> {
   const { data } = await supabase.auth.getClaims();
   const claims = data?.claims;
   return claims?.sub ? { id: claims.sub, email: claims.email } : null;
+}
+
+// Trocar a senha sem informar a atual só vale para a conta que acabou de abrir
+// um link de recuperação neste navegador (ver /auth/callback).
+export async function podeDefinirNovaSenha() {
+  const marca = (await cookies()).get(COOKIE_RECUPERACAO)?.value;
+  return Boolean(marca) && (await getUsuaria())?.id === marca;
 }
 
 export async function temConsentimento(usuariaId: string) {

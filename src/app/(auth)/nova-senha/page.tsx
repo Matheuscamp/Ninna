@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { getUsuaria } from "@/lib/dal";
+import { podeDefinirNovaSenha } from "@/lib/dal";
 import { FormNovaSenha } from "../formularios";
 import { TelaAuth } from "../tela";
 
 export const metadata: Metadata = { title: "Nova senha" };
 
-// Só abre com a sessão criada pelo link do e-mail (ver /auth/callback).
+// Só abre com a sessão criada pelo link do e-mail (ver /auth/callback): uma sessão
+// comum, como a de um celular emprestado, não troca a senha sem a pessoa ter o e-mail.
 async function Conteudo() {
-  if (await getUsuaria()) return <FormNovaSenha />;
+  if (await podeDefinirNovaSenha()) return <FormNovaSenha />;
   return (
     <div className="flex flex-col gap-4">
       <p role="alert" className="rounded-2xl bg-rosa-50 p-4 text-[15px] text-rosa-700">

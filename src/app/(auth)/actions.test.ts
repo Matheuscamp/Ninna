@@ -2,11 +2,18 @@ import { AuthApiError, AuthRetryableFetchError, AuthSessionMissingError } from "
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { criarSupabaseFalso, destinoDe } from "@/test/supabase-falso";
 
-const estado = vi.hoisted(() => ({ falso: null as unknown as ReturnType<typeof criarSupabaseFalso> }));
+const estado = vi.hoisted(() => ({
+  falso: null as unknown as ReturnType<typeof criarSupabaseFalso>,
+  marca: undefined as string | undefined,
+  apagarCookie: null as unknown as ReturnType<typeof vi.fn>,
+}));
 
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/supabase/server", () => ({ createClient: async () => estado.falso.supabase }));
-vi.mock("next/headers", () => ({ headers: async () => new Headers({ origin: "http://localhost:3000" }) }));
+vi.mock("next/headers", () => ({
+  headers: async () => new Headers({ origin: "http://localhost:3000" }),
+  cookies: async () => ({ get: () => (estado.marca ? { value: estado.marca } : undefined), delete: estado.apagarCookie }),
+}));
 vi.mock("next/navigation", async () => {
   const { Redirecionou } = await import("@/test/supabase-falso");
   return {
@@ -29,6 +36,8 @@ const sessao = { access_token: "t", refresh_token: "r" };
 
 beforeEach(() => {
   estado.falso = criarSupabaseFalso();
+  estado.marca = undefined;
+  estado.apagarCookie = vi.fn();
   delete process.env.NEXT_PUBLIC_SITE_URL;
 });
 
@@ -180,10 +189,27 @@ describe("esqueci minha senha", () => {
 describe("nova senha", () => {
   const senhas = (senha: string, confirmacao = senha) => formulario({ senha, confirmacao });
 
-  it("grava a senha e encerra as sessões dos outros aparelhos", async () => {
+  beforeEach(() => {
+    estado.marca = "usuaria-1"; // sessão aberta pelo link de recuperação
+  });
+
+  it("grava a senha, encerra as sessões dos outros aparelhos e o link deixa de valer", async () => {
     expect(await definirNovaSenha(undefined, senhas("novasenha456"))).toEqual({ enviado: true });
     expect(estado.falso.supabase.auth.updateUser).toHaveBeenCalledWith({ password: "novasenha456" });
     expect(estado.falso.supabase.auth.signOut).toHaveBeenCalledWith({ scope: "others" });
+    expect(estado.apagarCookie).toHaveBeenCalledWith("ninna-recuperacao");
+  });
+
+  it("uma sessão comum não troca a senha", async () => {
+    estado.marca = undefined;
+    expect((await definirNovaSenha(undefined, senhas("novasenha456")))?.erro).toMatch(/link expirou/);
+    expect(estado.falso.supabase.auth.updateUser).not.toHaveBeenCalled();
+  });
+
+  it("a marca de recuperação de uma conta não vale para outra", async () => {
+    estado.marca = "outra-conta";
+    expect((await definirNovaSenha(undefined, senhas("novasenha456")))?.erro).toMatch(/link expirou/);
+    expect(estado.falso.supabase.auth.updateUser).not.toHaveBeenCalled();
   });
 
   it("recusa senha curta ou diferente da confirmação sem chamar o Supabase", async () => {

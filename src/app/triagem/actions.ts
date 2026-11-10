@@ -1,6 +1,6 @@
 "use server";
 
-import { getUsuaria, temConsentimento } from "@/lib/dal";
+import { getPerfil, getUsuaria, temConsentimento } from "@/lib/dal";
 import { hojeEmSaoPaulo } from "@/lib/datas";
 import { createClient } from "@/lib/supabase/server";
 import {
@@ -15,6 +15,17 @@ import {
 export type ResultadoSalvar =
   | { ok: true }
   | { ok: false; motivo: "login" | "consentimento" | "invalida" | "erro"; mensagem?: string };
+
+// O que fazer com respostas guardadas neste aparelho antes do login. Elas podem ser
+// de outra pessoa (aparelho compartilhado): nunca substituem um perfil que já existe.
+export type SituacaoDaTriagemPendente = "login" | "consentimento" | "ja_tem_perfil" | "nova";
+
+export async function situacaoDaTriagemPendente(): Promise<SituacaoDaTriagemPendente> {
+  const usuaria = await getUsuaria();
+  if (!usuaria) return "login";
+  if (!(await temConsentimento(usuaria.id))) return "consentimento";
+  return (await getPerfil(usuaria.id))?.perfil ? "ja_tem_perfil" : "nova";
+}
 
 export async function salvarTriagem(entrada: unknown): Promise<ResultadoSalvar> {
   const usuaria = await getUsuaria();

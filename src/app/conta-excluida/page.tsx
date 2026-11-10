@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TelaAvulsa } from "@/components/acolhida";
+import { LimparDadosAoAbrir } from "@/components/dados-do-aparelho";
 
 export const metadata: Metadata = { title: "Conta excluída" };
 
 export default function ContaExcluidaPage() {
   return (
     <TelaAvulsa ilustracao="flor" fundo="bg-baunilha">
+      <LimparDadosAoAbrir />
       <h1 className="text-[28px] font-bold leading-tight tracking-tight">Sua conta foi excluída</h1>
       <p className="leading-relaxed text-suave">
         Apagamos sua conta e todos os seus dados. Se quiser voltar algum dia, é só fazer a triagem de novo.

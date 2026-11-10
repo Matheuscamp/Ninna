@@ -38,6 +38,30 @@ describe("retorno dos links de e-mail", () => {
     expect(await abrir("token_hash=h1&type=recovery")).toBe("https://ninna.com.br/esqueci-senha?erro=link");
   });
 
+  describe("marca de recuperação de senha", () => {
+    const marca = async (busca: string) => (await GET(new NextRequest(`https://ninna.com.br/auth/callback?${busca}`))).cookies.get("ninna-recuperacao");
+    const comConta = { data: { user: { id: "conta-1" } }, error: null };
+
+    it("link de recuperação marca a sessão, presa à conta e fora do alcance do JavaScript", async () => {
+      estado.falso.supabase.auth.verifyOtp.mockResolvedValue(comConta);
+      expect(await marca("token_hash=h1&type=recovery")).toMatchObject({ value: "conta-1", httpOnly: true, maxAge: 1800 });
+      estado.falso.supabase.auth.exchangeCodeForSession.mockResolvedValue(comConta);
+      expect(await marca("code=abc&next=/nova-senha")).toMatchObject({ value: "conta-1" });
+    });
+
+    it("outros links não marcam", async () => {
+      estado.falso.supabase.auth.verifyOtp.mockResolvedValue(comConta);
+      expect(await marca("token_hash=h1&type=signup")).toBeUndefined();
+      estado.falso.supabase.auth.exchangeCodeForSession.mockResolvedValue(comConta);
+      expect(await marca("code=abc&next=/app")).toBeUndefined();
+    });
+
+    it("link vencido não marca", async () => {
+      estado.falso.supabase.auth.verifyOtp.mockResolvedValue({ data: {}, error: vencido });
+      expect(await marca("token_hash=h1&type=recovery")).toBeUndefined();
+    });
+  });
+
   it("recusa tipos de link que não usamos", async () => {
     expect(await abrir("token_hash=h1&type=email_change")).toBe("https://ninna.com.br/entrar?erro=link");
     expect(estado.falso.supabase.auth.verifyOtp).not.toHaveBeenCalled();

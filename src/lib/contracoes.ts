@@ -63,8 +63,19 @@ export function descartarAntigas(contracoes: Contracao[], agora: number) {
   return contracoes.filter((c) => c.inicio >= agora - GUARDAR_HORAS * 60 * MINUTO);
 }
 
+export type RegistrosSalvos = { contracoes: Contracao[]; emAndamento: number | null };
+
+// Cada conta tem os próprios registros no aparelho.
+export const PREFIXO_CONTRACOES = "ninna:contracoes:";
+
+// Tira o que passou do prazo, inclusive uma contração que ficou aberta.
+export function limparRegistros({ contracoes, emAndamento }: RegistrosSalvos, agora: number): RegistrosSalvos {
+  const aberta = emAndamento !== null && emAndamento >= agora - GUARDAR_HORAS * 60 * MINUTO;
+  return { contracoes: descartarAntigas(contracoes, agora), emAndamento: aberta ? emAndamento : null };
+}
+
 // Lê o que estava salvo no aparelho, ignorando qualquer coisa malformada.
-export function lerSalvas(texto: string | null): { contracoes: Contracao[]; emAndamento: number | null } {
+export function lerSalvas(texto: string | null): RegistrosSalvos {
   const vazio = { contracoes: [], emAndamento: null };
   if (!texto) return vazio;
   try {

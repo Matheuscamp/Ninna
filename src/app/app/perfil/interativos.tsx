@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRef, useState, type ReactNode } from "react";
 import { useFormStatus } from "react-dom";
-import { sair } from "@/app/(auth)/actions";
+import { FormSair } from "@/components/dados-do-aparelho";
 
 // Item de lista das configurações: ícone, título, descrição curta e seta.
 const ITEM =
@@ -111,9 +111,9 @@ function BotaoSair({ icone }: { icone: ReactNode }) {
 
 export function ItemSair({ icone }: { icone: ReactNode }) {
   return (
-    <form action={sair}>
+    <FormSair>
       <BotaoSair icone={icone} />
-    </form>
+    </FormSair>
   );
 }
 

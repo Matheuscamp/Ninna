@@ -45,6 +45,10 @@ async function passaDoLimite(usuariaId: string, dataHora: string, ignorarId?: nu
 
 const MENSAGEM_LIMITE = `No plano gratuito você pode ter até ${LIMITE_GRATUITO} consultas futuras. Remova ou edite uma delas, ou assine o Premium, que não tem limite.`;
 
+// O banco também barra (migração 20261105000000_limites_gratuitos.sql), inclusive
+// gravações simultâneas que passariam juntas pela conferência acima.
+const barradoPeloBanco = (error: { message?: string } | null) => Boolean(error?.message?.includes("limite_consultas"));
+
 export async function criarConsulta(_estado: EstadoConsulta, formData: FormData): Promise<EstadoConsulta> {
   const usuaria = await getUsuaria();
   if (!usuaria) redirect("/entrar?next=/app/agenda");
@@ -67,6 +71,7 @@ export async function criarConsulta(_estado: EstadoConsulta, formData: FormData)
     local: campos.data.local ?? null,
     observacoes: campos.data.observacoes ?? null,
   });
+  if (barradoPeloBanco(error)) return { erro: MENSAGEM_LIMITE, valores };
   if (error) return { erro: ERRO_SALVAR, valores };
 
   redirect("/app/agenda?ok=criada");
@@ -99,6 +104,7 @@ export async function editarConsulta(id: number, _estado: EstadoConsulta, formDa
     .eq("id", id)
     .eq("user_id", usuaria.id)
     .select("id");
+  if (barradoPeloBanco(error)) return { erro: MENSAGEM_LIMITE, valores };
   // Sem linha alterada = consulta não existe mais, é de outra pessoa ou falta a regra de edição no banco.
   if (error || data.length === 0) return { erro: ERRO_SALVAR, valores };
 
@@ -122,12 +128,31 @@ export async function alternarConcluida(formData: FormData) {
   const concluir = formData.get("concluir") === "sim";
 
   const supabase = await createClient();
+  // Desmarcar uma consulta futura a devolve para a agenda: conta no limite do plano.
+  if (!concluir) {
+    const { data: atual, error } = await supabase
+      .from("appointments")
+      .select("data_hora")
+      .eq("id", id)
+      .eq("user_id", usuaria.id)
+      .maybeSingle();
+    if (error || !atual) voltarParaAgenda(formData, "erro");
+    let passou = false;
+    try {
+      passou = await passaDoLimite(usuaria.id, atual.data_hora, id);
+    } catch {
+      voltarParaAgenda(formData, "erro");
+    }
+    if (passou) voltarParaAgenda(formData, "limite");
+  }
+
   const { data, error } = await supabase
     .from("appointments")
     .update({ concluida_em: concluir ? new Date().toISOString() : null })
     .eq("id", id)
     .eq("user_id", usuaria.id)
     .select("id");
+  if (barradoPeloBanco(error)) voltarParaAgenda(formData, "limite");
   if (error || data.length === 0) voltarParaAgenda(formData, "erro");
   voltarParaAgenda(formData, concluir ? "concluida" : "reaberta");
 }

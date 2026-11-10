@@ -17,6 +17,7 @@ Já entregue: **login**, **consentimento LGPD**, **triagem** e o **painel** (In�
    - `20261102000000_pagamentos.sql`: pagamentos do Premium pelo Mercado Pago.
    - `20261103000000_plano_parto.sql`: plano de parto (Premium).
    - `20261104000000_cotas.sql`: limites contra abuso (arquivos por usuária, linhas por tabela e tamanho de campos livres).
+   - `20261105000000_limites_gratuitos.sql`: limites do plano gratuito (3 consultas futuras e 10 documentos) garantidos também pelo banco.
 
    Todas as tabelas têm RLS ligado.
 3. Copie `.env.example` para `.env.local` e preencha a URL e a publishable key do projeto.
@@ -62,7 +63,7 @@ Abra http://localhost:3000.
 /api/mercadopago/webhook  avisos de pagamento do Mercado Pago
 ```
 
-Antes do login, as respostas da triagem ficam só no `localStorage` do navegador (por até 24 horas, para sobreviver à aba nova aberta pelo link de confirmação). Elas vão ao servidor depois do consentimento e são apagadas do navegador em seguida.
+Antes do login, as respostas da triagem ficam só no `localStorage` do navegador (por até 24 horas, para sobreviver à aba nova aberta pelo link de confirmação). Elas vão ao servidor depois do consentimento, se a conta ainda não tiver triagem e a pessoa confirmar que as respostas são dela, e são apagadas do navegador em seguida. Ao sair ou excluir a conta, tudo o que o app guarda no navegador (chaves `ninna:`) é apagado.
 
 ## Estrutura
 
@@ -101,7 +102,7 @@ Antes do login, as respostas da triagem ficam só no `localStorage` do navegador
 
 O plano fica na tabela `assinaturas`, que a usuária só pode ler (não pode se marcar como Premium). Quem altera é o servidor, a partir de um pagamento confirmado. O limite de documentos também é garantido por uma trava no banco. Os limites e os preços ficam em `src/lib/planos.ts`.
 
-Artigos marcados como Premium só abrem para quem é Premium. O contador de contrações também, mas os sinais para ir à maternidade na hora aparecem para todas. Os registros do contador ficam só no aparelho (localStorage, por até 12 horas) e funcionam sem internet. A regra de quando ir para a maternidade fica em `src/content/contracoes.ts`.
+Artigos marcados como Premium só abrem para quem é Premium. O contador de contrações também, mas os sinais para ir à maternidade na hora aparecem para todas. Os registros do contador ficam só no aparelho (localStorage, separados por conta, por até 12 horas) e funcionam sem internet. A regra de quando ir para a maternidade fica em `src/content/contracoes.ts`.
 
 O plano de parto guarda as respostas na tabela `planos_de_parto` (jsonb); as perguntas ficam em `src/content/plano-parto.ts`. O PDF é gerado pela impressão do navegador ("Salvar como PDF"), com estilos próprios para a folha A4. Sinais de alerta são sempre gratuitos.
 

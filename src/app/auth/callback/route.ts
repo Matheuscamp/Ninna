@@ -1,6 +1,7 @@
 import type { EmailOtpType } from "@supabase/supabase-js";
 import { NextResponse, type NextRequest } from "next/server";
 import { destinoSeguro } from "@/lib/destino";
+import { COOKIE_RECUPERACAO, OPCOES_COOKIE_RECUPERACAO } from "@/lib/recuperacao";
 import { createClient } from "@/lib/supabase/server";
 
 // Tipos de link de e-mail aceitos no formato token_hash (ver abaixo).
@@ -24,12 +25,15 @@ export async function GET(request: NextRequest) {
 
   if (code || (tokenHash && tipo && TIPOS_DE_LINK.includes(tipo))) {
     const supabase = await createClient();
-    const { error } = code
+    const { data, error } = code
       ? await supabase.auth.exchangeCodeForSession(code)
       : await supabase.auth.verifyOtp({ type: tipo!, token_hash: tokenHash! });
     if (!error) {
       const seguinte = code ? destino : `/confirmar-conta?para=${tipo === "recovery" ? "senha" : "cadastro"}`;
-      return NextResponse.redirect(new URL(seguinte, origin));
+      const resposta = NextResponse.redirect(new URL(seguinte, origin));
+      const recuperacao = code ? destino === "/nova-senha" : tipo === "recovery";
+      if (recuperacao && data.user) resposta.cookies.set(COOKIE_RECUPERACAO, data.user.id, OPCOES_COOKIE_RECUPERACAO);
+      return resposta;
     }
   }
 

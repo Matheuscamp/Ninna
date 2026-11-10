@@ -8,7 +8,7 @@ vi.mock("server-only", () => ({}));
 vi.mock("@/lib/supabase/server", () => ({ createClient: async () => estado.falso.supabase }));
 vi.mock("next/navigation", () => ({ redirect: vi.fn() }));
 
-const { salvarTriagem } = await import("./actions");
+const { salvarTriagem, situacaoDaTriagemPendente } = await import("./actions");
 
 const CONSENTIDA = { data: [{ tipo: "dados_saude" }, { tipo: "termos_privacidade" }], error: null };
 
@@ -22,6 +22,28 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.useRealTimers();
+});
+
+describe("respostas guardadas no aparelho antes do login", () => {
+  it("sem login ou sem consentimento, manda para o passo que falta", async () => {
+    estado.falso.responder("consents", { data: [], error: null });
+    expect(await situacaoDaTriagemPendente()).toBe("consentimento");
+    estado.falso.deslogar();
+    expect(await situacaoDaTriagemPendente()).toBe("login");
+  });
+
+  it("nunca sugere usar as respostas em uma conta que já tem perfil", async () => {
+    estado.falso.responder("profiles", { data: { perfil: "gestante" }, error: null });
+    expect(await situacaoDaTriagemPendente()).toBe("ja_tem_perfil");
+    expect(estado.falso.consultas.profiles[0].update).not.toHaveBeenCalled();
+  });
+
+  it("conta sem triagem pode usar as respostas (depois de confirmar que são dela)", async () => {
+    estado.falso.responder("profiles", { data: { perfil: null }, error: null });
+    expect(await situacaoDaTriagemPendente()).toBe("nova");
+    estado.falso.responder("profiles", { data: null, error: null });
+    expect(await situacaoDaTriagemPendente()).toBe("nova");
+  });
 });
 
 describe("triagem salva depois do cadastro", () => {

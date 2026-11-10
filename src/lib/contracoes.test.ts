@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { atingiuPadrao, comIntervalos, descartarAntigas, formatarDuracao, lerSalvas, resumoDoPeriodo, type Contracao } from "./contracoes";
+import { atingiuPadrao, comIntervalos, descartarAntigas, formatarDuracao, lerSalvas, limparRegistros, resumoDoPeriodo, type Contracao } from "./contracoes";
 
 const MIN = 60_000;
 const AGORA = Date.parse("2026-10-27T15:00:00Z");
@@ -11,6 +11,24 @@ function serie(quantas: number, aCadaMin: number, duracaoSeg: number, terminaHaM
     return { inicio, fim: inicio + duracaoSeg * 1000 };
   });
 }
+
+describe("prazo dos registros guardados no aparelho", () => {
+  const HORA = 60 * MIN;
+  const antiga = { inicio: AGORA - 13 * HORA, fim: AGORA - 13 * HORA + MIN };
+  const recente = { inicio: AGORA - HORA, fim: AGORA - HORA + MIN };
+
+  it("descarta contrações com mais de 12 horas", () => {
+    expect(limparRegistros({ contracoes: [antiga, recente], emAndamento: null }, AGORA)).toEqual({ contracoes: [recente], emAndamento: null });
+  });
+
+  it("descarta uma contração que ficou aberta há mais de 12 horas", () => {
+    expect(limparRegistros({ contracoes: [], emAndamento: AGORA - 13 * HORA }, AGORA).emAndamento).toBeNull();
+  });
+
+  it("mantém a contração em andamento", () => {
+    expect(limparRegistros({ contracoes: [], emAndamento: AGORA - MIN }, AGORA).emAndamento).toBe(AGORA - MIN);
+  });
+});
 
 describe("contas das contrações", () => {
   it("intervalo é de começo a começo; a primeira não tem", () => {
